@@ -76,16 +76,17 @@ def get_activations(model):
 
 
 import matplotlib.pyplot as plt
-def plot_activations(input_tensor):
-    x= input_tensor
-    x = x.squeeze(0)   
-    act_2d = x.squeeze(0).mean(dim=0)  # shape [28, 28]
-    print("shape of the input", act_2d.shape)
-    plt.figure(figsize=(6, 6))
-    plt.imshow(act_2d.cpu().numpy(), cmap='viridis')
-    plt.axis('off') 
-    plt.show() 
 
+def plot_activations(input_tensor):
+    x = input_tensor.squeeze(0)      # remove batch dim
+    act_2d = x.mean(dim=0)           # collapse channels -> [H, W]
+    print("shape of the input:", act_2d.shape)
+    
+    plt.figure(figsize=(6, 6))
+    plt.imshow(act_2d.cpu().numpy(), cmap='hot')  # 'hot' or 'viridis' for heatmap
+    plt.colorbar()                                # show color scale
+    plt.axis('off')
+    plt.show()
 
 
 
