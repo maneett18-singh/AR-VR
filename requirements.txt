@@ -1,3 +1,4 @@
 torch
 torchvision
 transformers
+# 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  token for repo
