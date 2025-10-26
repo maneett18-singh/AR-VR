@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6eb421fb0e3129a44bb016ada4c506e9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 132614
+  packageName: Lunar Landscape 3D
+  packageVersion: 1.1
+  assetPath: Assets/Lunar Landscape 3D/Resources/Materials/Ground_02.terrainlayer
+  uploadId: 337475
