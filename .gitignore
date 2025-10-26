@@ -1,5 +1,5 @@
 ARVR_env
-
+venv/
 # Unity
 Library/
 Temp/
@@ -8,3 +8,8 @@ Build/
 Builds/
 Logs/
 MemoryCaptures/
+
+
+.vscode/
+
+__pycache__/
