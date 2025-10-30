@@ -17,7 +17,7 @@ async def handler(websocket):
 
     # Send periodic CNN updates
     while True:
-        # Dummy 5x5 input
+        # Dummy 15x15 input
         x = torch.randn(1, 1, 5, 5)
         y = run_conv_layer(x)
 
