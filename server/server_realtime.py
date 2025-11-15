@@ -47,6 +47,10 @@ async def handler(websocket):
             # Convert input tensor to list
             data["input_tensor"] = input_tensor.squeeze().tolist()
 
+            # Save the JSON data to a file
+            with open("activations.json", "w") as f:
+                json.dump(data, f, indent=4)
+
             await websocket.send(json.dumps(data))
             await asyncio.sleep(1.0)
 
