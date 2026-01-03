@@ -39,21 +39,29 @@ from PIL import Image
 from io import BytesIO
 
 
-def make_prediction(model,input_url="https://conx.readthedocs.io/en/latest/_images/MNIST_6_0.png"):
+def get_input_tensor(input_url="https://conx.readthedocs.io/en/latest/_images/MNIST_6_0.png"):
     response = requests.get(input_url)
     if response.status_code == 200:
         # Step 2: Open the image with PIL
         image = Image.open(BytesIO(response.content))
+        img_bytes = response.content  # raw bytes directly from requests
     else:
         print(f"Failed to download image. Status code: {response.status_code}")
     input_tensor = transform(image)           # shape: [1, 28, 28]
     input_tensor = input_tensor.unsqueeze(0)  # add batch dimension -> shape [1, 1, 28, 28]
+    return input_tensor, img_bytes
+    
 
+def make_prediction(model,input_url="https://conx.readthedocs.io/en/latest/_images/MNIST_6_0.png"):
+    input_tensor, _ = get_input_tensor(input_url)
+    if input_tensor is None:
+        return  # Failed to get input tensor
     model.eval()
     with torch.no_grad():
         output = model(input_tensor)
         predicted = torch.argmax(output, dim=1)
         print("Predicted class:", predicted.item())
+        
 
 
 
@@ -71,6 +79,8 @@ def get_activations(model):
     for idx, layer in enumerate(model.children()):
         layer_name = f"layer_{idx+1}"  # layer_1, layer_2, ...
         hook_handles[layer_name] = layer.register_forward_hook(get_hook(layer_name))
+
+    
 
     return activations
 

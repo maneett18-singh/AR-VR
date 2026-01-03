@@ -1,38 +1,70 @@
-# server_realtime.py
 import asyncio
 import json
 import torch
 import torch.nn.functional as F
 import websockets
 import numpy as np
-
-# A small example CNN forward function
-def run_conv_layer(input_tensor):
-    kernel = torch.randn(1, 1, 3, 3)
-    out = F.conv2d(input_tensor, kernel)
-    return out.squeeze().tolist()
+from model import *
 
 async def handler(websocket):
     print("Unity connected!")
 
-    # Send periodic CNN updates
+    # Load model once
+    cnn = model()
+    cnn.load_weights(path="mnist_cnn.pth")
     while True:
-        # Dummy 5x5 input
-        x = torch.randn(1, 1, 5, 5)
-        y = run_conv_layer(x)
+        try:
+            # Get input image tensor
+            image_url = "https://machinelearningmastery.com/wp-content/uploads/2019/02/sample_image-300x298.png"
+            input_tensor, image_bytes = get_input_tensor(image_url)
+            # register hooks to get activations
+            activations = get_activations(cnn)
 
-        message = {
-            "type": "conv_layer",
-            "shape": [len(y), len(y[0])],
-            "data": y
-        }
-        await websocket.send(json.dumps(message))
-        await asyncio.sleep(1.0)  # send every second
+
+            # Make prediction (using tensor)
+            make_prediction(cnn,image_url)
+            # sorting the activations
+            activations = dict(sorted(activations.items()))
+
+
+            data = {}
+            for idx, (layer_name, values) in enumerate(activations.items()):
+                # Handle 2D layers (4D tensor: batch, channel, H, W)
+                if idx < 4 :
+                    # first 4 layers are 2d layers
+                    tensor_shape = tuple(values.squeeze(0).mean(dim=0).shape) # getting shape of single feature map
+                    logits = values.squeeze(0).mean(dim=0)   # taking the mean of all feature maps
+                else:
+                    tensor_shape = tuple(values.squeeze().shape)
+                    logits = values.squeeze()   # Ensure list!
+                key = f"{idx+1}"
+                data[key] = {
+                    "name": layer_name,
+                    "shape": tensor_shape,
+                    "data": logits.tolist()
+                }
+
+            # Convert input tensor to list
+            data["input_tensor"] = input_tensor.squeeze().tolist()
+
+            # Save the JSON data to a file
+            with open("activations.json", "w") as f:
+                json.dump(data, f, indent=4)
+
+            await websocket.send(json.dumps(data))
+            await asyncio.sleep(1.0)
+
+        except websockets.exceptions.ConnectionClosed:
+            print("Unity disconnected. Exiting handler.")
+            break
+        except Exception as e:
+            print(f"Error in handler: {e}")
+            break
 
 async def main():
     async with websockets.serve(handler, "0.0.0.0", 8765):
         print("WebSocket server running on ws://localhost:8765")
-        await asyncio.Future()  # run forever
+        await asyncio.Future()  # Run forever
 
 if __name__ == "__main__":
     asyncio.run(main())
