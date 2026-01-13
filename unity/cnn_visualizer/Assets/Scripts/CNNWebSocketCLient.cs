@@ -9,29 +9,39 @@ public class CNNWebSocketClient : MonoBehaviour
 {
     ClientWebSocket socket = new ClientWebSocket();
     Uri uri = new Uri("ws://localhost:8765");
+    
+    public ImageCubeSpawner cubeSpawner;  // ✅ Assign in Inspector
 
     async void Start()
     {
         try
         {
+            Debug.Log("🔌 [CNNWebSocketClient] Attempting connection to ws://localhost:8765...");
             await socket.ConnectAsync(uri, CancellationToken.None);
-            Debug.Log("✅ Connected to PyTorch WebSocket server.");
+            Debug.Log("✅ [CNNWebSocketClient] Connected to PyTorch WebSocket server.");
             _ = ListenLoop();
         }
         catch (Exception ex)
         {
-            Debug.LogError("❌ WebSocket connection failed: " + ex.Message);
+            Debug.LogError("❌ [CNNWebSocketClient] WebSocket connection failed: " + ex.Message);
         }
     }
 
     async Task ListenLoop()
     {
-        var buffer = new byte[8192];
+        var buffer = new byte[65536];
         while (socket.State == WebSocketState.Open)
         {
-            var result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-            string msg = Encoding.UTF8.GetString(buffer, 0, result.Count);
-            OnMessage(msg);
+            try
+            {
+                var result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                string msg = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                OnMessage(msg);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"❌ [CNNWebSocketClient] Receive error: {ex.Message}");
+            }
         }
     }
     void CreateLayerPlane(ConvMessage msg)
@@ -75,13 +85,16 @@ public class CNNWebSocketClient : MonoBehaviour
 
     void OnMessage(string json)
     {
-        Debug.Log($"📩 Message from Python: {json.Substring(0, Mathf.Min(120, json.Length))}...");
-        var data = JsonUtility.FromJson<ConvMessage>(json);
-        // later: visualize it!
-        ConvMessage msg = JsonUtility.FromJson<ConvMessage>(json);
-        if (msg.type == "conv_layer")
+        Debug.Log($"📩 [CNNWebSocketClient] Message from Python: {json.Substring(0, Mathf.Min(120, json.Length))}...");
+        
+        // ✅ Now pass to ImageCubeSpawner
+        if (cubeSpawner != null)
         {
-            CreateLayerPlane(msg);
+            cubeSpawner.OnWebSocketMessage(json);
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ [CNNWebSocketClient] cubeSpawner not assigned!");
         }
     }
 
@@ -95,7 +108,7 @@ public class CNNWebSocketClient : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        if (socket != null)
+        if (socket != null && socket.State == WebSocketState.Open)
             socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Bye", CancellationToken.None);
     }
 }
