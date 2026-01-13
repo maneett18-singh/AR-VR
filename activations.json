@@ -1,0 +1,40 @@
+{
+    "input_image_shape": [
+        28,
+        28
+    ],
+    "feature_maps": {
+        "conv1": {
+            "filter_0": {
+                "shape": [
+                    28,
+                    28
+                ]
+            }
+        },
+        "conv2": {
+            "filter_0": {
+                "shape": [
+                    28,
+                    28
+                ]
+            }
+        },
+        "fc1": {
+            "filter_0": {
+                "shape": [
+                    11,
+                    11
+                ]
+            }
+        },
+        "fc2": {
+            "filter_0": {
+                "shape": [
+                    3,
+                    3
+                ]
+            }
+        }
+    }
+}
