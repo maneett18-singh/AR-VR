@@ -40,8 +40,8 @@ public class ConveyorMover : MonoBehaviour
 
                 // Keep vertical motion (gravity) intact
                 Vector3 newVelocity = worldDir * speed;
-                newVelocity.y = rb.velocity.y;
-                rb.velocity = newVelocity;
+                newVelocity.y = rb.linearVelocity.y;
+                rb.linearVelocity = newVelocity;
             }
         }
     }

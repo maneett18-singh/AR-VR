@@ -8460,8 +8460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23f79612cd8444f99571feda2a6a899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
-  cubePrefab: {fileID: 0}
-  lineMaterial: {fileID: 0}
+  cubePrefab: {fileID: 3644587261662494870, guid: 4062191fc5edc40a897e56b34ab51b60, type: 3}
+  lineMaterial: {fileID: 2100000, guid: 86bb2df8a35444206a5b94c549d008f9, type: 2}
 --- !u!4 &1904284154
 Transform:
   m_ObjectHideFlags: 0
