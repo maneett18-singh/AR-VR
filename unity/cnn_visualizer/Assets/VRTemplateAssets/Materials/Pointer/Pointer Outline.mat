@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Pointer Outline
-  m_Shader: {fileID: 4800000, guid: 5e723135b0fd1e34ba403dc074c61877, type: 3}
+  m_Shader: {fileID: 4800000, guid: a176945d0e562084691bce8e11084c6a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -47,7 +47,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 38d2b9d9f4ace25459ab950a9859f920, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -87,7 +87,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.504, g: 0.504, b: 0.504, a: 0.2}
+    - _Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 0.9019608}
     - _EdgeData: {r: -0.12, g: 0.88, b: 0.74, a: 1.5}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
