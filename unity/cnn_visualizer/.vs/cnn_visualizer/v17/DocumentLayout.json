@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\VIZDeep\\nutral2\\AR-VR\\unity\\cnn_visualizer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\VIZDeep\\nutral2\\AR-VR\\unity\\cnn_visualizer\\Assets\\Scripts\\whiteboardexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\whiteboardexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\VIZDeep\\nutral2\\AR-VR\\unity\\cnn_visualizer\\Assets\\Scripts\\ImageCubeSpawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\ImageCubeSpawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -34,15 +38,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "whiteboardexporter.cs",
+              "DocumentMoniker": "D:\\VIZDeep\\nutral2\\AR-VR\\unity\\cnn_visualizer\\Assets\\Scripts\\whiteboardexporter.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\whiteboardexporter.cs",
+              "ToolTip": "D:\\VIZDeep\\nutral2\\AR-VR\\unity\\cnn_visualizer\\Assets\\Scripts\\whiteboardexporter.cs",
+              "RelativeToolTip": "Assets\\Scripts\\whiteboardexporter.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T18:08:23.181Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TMP_FontAsset.cs",
               "DocumentMoniker": "D:\\VIZDeep\\nutral2\\AR-VR\\unity\\cnn_visualizer\\Library\\PackageCache\\com.unity.ugui@8d7885e629a4\\Runtime\\TMP\\TMP_FontAsset.cs",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.ugui@8d7885e629a4\\Runtime\\TMP\\TMP_FontAsset.cs",
@@ -50,12 +67,11 @@
               "RelativeToolTip": "Library\\PackageCache\\com.unity.ugui@8d7885e629a4\\Runtime\\TMP\\TMP_FontAsset.cs",
               "ViewState": "AgIAAOkCAAAAAAAAAAAnwPQCAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-03T16:41:47.947Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-03T16:41:47.947Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ImageCubeSpawner.cs",
               "DocumentMoniker": "D:\\VIZDeep\\nutral2\\AR-VR\\unity\\cnn_visualizer\\Assets\\Scripts\\ImageCubeSpawner.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ImageCubeSpawner.cs",
@@ -68,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Lit.shader",
               "DocumentMoniker": "D:\\VIZDeep\\nutral2\\AR-VR\\unity\\cnn_visualizer\\Library\\PackageCache\\com.unity.render-pipelines.universal@cc5029882822\\Shaders\\Lit.shader",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@cc5029882822\\Shaders\\Lit.shader",
@@ -80,7 +96,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "SaberCapture.cs",
               "DocumentMoniker": "D:\\VIZDeep\\nutral2\\AR-VR\\unity\\cnn_visualizer\\Assets\\Scripts\\SaberCapture.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SaberCapture.cs",
@@ -92,7 +108,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "SaberPainter.cs",
               "DocumentMoniker": "D:\\VIZDeep\\nutral2\\AR-VR\\unity\\cnn_visualizer\\Assets\\Scripts\\SaberPainter.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SaberPainter.cs",
@@ -104,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "SaberStroke.cs",
               "DocumentMoniker": "D:\\VIZDeep\\nutral2\\AR-VR\\unity\\cnn_visualizer\\Assets\\Scripts\\SaberStroke.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SaberStroke.cs",
