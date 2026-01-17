@@ -44,6 +44,44 @@ public class CNNWebSocketClient : MonoBehaviour
             }
         }
     }
+    void CreateLayerPlane(ConvMessage msg)
+{
+    int width = msg.shape[1];
+    int height = msg.shape[0];
+
+    // 1️⃣ Create plane
+    GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Quad);
+
+    // ✅ Fixed position at (0, 4, 0)
+    plane.transform.position = new Vector3(0f, 4f, 8f);
+
+    // Scale the plane according to feature map size
+    plane.transform.localScale = new Vector3(width * 0.2f, height * 0.2f, 1f);
+
+    // 2️⃣ Create texture
+    Texture2D tex = new Texture2D(width, height, TextureFormat.RGBA32, false);
+
+    // 3️⃣ Fill texture with feature map data
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            float v = msg.data[y][x];
+            float normalized = Mathf.InverseLerp(-5f, 5f, v); // normalize values
+            tex.SetPixel(x, height - 1 - y, new Color(normalized, normalized, normalized));
+        }
+    }
+    tex.Apply();
+
+    // 4️⃣ Assign material
+    Material mat = new Material(Shader.Find("Unlit/Texture"));
+    mat.mainTexture = tex;
+    plane.GetComponent<Renderer>().material = mat;
+
+    // 5️⃣ Parent to this GameObject for hierarchy
+    plane.transform.SetParent(transform);
+}
+
 
     void OnMessage(string json)
     {
