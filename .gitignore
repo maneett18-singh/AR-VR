@@ -9,7 +9,17 @@ Builds/
 Logs/
 MemoryCaptures/
 
-
 .vscode/
 
 __pycache__/
+
+# C# project files
+*.csproj
+*.sln
+
+# Unity user settings
+UserSettings/
+
+# IDE
+.vscode/
+.idea/

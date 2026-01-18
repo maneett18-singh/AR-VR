@@ -1,5 +1,5 @@
-import asyncio
 import websockets
+import asyncio
 
 async def client():
     url= "ws://localhost:8765"
