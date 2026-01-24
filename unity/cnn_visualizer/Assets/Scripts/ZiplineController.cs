@@ -11,6 +11,7 @@ public class ZiplineController : MonoBehaviour
 
     [Header("Settings")]
     public float speed = 5f;                   // zipline speed
+    public bool drawDebugLine = false;         // disable this if you have a real rope mesh
     public int ropeSegments = 20;              // segments for smooth rope
     public float ropeSag = 0.5f;               // rope sag amount
 
@@ -21,12 +22,17 @@ public class ZiplineController : MonoBehaviour
     void Awake()
     {
         line = GetComponent<LineRenderer>();
-        line.positionCount = ropeSegments;
+        if (line != null)
+        {
+            line.enabled = drawDebugLine;
+            line.positionCount = Mathf.Max(2, ropeSegments);
+        }
     }
 
     void Update()
     {
-        UpdateRope();
+        if (drawDebugLine)
+            UpdateRope();
 
         if (!isUsingZipline || player == null) return;
 
@@ -88,7 +94,11 @@ public class ZiplineController : MonoBehaviour
 
     private void UpdateRope()
     {
+        if (!drawDebugLine) return;
         if (line == null || startPoint == null || endPoint == null) return;
+
+        if (!line.enabled) line.enabled = true;
+        line.positionCount = Mathf.Max(2, ropeSegments);
 
         for (int i = 0; i < ropeSegments; i++)
         {
