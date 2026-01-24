@@ -1,39 +1,54 @@
 using UnityEngine;
-using System.Collections;
 
 namespace AstronautPlayer
 {
+    public class AstronautPlayer : MonoBehaviour 
+    {
+        private Animator anim;
+        private CharacterController controller;
 
-	public class AstronautPlayer : MonoBehaviour {
+        [Header("Movement Settings")]
+        public float speed = 7.0f;
+        public float gravity = 20.0f;
+        private Vector3 moveDirection = Vector3.zero;
 
-		private Animator anim;
-		private CharacterController controller;
+        [Header("Camera Settings")]
+        public Camera playerCamera; 
+        public Transform camAnchor; // Assign your "CamAnchor" object here
+        public float mouseSensitivity = 200.0f;
+        
+        private float currentX = 0f;
+        private float currentY = 0f;
 
-		public float speed = 600.0f;
-		public float turnSpeed = 400.0f;
-		private Vector3 moveDirection = Vector3.zero;
-		public float gravity = 20.0f;
+        void Start () {
+            controller = GetComponent<CharacterController>();
+            anim = GetComponentInChildren<Animator>();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
 
-		void Start () {
-			controller = GetComponent <CharacterController>();
-			anim = gameObject.GetComponentInChildren<Animator>();
-		}
+        void Update () {
+            float vertical = Input.GetAxis("Vertical");
+            anim.SetInteger("AnimationPar", vertical != 0 ? 1 : 0);
 
-		void Update (){
-			if (Input.GetKey ("w")) {
-				anim.SetInteger ("AnimationPar", 1);
-			}  else {
-				anim.SetInteger ("AnimationPar", 0);
-			}
+            if(controller.isGrounded) {
+                moveDirection = transform.forward * vertical * speed;
+            }
 
-			if(controller.isGrounded){
-				moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
-			}
+            moveDirection.y -= gravity * Time.deltaTime;
+            controller.Move(moveDirection * Time.deltaTime);
+        }
 
-			float turn = Input.GetAxis("Horizontal");
-			transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
-			controller.Move(moveDirection * Time.deltaTime);
-			moveDirection.y -= gravity * Time.deltaTime;
-		}
-	}
+        void LateUpdate() {
+            if (playerCamera == null || camAnchor == null) return;
+
+            currentX += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+            currentY -= Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+            currentY = Mathf.Clamp(currentY, -80f, 80f);
+
+            transform.rotation = Quaternion.Euler(0, currentX, 0);
+            playerCamera.transform.position = camAnchor.position;
+            playerCamera.transform.rotation = Quaternion.Euler(currentY, currentX, 0);
+        }
+    }
 }
