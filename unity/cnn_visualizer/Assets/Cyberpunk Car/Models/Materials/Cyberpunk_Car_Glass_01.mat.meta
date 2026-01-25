@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4a400ba5151dee34e8fb848bd29a0cbe
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 175064
+  packageName: CyberPunk Car
+  packageVersion: 1.0
+  assetPath: Assets/Cyberpunk Car/Models/Materials/Cyberpunk_Car_Glass_01.mat
+  uploadId: 380013

@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Anchor
+  - Pickable
+  - Zipline
+  - Conveyor
+  - Lever
+  - WirePlug
+  - Socket
   layers:
   - Default
   - TransparentFX
