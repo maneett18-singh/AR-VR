@@ -93,6 +93,19 @@ public class RaycastVisibleOnKey : MonoBehaviour
 
         if (target == null) return;
 
+        // --- CASE -1: Jetpack pickup ---
+        // If we are looking at a JetpackPickup, equip/activate it.
+        JetpackPickup jetpack = target.GetComponentInParent<JetpackPickup>();
+        if (jetpack != null)
+        {
+            GameObject playerObj = (player != null) ? player.gameObject : this.gameObject;
+            if (jetpack.TryPickup(playerObj))
+            {
+                Debug.Log("✅ Jetpack equipped and activated");
+                return;
+            }
+        }
+
         // --- CASE 0: Car ---
         // IMPORTANT: the ray often hits a child mesh/collider, so use InParent.
         CarController car = target.GetComponentInParent<CarController>();

@@ -20,6 +20,21 @@ namespace AstronautPlayer
         private float currentX = 0f;
         private float currentY = 0f;
 
+        [Header("External Control")]
+        [Tooltip("When true, this script will not apply walking/gravity movement (mouse-look still runs).")]
+        [SerializeField] private bool movementSuppressed;
+
+        public void SetMovementSuppressed(bool suppressed)
+        {
+            movementSuppressed = suppressed;
+            if (movementSuppressed)
+            {
+                moveDirection = Vector3.zero;
+                if (anim != null)
+                    anim.SetInteger("AnimationPar", 0);
+            }
+        }
+
         void Start () {
             controller = GetComponent<CharacterController>();
             anim = GetComponentInChildren<Animator>();
@@ -28,6 +43,14 @@ namespace AstronautPlayer
         }
 
         void Update () {
+            if (movementSuppressed)
+            {
+                // Jetpack (or other system) is responsible for CharacterController.Move.
+                if (anim != null)
+                    anim.SetInteger("AnimationPar", 0);
+                return;
+            }
+
             float vertical = Input.GetAxis("Vertical");
             anim.SetInteger("AnimationPar", vertical != 0 ? 1 : 0);
 
