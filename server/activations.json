@@ -7,16 +7,580 @@
         "conv1": {
             "filter_0": {
                 "shape": [
-                    28,
-                    28
+                    14,
+                    14
+                ]
+            },
+            "filter_1": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_2": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_3": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_4": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_5": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_6": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_7": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_8": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_9": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_10": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_11": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_12": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_13": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_14": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_15": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_16": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_17": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_18": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_19": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_20": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_21": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_22": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_23": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_24": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_25": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_26": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_27": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_28": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_29": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_30": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_31": {
+                "shape": [
+                    14,
+                    14
                 ]
             }
         },
         "conv2": {
             "filter_0": {
                 "shape": [
-                    28,
-                    28
+                    14,
+                    14
+                ]
+            },
+            "filter_1": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_2": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_3": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_4": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_5": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_6": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_7": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_8": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_9": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_10": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_11": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_12": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_13": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_14": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_15": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_16": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_17": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_18": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_19": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_20": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_21": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_22": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_23": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_24": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_25": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_26": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_27": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_28": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_29": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_30": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_31": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_32": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_33": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_34": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_35": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_36": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_37": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_38": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_39": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_40": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_41": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_42": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_43": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_44": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_45": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_46": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_47": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_48": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_49": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_50": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_51": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_52": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_53": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_54": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_55": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_56": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_57": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_58": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_59": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_60": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_61": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_62": {
+                "shape": [
+                    14,
+                    14
+                ]
+            },
+            "filter_63": {
+                "shape": [
+                    14,
+                    14
                 ]
             }
         },

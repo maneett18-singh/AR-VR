@@ -1,6 +1,7 @@
 torch
 torchvision
-transformers
+matplotlib
+requests
 websockets
 numpy
 Pillow

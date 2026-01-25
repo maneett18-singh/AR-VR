@@ -19,7 +19,22 @@ public class ImageCubeSpawner : MonoBehaviour
     }
 
     public GameObject cubePrefab;
+    public float layerSpacing = 3.0f;      // space between different layers
+	public float channelSpacing = 0.1f;    // space between channels within one layer
+	public bool stackChannelsAlongZ = true; // toggle direction in Inspector
+
     public Material lineMaterial; // assign a simple unlit color material in Inspector
+
+    // New: offset to lift whole network visualization (set in Inspector or at runtime)
+    public Vector3 networkOffset = Vector3.zero;
+    public Vector3 layerBasePosition = Vector3.zero;
+    public Vector3 networkRotationEuler = Vector3.zero;
+
+    // Optional helper to set only Y lift from other scripts
+    public void SetNetworkLift(float y)
+    {
+        networkOffset.y = y;
+    }
 
     private readonly List<GameObject> activeCubes = new();
     private readonly List<GameObject> receptiveLines = new();
@@ -92,59 +107,72 @@ public class ImageCubeSpawner : MonoBehaviour
 
                 float offset = 1.5f;
                 int index = 0;
-                Debug.Log($"🔄 [ImageCubeSpawner] Processing {layer.Value.Count} feature maps in layer {layer.Key}...");
+		Debug.Log($"🔄 [ImageCubeSpawner] Processing {layer.Value.Count} feature maps in layer {layer.Key}...");
 
-                foreach (var feature in layer.Value)
-                {
-                    FeatureMap fmap = feature.Value;
-                    if (fmap?.base64 == null) 
-                    {
-                        Debug.LogWarning($"⚠ [ImageCubeSpawner] Feature map {feature.Key} has null base64 data, skipping...");
-                        continue;
-                    }
+		foreach (var feature in layer.Value)
+		{
+		    FeatureMap fmap = feature.Value;
+		    if (fmap?.base64 == null) continue;
 
-                    Vector2 shape = (fmap.shape != null && fmap.shape.Length >= 2)
-                        ? new Vector2(fmap.shape[1], fmap.shape[0])
-                        : new Vector2(28, 28);
+		    Vector2 shape = (fmap.shape != null && fmap.shape.Length >= 2)
+			? new Vector2(fmap.shape[1], fmap.shape[0])
+			: new Vector2(28, 28);
 
-                    Debug.Log($"🎨 [ImageCubeSpawner] Creating feature map {feature.Key} (shape: {shape.x}x{shape.y})");
+		    // Base position for this layer, editable from Inspector
+		    Vector3 layerOrigin = layerBasePosition + new Vector3(
+			0f,
+			0f,
+			layerIndex * layerSpacing   // separate layers along Z (or X if you prefer)
+		    );
 
-                    // Arrange cubes in a grid per layer
-                    Vector3 pos = new Vector3(
-                        (index % 10) * offset,
-                        (index / 10) * offset,
-                        layerIndex * layerSpacing
-                    );
-                    Debug.Log($"📍 [ImageCubeSpawner] Cube position: {pos}");
+		    Vector3 pos;
+		    if (stackChannelsAlongZ)
+		    {
+			// Stack channels along Z, starting from layerOrigin
+			pos = layerOrigin + new Vector3(
+			    0f,
+			    0f,
+			    index * channelSpacing
+			);
+		    }
+		    else
+		    {
+			// Stack channels along X, starting from layerOrigin
+			pos = layerOrigin + new Vector3(
+			    index * channelSpacing,
+			    0f,
+			    0f
+			);
+		    }
 
-                    GameObject cube = CreateCubeFromBase64(fmap.base64, pos, shape);
-                    if (cube != null)
-                    {
-                        cube.transform.SetParent(layerParent.transform);
-                        layerCubes.Add(cube);
-                        Debug.Log($"✅ [ImageCubeSpawner] Feature map cube created: {cube.name}");
-                    }
-                    else
-                    {
-                        Debug.LogError($"❌ [ImageCubeSpawner] Failed to create cube for {feature.Key}");
-                    }
-                    index++;
-                }
+		    Debug.Log($"📍 [ImageCubeSpawner] Cube position: {pos}");
+
+		    GameObject cube = CreateCubeFromBase64(fmap.base64, pos, shape);
+		    if (cube != null)
+		    {
+			cube.transform.SetParent(layerParent.transform);
+			layerCubes.Add(cube);
+			Debug.Log($"✅ [ImageCubeSpawner] Feature map cube created: {cube.name}");
+		    }
+		    else
+		    {
+			Debug.LogError($"❌ [ImageCubeSpawner] Failed to create cube for {feature.Key}");
+		    }
+
+		    index++;
+		}
 
                 // Compute layer center to draw connection lines
                 Debug.Log($"🔢 [ImageCubeSpawner] Layer {layer.Key} has {layerCubes.Count} cubes");
-                Vector3 layerCenter = ComputeLayerCenter(layerCubes);
-                Debug.Log($"📍 [ImageCubeSpawner] Layer center computed: {layerCenter}");
-                
-                if (previousLayerCenter != null)
-                {
-                    Debug.Log($"🔗 [ImageCubeSpawner] Drawing connection line between layers...");
-                    DrawReceptiveFieldLine(previousLayerCenter.transform.position, layerCenter);
-                }
+               Vector3 layerCenter = ComputeLayerCenter(layerCubes);
+		Debug.Log($"📍 [ImageCubeSpawner] Layer center computed: {layerCenter}");
 
-                previousLayerCenter = layerParent;
+		// Remove the line-drawing so nothing is called here
+		previousLayerCenter = layerParent;
+
                 layerIndex++;
             }
+            
 
             Debug.Log($"✅ [ImageCubeSpawner] Successfully spawned {layerIndex} layers of feature maps!");
             Debug.Log($"📊 [ImageCubeSpawner] Total active cubes: {activeCubes.Count}, Lines: {receptiveLines.Count}");
@@ -174,6 +202,9 @@ public class ImageCubeSpawner : MonoBehaviour
                 return null;
             }
             Debug.Log($"✅ [ImageCubeSpawner] Texture created: {tex.width}x{tex.height}");
+
+            // Apply the configured global network offset so the entire visualization is lifted
+            position += networkOffset;
 
             Debug.Log($"🎮 [ImageCubeSpawner] Instantiating cube prefab at position {position}...");
             GameObject cube = Instantiate(cubePrefab, position, Quaternion.identity, transform);
