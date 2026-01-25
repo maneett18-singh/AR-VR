@@ -79,9 +79,30 @@ public class RaycastVisibleOnKey : MonoBehaviour
     {
         if (!Input.GetKeyDown(KeyCode.E)) return;
 
-        // Must be highlighting something
+        // Prefer the highlighted object (when holding the highlight key),
+        // but also allow interaction without highlighting by raycasting on E.
         GameObject target = highlightedObject;
+        if (target == null)
+        {
+            Vector3 start = transform.position;
+            Vector3 direction = (playerCamera != null) ? playerCamera.transform.forward : transform.forward;
+
+            if (Physics.Raycast(start, direction, out RaycastHit hit, rayDistance, raycastLayers, QueryTriggerInteraction.Collide))
+                target = hit.collider.gameObject;
+        }
+
         if (target == null) return;
+
+        // --- CASE 0: Car ---
+        // IMPORTANT: the ray often hits a child mesh/collider, so use InParent.
+        CarController car = target.GetComponentInParent<CarController>();
+        if (car != null)
+        {
+            Debug.Log("Attempting to enter car...");
+            GameObject playerObj = (player != null) ? player.gameObject : this.gameObject;
+            car.EnterCar(playerObj);
+            return;
+        }
 
         // Find PlugIdentity on target or its parents (this is how we identify which wire a plug belongs to)
         PlugIdentity plugId = target.GetComponent<PlugIdentity>();
@@ -102,6 +123,7 @@ public class RaycastVisibleOnKey : MonoBehaviour
 
         // --- CASE 2: If we are looking at a socket and holding a wire ---
         Socket socket = target.GetComponent<Socket>();
+        if (socket == null) socket = target.GetComponentInParent<Socket>();
         if (socket != null && heldWire != null)
         {
             // Let Socket.TryPlug decide whether it can be replaced
@@ -116,6 +138,7 @@ public class RaycastVisibleOnKey : MonoBehaviour
         {
             Zipline zipline = target.GetComponentInParent<Zipline>();
             if (zipline != null) zipline.Attach(player);
+            return;
         }
     }
 
@@ -147,7 +170,7 @@ public class RaycastVisibleOnKey : MonoBehaviour
             ResetHighlight();
             // Don't overwrite socket status colors (red/green) with highlight yellow.
             // We still set highlightedObject so interaction works.
-            if (hit.collider.GetComponent<Socket>() == null)
+            if (hit.collider.GetComponentInParent<Socket>() == null)
             {
                 currentRenderer = hitRenderer;
                 originalColor = currentRenderer.material.color;

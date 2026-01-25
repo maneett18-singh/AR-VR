@@ -10,8 +10,36 @@ public class Socket : MonoBehaviour
 
     [HideInInspector] public bool isOccupied = false;
 
+    private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
+    private static readonly int ColorId = Shader.PropertyToID("_Color");
+
+    private MaterialPropertyBlock _mpb;
+
+    private void Awake()
+    {
+        // If not assigned in Inspector, try to find a visible renderer on this object or children.
+        if (statusRenderer == null)
+            statusRenderer = GetComponent<Renderer>() ?? GetComponentInChildren<Renderer>();
+
+        _mpb = new MaterialPropertyBlock();
+    }
+
+    private void SetStatusColor(Color color)
+    {
+        if (statusRenderer == null)
+            return;
+
+        statusRenderer.GetPropertyBlock(_mpb);
+        _mpb.SetColor(ColorId, color);
+        _mpb.SetColor(BaseColorId, color);
+        statusRenderer.SetPropertyBlock(_mpb);
+    }
+
     public void TryPlug(Wire wire) 
     {
+        if (wire == null)
+            return;
+
         // If something is already plugged in:
         // - If it's correct/locked, do not allow replacing.
         // - If it's wrong/unlocked, allow overriding by unplugging it first.
@@ -33,10 +61,10 @@ public class Socket : MonoBehaviour
 
         // Success Check
         if (wire.wireIndex == socketIndex) {
-            statusRenderer.material.color = Color.green;
+            SetStatusColor(Color.green);
             wire.isLocked = true; // Correct wire: locked forever
         } else {
-            statusRenderer.material.color = Color.red;
+            SetStatusColor(Color.red);
             wire.isLocked = false; // Wrong wire: remains grabbable
         }
     }
@@ -45,6 +73,6 @@ public class Socket : MonoBehaviour
     {
         isOccupied = false;
         currentWire = null;
-        statusRenderer.material.color = Color.white;
+        SetStatusColor(Color.white);
     }
 }
