@@ -1,5 +1,6 @@
 ARVR_env
-venv/
+ar_vr_env/
+.venv/
 # Unity
 Library/
 Temp/

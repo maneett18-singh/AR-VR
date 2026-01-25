@@ -1,7 +1,5 @@
 torch
 torchvision
-transformers
 websockets
 numpy
 Pillow
-# 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  token for repo
