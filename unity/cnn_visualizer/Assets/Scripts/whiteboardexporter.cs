@@ -7,6 +7,27 @@ public class WhiteboardExporter : MonoBehaviour
     public int resWidth = 256;    // MNIST width
     public int resHeight = 256;   // MNIST height
 
+    private static Texture2D Rotate90Clockwise(Texture2D src)
+    {
+        int w = src.width;
+        int h = src.height;
+
+        // New texture has swapped dimensions.
+        Texture2D dst = new Texture2D(h, w, src.format, false);
+
+        // (x, y) -> (h - 1 - y, x)
+        for (int y = 0; y < h; y++)
+        {
+            for (int x = 0; x < w; x++)
+            {
+                dst.SetPixel(h - 1 - y, x, src.GetPixel(x, y));
+            }
+        }
+
+        dst.Apply();
+        return dst;
+    }
+
     void Update()
 {
     // Input.GetKeyDown checks for the exact frame the key is pressed
@@ -35,8 +56,9 @@ public class WhiteboardExporter : MonoBehaviour
         RenderTexture.active = null;
         Destroy(rt);
 
-        // 5. Convert to PNG bytes and save to your computer
-        byte[] bytes = screenShot.EncodeToPNG();
+    // 5. Rotate 90 degrees to the right (clockwise), then convert to PNG.
+    Texture2D rotated = Rotate90Clockwise(screenShot);
+    byte[] bytes = rotated.EncodeToPNG();
         string picsDir = Path.Combine(Application.dataPath, "Pics");
         Directory.CreateDirectory(picsDir);
 
@@ -45,6 +67,10 @@ public class WhiteboardExporter : MonoBehaviour
             "MNIST_Drawing_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png"
         );
         File.WriteAllBytes(filename, bytes);
+
+        // Cleanup CPU-side textures
+        Destroy(screenShot);
+        Destroy(rotated);
 
         Debug.Log("Saved image to: " + filename);
     }

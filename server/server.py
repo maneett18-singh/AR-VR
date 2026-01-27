@@ -36,13 +36,62 @@ def _latest_png_path(pics_dir: str) -> str:
     return max(candidates, key=os.path.getmtime)
 
 
+def _mnist_preprocess_pil(image_rgb: Image.Image) -> Image.Image:
+        """Convert a Unity export (black ink on white) into an MNIST-like 28x28 image.
+
+        Steps:
+            1) grayscale
+            2) invert (so ink is bright like MNIST)
+            3) binarize / clean
+            4) crop to bounding box of ink
+            5) pad to square
+            6) resize to 28x28
+        """
+        # 1) grayscale
+        img_l = image_rgb.convert("L")
+        arr = np.array(img_l, dtype=np.uint8)
+
+        # 2) invert: black strokes (0) -> 255, white bg (255) -> 0
+        arr = 255 - arr
+
+        # 3) binarize-ish: keep anti-aliased edges but remove background noise
+        # Anything below threshold is treated as background.
+        thresh = 25
+        mask = arr > thresh
+        if not np.any(mask):
+                # Nothing drawn; return a blank 28x28
+                return Image.fromarray(np.zeros((28, 28), dtype=np.uint8), mode="L")
+
+        # 4) crop to bbox around ink
+        ys, xs = np.where(mask)
+        y0, y1 = int(ys.min()), int(ys.max())
+        x0, x1 = int(xs.min()), int(xs.max())
+        cropped = arr[y0 : y1 + 1, x0 : x1 + 1]
+
+        # 5) pad to square with a margin (helps centering)
+        h, w = cropped.shape
+        size = max(h, w)
+        margin = max(2, int(size * 0.15))
+        canvas_size = size + 2 * margin
+        canvas = np.zeros((canvas_size, canvas_size), dtype=np.uint8)
+        y_off = (canvas_size - h) // 2
+        x_off = (canvas_size - w) // 2
+        canvas[y_off : y_off + h, x_off : x_off + w] = cropped
+
+        # 6) resize to 28x28
+        out = Image.fromarray(canvas, mode="L").resize((28, 28), resample=Image.BILINEAR)
+        return out
+
+
 def get_input_tensor_from_local_png(png_path: str):
     """Load a local PNG (Unity output), transform to MNIST tensor, and return tensor + raw bytes."""
     with open(png_path, "rb") as f:
         image_bytes = f.read()
 
-    image = Image.open(BytesIO(image_bytes)).convert("RGB")
-    input_tensor = transform(image).unsqueeze(0)  # [1,1,28,28]
+    image_rgb = Image.open(BytesIO(image_bytes)).convert("RGB")
+    mnist_like = _mnist_preprocess_pil(image_rgb)  # 28x28 L
+    # transform already does resize/grayscale/totensor/normalize; grayscale is a no-op here.
+    input_tensor = transform(mnist_like).unsqueeze(0)  # [1,1,28,28]
     return input_tensor, image_bytes
 
 
