@@ -37,7 +37,13 @@ public class WhiteboardExporter : MonoBehaviour
 
         // 5. Convert to PNG bytes and save to your computer
         byte[] bytes = screenShot.EncodeToPNG();
-        string filename = Application.dataPath + "/MNIST_Drawing_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
+        string picsDir = Path.Combine(Application.dataPath, "Pics");
+        Directory.CreateDirectory(picsDir);
+
+        string filename = Path.Combine(
+            picsDir,
+            "MNIST_Drawing_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png"
+        );
         File.WriteAllBytes(filename, bytes);
 
         Debug.Log("Saved image to: " + filename);

@@ -1,19 +1,49 @@
 import base64
 import json
-from dataclasses import dataclass
 from io import BytesIO
 import os
+import glob
+import asyncio
 from typing import Any, Dict, Optional
 
 import numpy as np
 import torch
-import torch.nn.functional as F
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 from PIL import Image
 
+import websockets
+
 from model import *
-from typing import Optional
+
+
+def _weights_path() -> str:
+    # server/ is the working directory when you run python server.py
+    return os.path.join(os.path.dirname(__file__), "mnist_cnn.pth")
+
+
+def _unity_pics_dir() -> str:
+    # Unity project path: <repo>/unity/cnn_visualizer/Assets/Pics
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    return os.path.join(repo_root, "unity", "cnn_visualizer", "Assets", "Pics")
+
+
+def _latest_png_path(pics_dir: str) -> str:
+    patterns = [os.path.join(pics_dir, "*.png"), os.path.join(pics_dir, "*.PNG")]
+    candidates: list[str] = []
+    for p in patterns:
+        candidates.extend(glob.glob(p))
+    if not candidates:
+        raise FileNotFoundError(f"No PNG images found in: {pics_dir}")
+    return max(candidates, key=os.path.getmtime)
+
+
+def get_input_tensor_from_local_png(png_path: str):
+    """Load a local PNG (Unity output), transform to MNIST tensor, and return tensor + raw bytes."""
+    with open(png_path, "rb") as f:
+        image_bytes = f.read()
+
+    image = Image.open(BytesIO(image_bytes)).convert("RGB")
+    input_tensor = transform(image).unsqueeze(0)  # [1,1,28,28]
+    return input_tensor, image_bytes
 
 
 def _encode_f32_base64(array: np.ndarray) -> str:
@@ -106,9 +136,10 @@ async def handler(websocket):
     
     while True:
         try:
-            # Get input image tensor
-            image_url = "https://machinelearningmastery.com/wp-content/uploads/2019/02/sample_image-300x298.png"
-            input_tensor, image_bytes = get_input_tensor(image_url)
+            # Get input image tensor from the latest Unity-exported PNG
+            pics_dir = _unity_pics_dir()
+            png_path = _latest_png_path(pics_dir)
+            input_tensor, image_bytes = get_input_tensor_from_local_png(png_path)
             print(f"📨 Got input tensor shape: {input_tensor.shape}")
             
             # 🎯 Register hooks to capture activations
@@ -139,7 +170,7 @@ async def handler(websocket):
             activations = dict(sorted(activations.items()))
             print(f"📊 Got {len(activations)} layer activations")
 
-    input_image_base64 = base64.b64encode(image_bytes).decode("utf-8")
+            input_image_base64 = base64.b64encode(image_bytes).decode("utf-8")
 
             # 🎯 Build feature_maps in the correct format
             feature_maps = {}
@@ -185,11 +216,11 @@ async def handler(websocket):
                     print(f"⚠️ Error processing layer {layer_name}: {e}")
                     continue
 
-    final_data = {
-        "input_image_base64": input_image_base64,
-        "input_image_shape": [28, 28],
-        "feature_maps": feature_maps,
-    }
+            final_data = {
+                "input_image_base64": input_image_base64,
+                "input_image_shape": [28, 28],
+                "feature_maps": feature_maps,
+            }
 
             if fc_graph is not None:
                 final_data["fc_graph"] = fc_graph
@@ -213,7 +244,7 @@ async def handler(websocket):
             total_maps = sum(len(v) for v in feature_maps.values())
             print(f"✅ Sending {len(feature_maps)} layers / {total_maps} feature maps")
             await websocket.send(json.dumps(final_data))
-            await asyncio.sleep(1.0)
+            await asyncio.sleep(30.0)
 
         except websockets.exceptions.ConnectionClosed:
             print("🔌 Unity disconnected.")
@@ -226,9 +257,11 @@ async def handler(websocket):
 
 
 if __name__ == "__main__":
-    # Run with: python server.py
-    # (FastAPI uses uvicorn)
-    import uvicorn
-
+    # Run a websocket server for Unity.
     port = int(os.environ.get("PORT", "8765"))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    async def _main():
+        async with websockets.serve(handler, "0.0.0.0", port):
+            print(f"✅ WebSocket server running on ws://0.0.0.0:{port}")
+            await asyncio.Future()  # run forever
+
+    asyncio.run(_main())
