@@ -30,6 +30,13 @@ public class ImageCubeSpawner : MonoBehaviour
     public Vector3 layerBasePosition = Vector3.zero;
     public Vector3 networkRotationEuler = Vector3.zero;
 
+    [Header("Network Rotation")]
+    [Tooltip("If enabled, applies Network Rotation Euler as an *offset* on top of this GameObject's current local rotation (the one you set in Edit Mode).")]
+    public bool applyNetworkRotationOffset = false;
+
+    [Tooltip("Re-applies the offset each time a new websocket frame arrives. Keep this OFF if you rotate the network interactively during play.")]
+    public bool reapplyRotationOffsetOnWebsocketFrame = false;
+
     // Optional helper to set only Y lift from other scripts
     public void SetNetworkLift(float y)
     {
@@ -39,10 +46,37 @@ public class ImageCubeSpawner : MonoBehaviour
     private readonly List<GameObject> activeCubes = new();
     private readonly List<GameObject> receptiveLines = new();
 
+    private Quaternion _baseLocalRotation;
+
+    void Awake()
+    {
+        // Cache whatever rotation you set on the Transform in Edit Mode.
+        _baseLocalRotation = transform.localRotation;
+        ApplyNetworkRotationOffsetIfEnabled();
+    }
+
+    void OnValidate()
+    {
+        // In Edit Mode, keep the current Transform rotation as the base and preview the offset.
+        _baseLocalRotation = transform.localRotation;
+        ApplyNetworkRotationOffsetIfEnabled();
+    }
+
+    void ApplyNetworkRotationOffsetIfEnabled()
+    {
+        if (!applyNetworkRotationOffset) return;
+        transform.localRotation = _baseLocalRotation * Quaternion.Euler(networkRotationEuler);
+    }
+
     public void OnWebSocketMessage(string json)
     {
         try
         {
+            if (reapplyRotationOffsetOnWebsocketFrame)
+            {
+                ApplyNetworkRotationOffsetIfEnabled();
+            }
+
             Debug.Log($"📨 [ImageCubeSpawner] Received WebSocket message (length: {json.Length} chars)");
             Debug.Log($"📄 Message preview: {json.Substring(0, Mathf.Min(200, json.Length))}...");
             

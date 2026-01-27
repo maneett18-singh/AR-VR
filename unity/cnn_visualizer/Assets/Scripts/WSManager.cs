@@ -1,50 +1,88 @@
 using System;
-using System.Net.WebSockets;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Collections;
 using UnityEngine;
 using Newtonsoft.Json;
+using UnityEngine.Networking;
 
 public class WSManager : MonoBehaviour
 {
-    private ClientWebSocket socket = new ClientWebSocket();
-    private Uri uri = new Uri("ws://localhost:8765"); // your Python WebSocket server URL
+    [Header("HTTP Server Settings")]
+    [Tooltip("FastAPI base URL (no trailing slash). Example: http://localhost:8765")]
+    public string serverBaseUrl = "http://localhost:8765";
+
+    [Tooltip("If true, fetch exactly one inference on Start().")]
+    public bool fetchOnStart = true;
+
+    [Tooltip("Optional: if set, server will fetch image from this URL.")]
+    public string imageUrl = "https://machinelearningmastery.com/wp-content/uploads/2019/02/sample_image-300x298.png";
+
+    [Tooltip("Optional: key to trigger a single fetch at runtime.")]
+    public KeyCode fetchKey = KeyCode.Space;
+
+    [Tooltip("Request timeout (seconds).")]
+    public int timeoutSeconds = 120;
 
     [Header("Image Spawner Reference")]
     public ImageCubeSpawner cubeSpawner;  // ✅ drag ImageCubeSpawner in Inspector
 
-    async void Start()
+    void Start()
     {
-        try
+        if (fetchOnStart)
+            StartCoroutine(FetchOnce());
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(fetchKey))
         {
-            Debug.Log("🔌 [WSManager] Attempting to connect to ws://localhost:8765...");
-            await socket.ConnectAsync(uri, CancellationToken.None);
-            Debug.Log("✅ [WSManager] Connected to PyTorch WebSocket server.");
-            _ = ListenLoop(); // start receiving asynchronously
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"❌ [WSManager] WebSocket connection failed: {ex.Message}");
+            StartCoroutine(FetchOnce());
         }
     }
 
-    async Task ListenLoop()
+    [Serializable]
+    private class InferRequest
     {
-        var buffer = new byte[65536]; // increased for large JSONs with base64 images
-        while (socket.State == WebSocketState.Open)
+        public string image_url;
+        public string image_base64;
+    }
+
+    IEnumerator FetchOnce()
+    {
+        if (string.IsNullOrWhiteSpace(serverBaseUrl))
         {
-            try
-            {
-                var result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-                string msg = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                OnMessage(msg);
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"❌ [WSManager] Receive error: {ex.Message}");
-            }
+            Debug.LogError("❌ [WSManager] serverBaseUrl is empty.");
+            yield break;
         }
+
+        var endpoint = serverBaseUrl.TrimEnd('/') + "/infer";
+
+        var reqObj = new InferRequest
+        {
+            image_url = string.IsNullOrWhiteSpace(imageUrl) ? null : imageUrl,
+            image_base64 = null,
+        };
+
+        var body = JsonConvert.SerializeObject(reqObj);
+        var bodyRaw = System.Text.Encoding.UTF8.GetBytes(body);
+
+        Debug.Log($"🌐 [WSManager] Sending single HTTP request to {endpoint}");
+
+        using var request = new UnityWebRequest(endpoint, "POST");
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.timeout = timeoutSeconds;
+
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"❌ [WSManager] HTTP request failed: {request.error}\nResponse: {request.downloadHandler?.text}");
+            yield break;
+        }
+
+        var json = request.downloadHandler.text;
+        OnMessage(json);
     }
 
     void OnMessage(string json)
@@ -75,15 +113,6 @@ public class WSManager : MonoBehaviour
         catch (Exception ex)
         {
             Debug.LogError($"❌ [WSManager] Failed to process JSON: {ex.Message}\n{ex.StackTrace}");
-        }
-    }
-
-    private void OnApplicationQuit()
-    {
-        if (socket != null && socket.State == WebSocketState.Open)
-        {
-            Debug.Log("🔌 [WSManager] Closing WebSocket...");
-            _ = socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Bye", CancellationToken.None);
         }
     }
 }
