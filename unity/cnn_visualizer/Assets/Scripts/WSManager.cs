@@ -1,5 +1,9 @@
 using System;
 using System.Collections;
+using System.Net.WebSockets;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.Networking;
@@ -30,6 +34,10 @@ public class WSManager : MonoBehaviour
 
     private UnityMainThreadDispatcher dispatcher;
 
+    // WebSocket client state
+    private ClientWebSocket socket;
+    private Uri uri;
+
     [Serializable]
     private class FcGraphPayload
     {
@@ -55,10 +63,28 @@ public class WSManager : MonoBehaviour
         public FcGraphPayload fc_graph;
     }
 
-    async void Start()
+    private async void Start()
     {
         // Ensure dispatcher exists on the Unity main thread.
         dispatcher = UnityMainThreadDispatcher.Instance();
+
+        // Initialize websocket
+        if (string.IsNullOrWhiteSpace(serverBaseUrl))
+        {
+            Debug.LogError("❌ [WSManager] serverBaseUrl is empty.");
+            return;
+        }
+
+        // Convert http(s)://host:port -> ws(s)://host:port/ws
+        // Assumption: FastAPI websocket route is /ws
+        var wsBase = serverBaseUrl.TrimEnd('/');
+        if (wsBase.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            wsBase = "wss://" + wsBase.Substring("https://".Length);
+        else if (wsBase.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+            wsBase = "ws://" + wsBase.Substring("http://".Length);
+
+        uri = new Uri(wsBase + "/ws");
+        socket = new ClientWebSocket();
 
         try
         {
@@ -73,7 +99,7 @@ public class WSManager : MonoBehaviour
         }
     }
 
-    async Task ListenLoop()
+    private async Task ListenLoop()
     {
         var buffer = new byte[65536]; // chunk buffer; messages may be larger than this
         while (socket.State == WebSocketState.Open)
@@ -103,9 +129,6 @@ public class WSManager : MonoBehaviour
                 Debug.LogError($"❌ [WSManager] Receive error: {ex.Message}");
             }
         }
-
-        var json = request.downloadHandler.text;
-        OnMessage(json);
     }
 
     void OnMessage(string json)

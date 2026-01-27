@@ -12,6 +12,10 @@ public class WhiteboardDrawer : MonoBehaviour
     private LineRenderer currentLine;
     private List<Vector3> points = new List<Vector3>();
 
+    // Marker component added to spawned ink objects so we can safely delete only drawings.
+    // (This avoids needing a Unity Tag setup and prevents deleting unrelated LineRenderers.)
+    private sealed class InkStroke : MonoBehaviour { }
+
     void Update()
     {
         // 1. Raycast from the center of the viewport (Crosshair position)
@@ -27,6 +31,8 @@ public class WhiteboardDrawer : MonoBehaviour
                 if (IsPositiveXFace(hit))
                 {
                     GameObject newLine = Instantiate(linePrefab);
+                    if (newLine.GetComponent<InkStroke>() == null)
+                        newLine.AddComponent<InkStroke>();
                     currentLine = newLine.GetComponent<LineRenderer>();
                     points.Clear();
                 }
@@ -60,8 +66,8 @@ public class WhiteboardDrawer : MonoBehaviour
             currentLine = null;
         }
 
-        // 5. RIGHT CLICK: Erase Everything
-        if (Input.GetMouseButtonDown(1))
+        // 5. PRESS C: Erase Everything
+        if (Input.GetKeyDown(KeyCode.C))
         {
             ClearBoard();
         }
@@ -79,12 +85,16 @@ public class WhiteboardDrawer : MonoBehaviour
 
     public void ClearBoard()
     {
-        // Find and destroy all ink objects
-        LineRenderer[] allLines = GameObject.FindObjectsOfType<LineRenderer>();
-        foreach (LineRenderer line in allLines)
-        {
-            Destroy(line.gameObject);
-        }
+    // Destroy only the ink objects we created.
+    // FindObjectsByType is the modern API; FindObjectsOfType keeps older Unity versions compatible.
+#if UNITY_2023_1_OR_NEWER
+    var strokes = Object.FindObjectsByType<InkStroke>(FindObjectsSortMode.None);
+#else
+    var strokes = Object.FindObjectsOfType<InkStroke>();
+#endif
+    foreach (var stroke in strokes)
+        Destroy(stroke.gameObject);
+
         Debug.Log("Board Cleared!");
     }
 }

@@ -20,9 +20,9 @@ public class ImageCubeSpawner : MonoBehaviour
     }
 
     public GameObject cubePrefab;
-    public float layerSpacing = 3.0f;      // space between different layers
-	public float channelSpacing = 0.1f;    // space between channels within one layer
-	public bool stackChannelsAlongZ = true; // toggle direction in Inspector
+    // Legacy fields (kept for backward compatibility with older scenes):
+    public float channelSpacing = 0.1f;    // space between channels within one layer
+    public bool stackChannelsAlongZ = true; // toggle direction in Inspector
 
     public Material lineMaterial; // assign a simple unlit color material in Inspector
 
