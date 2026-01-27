@@ -1,9 +1,5 @@
 torch
 torchvision
-matplotlib
-requests
+websockets
 numpy
 Pillow
-fastapi
-uvicorn
-pydantic
