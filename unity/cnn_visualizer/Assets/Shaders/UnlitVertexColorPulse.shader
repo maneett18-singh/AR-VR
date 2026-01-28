@@ -57,12 +57,19 @@ Shader "Custom/UnlitVertexColorPulse"
                 // Base vertex color
                 fixed4 c = i.color;
 
+                // Use vertex alpha as a pulse mask (1 = pulse on, 0 = pulse off).
+                // This lets us selectively animate only some connections within a single mesh.
+                float pulseMask = saturate(c.a);
+                c.a = 1.0;
+
                 // Pulse travels along uv.x (0=start, 1=end)
                 float d = i.uv.x - _PulsePos;
                 d = abs(d);
 
                 float sigma = max(1e-4, _PulseWidth);
                 float pulse = exp(- (d * d) / (2.0 * sigma * sigma));
+
+                pulse *= pulseMask;
 
                 // Make the pulse VERY visible: add a colored streak + force alpha up.
                 c.rgb = saturate(c.rgb + _PulseColor.rgb * (pulse * _PulseIntensity));

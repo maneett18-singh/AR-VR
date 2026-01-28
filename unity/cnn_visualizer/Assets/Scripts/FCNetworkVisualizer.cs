@@ -55,9 +55,84 @@ public class FCNetworkVisualizer : MonoBehaviour
     public bool buildOnStart = true;
     public bool drawPlaceholderConnectionsWhenNoWeights = true;
 
+    [Header("Output Neuron Labels")]
+    [Tooltip("If enabled, each neuron in the last (output) layer is labeled 0-9 (or 0..N-1 for other output sizes).")]
+    public bool labelOutputNeurons = true;
+
+    [Tooltip("Local offset for each label relative to its neuron sphere.")]
+    public Vector3 outputLabelOffset = new Vector3(0.18f, 0f, 0f);
+
+    [Tooltip("If enabled, label offset is applied toward the camera each frame so the label stays on the visible side of the neuron.")]
+    public bool outputLabelsStickToCameraSide = true;
+
+    [Tooltip("Font size used by TextMesh (bigger is sharper).")]
+    public int outputLabelFontSize = 120;
+
+    [Tooltip("World scale of the TextMesh characters.")]
+    public float outputLabelCharacterSize = 0.08f;
+
+    public Color outputLabelColor = Color.white;
+
+    [Tooltip("If enabled, labels rotate each frame to face the camera.")]
+    public bool outputLabelsFaceCamera = true;
+
+    [Tooltip("If enabled, labels are only readable from the camera-facing side (adds a small backing plate behind text).")]
+    public bool outputLabelsSingleSided = true;
+
+    [Tooltip("How far behind the text to place the backing plate.")]
+    public float outputLabelBackPlateOffset = 0.0025f;
+
+    [Tooltip("Color of the backing plate (use an opaque color to hide mirrored text from the back).")]
+    public Color outputLabelBackPlateColor = new Color(0f, 0f, 0f, 1f);
+
+    [Header("Output Neuron Size")]
+    [Tooltip("Scales only the output layer neuron spheres (helps readability at a distance).")]
+    [Range(0.5f, 3f)]
+    public float outputNeuronScaleMultiplier = 1.35f;
+
+    [Header("Output Prediction Highlight")]
+    [Tooltip("If enabled, the predicted output neuron will glow.")]
+    public bool highlightPredictedOutput = true;
+
+    [Tooltip("Emission color used for the highlighted output neuron.")]
+    public Color highlightEmissionColor = new Color(1f, 0.85f, 0.1f, 1f);
+
+    [Tooltip("How strong the emission glow is.")]
+    [Range(0f, 10f)]
+    public float highlightEmissionIntensity = 3.5f;
+
+    [Tooltip("Optional scale multiplier applied to the highlighted output neuron.")]
+    [Range(1f, 3f)]
+    public float highlightScaleMultiplier = 1.35f;
+
+    [Header("Output Connection Focus")]
+    [Tooltip("If enabled, only the wires connected to the predicted output neuron keep their normal color; all other output wires become grey.")]
+    public bool focusOutputConnectionsOnPrediction = true;
+
+    [Tooltip("Color used for dimmed (non-selected) output wires.")]
+    public Color dimmedOutputWireColor = new Color(0.12f, 0.12f, 0.12f, 0.04f);
+
+    [Tooltip("How much to brighten the focused output wires (multiplies RGB; alpha stays at 1).")]
+    [Range(1f, 10f)]
+    public float focusedOutputWireBrightness = 6f;
+
+    [Tooltip("Extra thickness multiplier applied only to output wires that connect to the predicted output neuron.")]
+    [Range(1f, 8f)]
+    public float focusedOutputWireThicknessMultiplier = 3f;
+
+    [Tooltip("If enabled, the moving pulse on the last layer also focuses only on the predicted output neuron.")]
+    public bool focusOutputPulseOnPrediction = true;
+
     private readonly List<Transform> _layer0 = new();
     private readonly List<Transform> _layer1 = new();
     private readonly List<Transform> _layer2 = new();
+
+    private readonly List<Transform> _outputLabelTransforms = new();
+
+    private readonly List<Renderer> _outputNeuronRenderers = new();
+    private readonly List<Material> _outputNeuronMaterials = new();
+    private readonly List<Vector3> _outputNeuronBaseScales = new();
+    private int _highlightedOutputIndex = -1;
 
     private GameObject _connections01;
     private GameObject _connections12;
@@ -87,6 +162,48 @@ public class FCNetworkVisualizer : MonoBehaviour
 
     private void Update()
     {
+        if (outputLabelsFaceCamera && _outputLabelTransforms.Count > 0)
+        {
+            if (referenceCamera == null)
+                referenceCamera = Camera.main;
+
+            if (referenceCamera != null)
+            {
+                // Billboard labels to the camera *position* so they move correctly as you walk around.
+                for (int i = 0; i < _outputLabelTransforms.Count; i++)
+                {
+                    var t = _outputLabelTransforms[i];
+                    if (t == null)
+                        continue;
+
+                    if (outputLabelsStickToCameraSide)
+                    {
+                        // Parent is the neuron. Keep the label on the camera-facing side.
+                        Transform neuron = t.parent;
+                        if (neuron != null)
+                        {
+                            Vector3 toCam = (referenceCamera.transform.position - neuron.position);
+                            if (toCam.sqrMagnitude > 1e-6f)
+                            {
+                                toCam.Normalize();
+
+                                // Preserve the intended distance (magnitude from the inspector offset).
+                                float dist = outputLabelOffset.magnitude;
+                                if (dist <= 1e-6f) dist = 0.18f;
+
+                                // Convert world direction into the neuron's local direction.
+                                Vector3 localDir = neuron.InverseTransformDirection(toCam);
+                                t.localPosition = localDir * dist;
+                            }
+                        }
+                    }
+
+                    // Face the camera.
+                    t.rotation = Quaternion.LookRotation(t.position - referenceCamera.transform.position, referenceCamera.transform.up);
+                }
+            }
+        }
+
         if (!animatePulse)
             return;
 
@@ -95,10 +212,19 @@ public class FCNetworkVisualizer : MonoBehaviour
             pulsePos = 1f - pulsePos;
 
         ApplyPulseToMaterial(_mat01, pulsePos);
-        ApplyPulseToMaterial(_mat12, pulsePos);
+        // If focusing the output pulse, hide the pulse when not focused to a valid output.
+        if (focusOutputPulseOnPrediction && focusOutputConnectionsOnPrediction)
+        {
+            bool hasFocus = _highlightedOutputIndex >= 0 && _highlightedOutputIndex < outputCount;
+            ApplyPulseToMaterial(_mat12, pulsePos, enabled: hasFocus);
+        }
+        else
+        {
+            ApplyPulseToMaterial(_mat12, pulsePos);
+        }
     }
 
-    private void ApplyPulseToMaterial(Material mat, float pulsePos)
+    private void ApplyPulseToMaterial(Material mat, float pulsePos, bool enabled = true)
     {
         if (mat == null)
             return;
@@ -107,7 +233,7 @@ public class FCNetworkVisualizer : MonoBehaviour
         {
             mat.SetFloat("_PulsePos", pulsePos);
             mat.SetFloat("_PulseWidth", pulseWidth);
-            mat.SetFloat("_PulseIntensity", pulseIntensity);
+            mat.SetFloat("_PulseIntensity", enabled ? pulseIntensity : 0f);
             if (mat.HasProperty("_PulseColor"))
                 mat.SetColor("_PulseColor", pulseColor);
         }
@@ -143,6 +269,14 @@ public class FCNetworkVisualizer : MonoBehaviour
         BuildLayer(_layer1, hiddenCount, origin + Vector3.right * layerXSpacing);
         BuildLayer(_layer2, outputCount, origin + Vector3.right * (2f * layerXSpacing));
 
+        ApplyOutputNeuronScale();
+
+        // Create digit labels (0..outputCount-1) for the output layer.
+        if (labelOutputNeurons)
+            BuildOutputNeuronLabels();
+
+        CacheOutputNeuronRenderers();
+
         _connections01 = CreateConnectionObject("Connections_64_128", out _mesh01, out _mat01);
         _connections12 = CreateConnectionObject("Connections_128_10", out _mesh12, out _mat12);
 
@@ -168,6 +302,193 @@ public class FCNetworkVisualizer : MonoBehaviour
             for (int i = 0; i < _w01Flat.Length; i++) _w01Flat[i] = 1f;
             for (int i = 0; i < _w12Flat.Length; i++) _w12Flat[i] = 1f;
             RebuildConnections();
+        }
+    }
+
+    private void ApplyOutputNeuronScale()
+    {
+        float mul = Mathf.Max(0.0001f, outputNeuronScaleMultiplier);
+        for (int i = 0; i < _layer2.Count; i++)
+        {
+            var t = _layer2[i];
+            if (t == null) continue;
+            // Start from the base neuronScale used for all layers.
+            t.localScale = Vector3.Scale(neuronScale, Vector3.one * mul);
+        }
+    }
+
+    private void CacheOutputNeuronRenderers()
+    {
+        _outputNeuronRenderers.Clear();
+        _outputNeuronMaterials.Clear();
+        _outputNeuronBaseScales.Clear();
+
+        for (int i = 0; i < _layer2.Count; i++)
+        {
+            var t = _layer2[i];
+            if (t == null)
+            {
+                _outputNeuronRenderers.Add(null);
+                _outputNeuronMaterials.Add(null);
+                _outputNeuronBaseScales.Add(Vector3.one);
+                continue;
+            }
+
+            _outputNeuronBaseScales.Add(t.localScale);
+            var r = t.GetComponent<Renderer>();
+            _outputNeuronRenderers.Add(r);
+            // Force an instance so we don't accidentally modify shared materials.
+            _outputNeuronMaterials.Add(r != null ? r.material : null);
+        }
+
+        // Re-apply highlight if one was already set.
+        ApplyOutputHighlight(_highlightedOutputIndex);
+    }
+
+    /// <summary>
+    /// Call this with server prediction (0-9) to glow the corresponding output neuron.
+    /// Pass -1 to clear highlight.
+    /// </summary>
+    public void SetPredictedOutput(int predictedClass)
+    {
+        _highlightedOutputIndex = predictedClass;
+        ApplyOutputHighlight(predictedClass);
+
+        // Refresh only the output connection mesh so focus-mode updates immediately.
+        if (_built && _mesh12 != null && _w12Flat != null)
+            RebuildOutputConnectionsOnly();
+    }
+
+    private void RebuildOutputConnectionsOnly()
+    {
+        if (!_built || _w12Flat == null)
+            return;
+
+        if (referenceCamera == null)
+            referenceCamera = Camera.main;
+
+        Vector3 camForward = referenceCamera != null ? referenceCamera.transform.forward : Vector3.forward;
+        BuildConnectionMesh(
+            _mesh12,
+            _layer1,
+            _layer2,
+            _w12Flat,
+            outputCount,
+            hiddenCount,
+            transpose: true,
+            cameraForward: camForward,
+            widthBySource: _widths12BySource,
+            focusToIndex: focusOutputConnectionsOnPrediction ? _highlightedOutputIndex : -1,
+            dimmedColor: dimmedOutputWireColor);
+    }
+
+    private void ApplyOutputHighlight(int predictedClass)
+    {
+        if (!highlightPredictedOutput)
+            predictedClass = -1;
+
+        for (int i = 0; i < _outputNeuronMaterials.Count; i++)
+        {
+            var mat = _outputNeuronMaterials[i];
+            if (mat == null) continue;
+
+            // Reset emission.
+            if (mat.HasProperty("_EmissionColor"))
+            {
+                mat.DisableKeyword("_EMISSION");
+                mat.SetColor("_EmissionColor", Color.black);
+            }
+
+            // Reset scale.
+            if (i < _layer2.Count && _layer2[i] != null && i < _outputNeuronBaseScales.Count)
+                _layer2[i].localScale = _outputNeuronBaseScales[i];
+        }
+
+        if (predictedClass < 0 || predictedClass >= _outputNeuronMaterials.Count)
+            return;
+
+        var highlightMat = _outputNeuronMaterials[predictedClass];
+        if (highlightMat != null && highlightMat.HasProperty("_EmissionColor"))
+        {
+            highlightMat.EnableKeyword("_EMISSION");
+            // Some shaders expect HDR emission; multiply by intensity.
+            highlightMat.SetColor("_EmissionColor", highlightEmissionColor * Mathf.Max(0f, highlightEmissionIntensity));
+        }
+
+        if (predictedClass < _layer2.Count && _layer2[predictedClass] != null && predictedClass < _outputNeuronBaseScales.Count)
+        {
+            _layer2[predictedClass].localScale = _outputNeuronBaseScales[predictedClass] * Mathf.Max(1f, highlightScaleMultiplier);
+        }
+    }
+
+    private void BuildOutputNeuronLabels()
+    {
+        _outputLabelTransforms.Clear();
+
+        for (int i = 0; i < _layer2.Count; i++)
+        {
+            var neuron = _layer2[i];
+            if (neuron == null) continue;
+
+            // Create a child text label.
+            var labelGo = new GameObject("Label");
+            labelGo.transform.SetParent(neuron, false);
+            labelGo.transform.localPosition = outputLabelOffset;
+
+            var tm = labelGo.AddComponent<TextMesh>();
+            tm.text = i.ToString();
+            tm.color = outputLabelColor;
+            tm.anchor = TextAnchor.MiddleCenter;
+            tm.alignment = TextAlignment.Center;
+            tm.fontSize = Mathf.Max(1, outputLabelFontSize);
+            tm.characterSize = Mathf.Max(0.0001f, outputLabelCharacterSize);
+
+            // Make sure the text actually renders and stays readable.
+            tm.richText = false;
+
+            // Force a simple built-in font if none is assigned.
+            if (tm.font == null)
+                tm.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+
+            var r = tm.GetComponent<Renderer>();
+            if (r != null)
+            {
+                // Render after most geometry so it's less likely to be hidden by the sphere/lines.
+                r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                r.receiveShadows = false;
+                r.sortingOrder = 50;
+            }
+
+            // Prevent the label from being readable from the back by placing an opaque plate behind it.
+            if (outputLabelsSingleSided)
+            {
+                var back = GameObject.CreatePrimitive(PrimitiveType.Quad);
+                back.name = "BackPlate";
+                back.transform.SetParent(labelGo.transform, false);
+                // Put the plate slightly behind the text (text is at z=0).
+                back.transform.localPosition = new Vector3(0f, 0f, outputLabelBackPlateOffset);
+                back.transform.localRotation = Quaternion.identity;
+
+                // Size the plate based on label size.
+                float s = Mathf.Max(0.01f, outputLabelCharacterSize) * 1.4f;
+                back.transform.localScale = new Vector3(s, s, 1f);
+
+                var backCol = back.GetComponent<Collider>();
+                if (backCol != null) backCol.enabled = false;
+
+                var backRenderer = back.GetComponent<MeshRenderer>();
+                if (backRenderer != null)
+                {
+                    var mat = new Material(Shader.Find("Unlit/Color"));
+                    mat.color = outputLabelBackPlateColor;
+                    backRenderer.sharedMaterial = mat;
+                    backRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                    backRenderer.receiveShadows = false;
+                    backRenderer.sortingOrder = 49; // just behind text
+                }
+            }
+
+            _outputLabelTransforms.Add(labelGo.transform);
         }
     }
 
@@ -313,7 +634,18 @@ public class FCNetworkVisualizer : MonoBehaviour
         Vector3 camForward = referenceCamera != null ? referenceCamera.transform.forward : Vector3.forward;
 
         BuildConnectionMesh(_mesh01, _layer0, _layer1, _w01Flat, hiddenCount, inputCount, transpose: true, cameraForward: camForward, widthBySource: _widths01BySource);
-        BuildConnectionMesh(_mesh12, _layer1, _layer2, _w12Flat, outputCount, hiddenCount, transpose: true, cameraForward: camForward, widthBySource: _widths12BySource);
+        BuildConnectionMesh(
+            _mesh12,
+            _layer1,
+            _layer2,
+            _w12Flat,
+            outputCount,
+            hiddenCount,
+            transpose: true,
+            cameraForward: camForward,
+            widthBySource: _widths12BySource,
+            focusToIndex: focusOutputConnectionsOnPrediction ? _highlightedOutputIndex : -1,
+            dimmedColor: dimmedOutputWireColor);
     }
 
     /// <summary>
@@ -330,7 +662,9 @@ public class FCNetworkVisualizer : MonoBehaviour
         int cols,
         bool transpose,
         Vector3 cameraForward,
-        float[] widthBySource)
+        float[] widthBySource,
+        int focusToIndex = -1,
+        Color? dimmedColor = null)
     {
         int fromCount = fromLayer.Count;
         int toCount = toLayer.Count;
@@ -362,7 +696,7 @@ public class FCNetworkVisualizer : MonoBehaviour
 
         int runningVertexIndex = 0;
 
-        for (int from = 0; from < fromCount; from++)
+    for (int from = 0; from < fromCount; from++)
         {
             // Collect weights for this source to all targets
             List<(int to, float w)> candidates = null;
@@ -375,7 +709,7 @@ public class FCNetworkVisualizer : MonoBehaviour
                 if (perSource > 0)
                     candidates.Add((to, w));
                 else
-                    AddConnection(from, fromLayer[from].position, toLayer[to].position, w);
+                    AddConnection(from, fromLayer[from].position, toLayer[to].position, to, w);
             }
 
             if (perSource > 0)
@@ -385,19 +719,53 @@ public class FCNetworkVisualizer : MonoBehaviour
                 for (int i = 0; i < take; i++)
                 {
                     var (to, w) = candidates[i];
-                    AddConnection(from, fromLayer[from].position, toLayer[to].position, w);
+                    AddConnection(from, fromLayer[from].position, toLayer[to].position, to, w);
                 }
             }
         }
 
-        void AddConnection(int fromIndex, Vector3 startWorld, Vector3 endWorld, float w)
+        void AddConnection(int fromIndex, Vector3 startWorld, Vector3 endWorld, int toIndex, float w)
         {
             float t = constantWeights ? 1f : (w - min) / range;
             Color c = intensityGradient.Evaluate(t);
 
+            // Pulse mask: when focus mode is active, ONLY the focused connections should pulse.
+            // We'll encode this as vertex color alpha (1 = allow pulse, 0 = no pulse).
+            // The pulse shader will multiply pulse by this mask.
+            float pulseMask = 1f;
+
+            bool focusActive = focusToIndex >= 0;
+
+            bool isFocusedConnection = (!focusActive) || (toIndex == focusToIndex);
+
+            // Focus mode: dim all connections except those that land on focusToIndex.
+            if (focusActive && !isFocusedConnection)
+            {
+                c = dimmedColor ?? new Color(0.35f, 0.35f, 0.35f, 0.35f);
+                pulseMask = 0f;
+            }
+            else if (focusActive)
+            {
+                pulseMask = 1f;
+
+                // Make the selected wires very bright/visible.
+                float b = Mathf.Max(1f, focusedOutputWireBrightness);
+                c.r = Mathf.Clamp01(c.r * b);
+                c.g = Mathf.Clamp01(c.g * b);
+                c.b = Mathf.Clamp01(c.b * b);
+            }
+
+            // Store mask in alpha. We keep base alpha at 1 so the mesh is still visible;
+            // transparency should be controlled via RGB/dimmedColor if desired.
+            c.a = pulseMask;
+
             float width = lineWidth;
             if (widthBySource != null && fromIndex >= 0 && fromIndex < widthBySource.Length)
                 width = widthBySource[fromIndex];
+
+            // Make ONLY the focused output connections thicker.
+            if (focusActive && isFocusedConnection)
+                width *= Mathf.Max(1f, focusedOutputWireThicknessMultiplier);
 
             // Mesh vertices are in local space.
             Vector3 start = transform.InverseTransformPoint(startWorld);
@@ -488,6 +856,12 @@ public class FCNetworkVisualizer : MonoBehaviour
         _layer0.Clear();
         _layer1.Clear();
         _layer2.Clear();
+        _outputLabelTransforms.Clear();
+
+    _outputNeuronRenderers.Clear();
+    _outputNeuronMaterials.Clear();
+    _outputNeuronBaseScales.Clear();
+    _highlightedOutputIndex = -1;
 
         if (_connections01 != null) Destroy(_connections01);
         if (_connections12 != null) Destroy(_connections12);

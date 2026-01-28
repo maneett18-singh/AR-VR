@@ -61,6 +61,7 @@ public class WSManager : MonoBehaviour
     private class RootPayload
     {
         public FcGraphPayload fc_graph;
+        public int predicted_class;
     }
 
     private async void Start()
@@ -158,6 +159,9 @@ public class WSManager : MonoBehaviour
                     TryUpdateFcVisualizer(json);
                 }
 
+                // Highlight predicted digit in the output layer (0-9)
+                TryHighlightPrediction(json);
+
                 // Pass the valid JSON to ImageCubeSpawner
                 if (cubeSpawner != null)
                 {
@@ -174,6 +178,27 @@ public class WSManager : MonoBehaviour
                 Debug.LogError($"❌ [WSManager] Failed to process JSON: {ex.Message}\n{ex.StackTrace}");
             }
         });
+    }
+
+    private void TryHighlightPrediction(string json)
+    {
+        if (fcVisualizer == null)
+            return;
+
+        try
+        {
+            var root = JsonConvert.DeserializeObject<RootPayload>(json);
+            // If the server doesn't send it, default will be 0; guard by checking common range.
+            int p = root.predicted_class;
+            if (p < 0 || p > 9)
+                return;
+
+            fcVisualizer.SetPredictedOutput(p);
+        }
+        catch
+        {
+            // Ignore: not all messages include predictions.
+        }
     }
 
     private void TryUpdateFcVisualizer(string json)

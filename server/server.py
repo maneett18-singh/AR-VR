@@ -269,6 +269,7 @@ async def handler(websocket):
                 "input_image_base64": input_image_base64,
                 "input_image_shape": [28, 28],
                 "feature_maps": feature_maps,
+                "predicted_class": int(predicted.item()),
             }
 
             if fc_graph is not None:
@@ -293,7 +294,7 @@ async def handler(websocket):
             total_maps = sum(len(v) for v in feature_maps.values())
             print(f"✅ Sending {len(feature_maps)} layers / {total_maps} feature maps")
             await websocket.send(json.dumps(final_data))
-            await asyncio.sleep(30.0)
+            await asyncio.sleep(10.0)
 
         except websockets.exceptions.ConnectionClosed:
             print("🔌 Unity disconnected.")

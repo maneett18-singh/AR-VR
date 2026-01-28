@@ -10,6 +10,7 @@ public class ImageCubeSpawner : MonoBehaviour
     {
         public string input_image_base64;
         public Dictionary<string, Dictionary<string, FeatureMap>> feature_maps;
+        public int predicted_class;
     }
 
     [Serializable]
