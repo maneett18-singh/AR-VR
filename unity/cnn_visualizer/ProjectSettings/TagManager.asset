@@ -11,6 +11,10 @@ TagManager:
   - Lever
   - WirePlug
   - Socket
+  - Camera0
+  - Camera1
+  - Camera2
+  - Camera3
   layers:
   - Default
   - TransparentFX

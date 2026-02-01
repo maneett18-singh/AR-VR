@@ -44,6 +44,10 @@ public class RaycastVisibleOnKey : MonoBehaviour
     {
         HandleInteractionInput();
 
+        // If the wire got auto-snapped into a socket, release it from the "hand".
+        if (heldWire != null && heldWire.currentSocket != null)
+            heldWire = null;
+
         if (!Input.GetKey(highlightKey))
         {
             line.enabled = false;
