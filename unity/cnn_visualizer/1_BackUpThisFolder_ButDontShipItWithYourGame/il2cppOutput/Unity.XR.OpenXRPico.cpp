@@ -1982,7 +1982,7 @@ inline void List_1_AddWithResize_m79A9BF770BEF9C06BE40D5401E55E375F2726CC4 (List
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113046
+// Method Definition Index: 113056
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MonoScriptData_t43BEA856EE1D976EBC62FAD83A1508389CCC2817 UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mAB2ABB2C7CC030E660E53BB08C90BD09A8B40480 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -2016,7 +2016,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MonoScriptData_t43BEA856EE1D976EBC62FAD83A150
 		return L_6;
 	}
 }
-// Method Definition Index: 113047
+// Method Definition Index: 113057
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE1369155F33BAEB5DFA13499FD85FC2F863157C3 (UnitySourceGeneratedAssemblyMonoScriptTypes_v1_t8A72C45F24C81E2378BA818C3D719D8BB88F6189* __this, const RuntimeMethod* method) 
 {
 	{
@@ -2102,7 +2102,7 @@ IL2CPP_EXTERN_C void MonoScriptData_t43BEA856EE1D976EBC62FAD83A1508389CCC2817_ma
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113048
+// Method Definition Index: 113058
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4ControllerProfile_RegisterDeviceLayout_mB49FDE9D4AEA394EBA0B86450D7181A00DD9B55F (PICO4ControllerProfile_tB2D5D37EF2BE30583C6A5665EA23901B040F68EA* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -2144,7 +2144,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4ControllerProfile_RegisterDeviceLay
 		return;
 	}
 }
-// Method Definition Index: 113049
+// Method Definition Index: 113059
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4ControllerProfile_UnregisterDeviceLayout_m7197292DE47D6B6549B3F33B1A2D8D45587156B4 (PICO4ControllerProfile_tB2D5D37EF2BE30583C6A5665EA23901B040F68EA* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -2162,7 +2162,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4ControllerProfile_UnregisterDeviceL
 		return;
 	}
 }
-// Method Definition Index: 113050
+// Method Definition Index: 113060
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4ControllerProfile_RegisterActionMapsWithRuntime_m967D500C259E799A5B52FA871A89AF2956D00941 (PICO4ControllerProfile_tB2D5D37EF2BE30583C6A5665EA23901B040F68EA* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -3648,7 +3648,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4ControllerProfile_RegisterActionMap
 		return;
 	}
 }
-// Method Definition Index: 113051
+// Method Definition Index: 113061
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4ControllerProfile__ctor_m7C6ECB403945D1F563AA0AFCCDF831D858C8B43E (PICO4ControllerProfile_tB2D5D37EF2BE30583C6A5665EA23901B040F68EA* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -3671,7 +3671,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4ControllerProfile__ctor_m7C6ECB4039
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113052
+// Method Definition Index: 113062
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* PICO4TouchController_get_thumbstick_m120C3773C2B6A4B409B32C9F07FC4094B4A34FBD (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3680,7 +3680,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2Control_t8D1B4021A1D82671AF916D3C0A476
 		return L_0;
 	}
 }
-// Method Definition Index: 113053
+// Method Definition Index: 113063
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_thumbstick_mA652E0B64997971EE64A5152AE334B9939E4EB86 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3691,7 +3691,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_thumbstick_mA65
 		return;
 	}
 }
-// Method Definition Index: 113054
+// Method Definition Index: 113064
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* PICO4TouchController_get_grip_m762D59DCC5D2539B502AC364251053EF029CA3CE (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3700,7 +3700,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201A
 		return L_0;
 	}
 }
-// Method Definition Index: 113055
+// Method Definition Index: 113065
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_grip_mC5E3961482EE45FE8C890A62B24970EF7CEAAE09 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3711,7 +3711,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_grip_mC5E396148
 		return;
 	}
 }
-// Method Definition Index: 113056
+// Method Definition Index: 113066
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4TouchController_get_gripPressed_m1F78A9AF16C4F82495C75BE18E55B3B2A0AD4C3D (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3720,7 +3720,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113057
+// Method Definition Index: 113067
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_gripPressed_mCBE6CBE219E20422C99F98512BBE2CAD1BABB847 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3731,7 +3731,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_gripPressed_mCB
 		return;
 	}
 }
-// Method Definition Index: 113058
+// Method Definition Index: 113068
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4TouchController_get_menu_m66FBF9DC7136EEC73495F7E02354996DCF55A24B (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3740,7 +3740,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113059
+// Method Definition Index: 113069
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_menu_mEC9ABC3546BA791F0B67EA3E1C227FA08605D834 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3751,7 +3751,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_menu_mEC9ABC354
 		return;
 	}
 }
-// Method Definition Index: 113060
+// Method Definition Index: 113070
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4TouchController_get_system_mE698D299D4E54E3D9C3D158CBE506AC1F065423F (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3760,7 +3760,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113061
+// Method Definition Index: 113071
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_system_m151376B85E67E6617E47433354D94F4ABD97014F (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3771,7 +3771,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_system_m151376B
 		return;
 	}
 }
-// Method Definition Index: 113062
+// Method Definition Index: 113072
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4TouchController_get_primaryButton_m1D0A2FAA2A2F9627EC9E3CF509F3AD886620C89B (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3780,7 +3780,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113063
+// Method Definition Index: 113073
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_primaryButton_mA2E7AC78EA3190CB651099D627EA1C29AA3D77CB (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3791,7 +3791,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_primaryButton_m
 		return;
 	}
 }
-// Method Definition Index: 113064
+// Method Definition Index: 113074
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4TouchController_get_primaryTouched_m67843B8D574AD2EDECF9C1226441A2E936B398B9 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3800,7 +3800,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113065
+// Method Definition Index: 113075
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_primaryTouched_m99DDA4A65D43042E805AB17E55751187A55C81CA (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3811,7 +3811,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_primaryTouched_
 		return;
 	}
 }
-// Method Definition Index: 113066
+// Method Definition Index: 113076
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4TouchController_get_secondaryButton_m68653295F105F2F2D9E9C3E3CF94CC8154A0C6C6 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3820,7 +3820,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113067
+// Method Definition Index: 113077
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_secondaryButton_m00749EA0DBE3E42E6E69D1B1AC6EB884C8164158 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3831,7 +3831,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_secondaryButton
 		return;
 	}
 }
-// Method Definition Index: 113068
+// Method Definition Index: 113078
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4TouchController_get_secondaryTouched_mFFA8176C30CBA40B4F4F0A749749A3FCC1F7D598 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3840,7 +3840,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113069
+// Method Definition Index: 113079
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_secondaryTouched_m28B704B13BB409F17A4195EACC0C94D28B7C7DB4 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3851,7 +3851,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_secondaryTouche
 		return;
 	}
 }
-// Method Definition Index: 113070
+// Method Definition Index: 113080
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* PICO4TouchController_get_trigger_m4C605CC408BE638DD3F36596ECB92B5B0D4491E3 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3860,7 +3860,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201A
 		return L_0;
 	}
 }
-// Method Definition Index: 113071
+// Method Definition Index: 113081
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_trigger_mFEF96B465E5CD243EFC31DBE98220403678B3DBE (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3871,7 +3871,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_trigger_mFEF96B
 		return;
 	}
 }
-// Method Definition Index: 113072
+// Method Definition Index: 113082
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4TouchController_get_triggerPressed_m50DA86DE0A3CA52629ED767BC93018B9D0808A6A (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3880,7 +3880,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113073
+// Method Definition Index: 113083
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_triggerPressed_m3DE061E7B545A2C37F9EAD0BD8EFFDE87D8E4485 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3891,7 +3891,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_triggerPressed_
 		return;
 	}
 }
-// Method Definition Index: 113074
+// Method Definition Index: 113084
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4TouchController_get_triggerTouched_m8C9692692604F8A82CD4D0696316F51393EC9DAD (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3900,7 +3900,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113075
+// Method Definition Index: 113085
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_triggerTouched_mEC92C55E23C4B76766AA376EAF49DCFE26BF0B3F (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3911,7 +3911,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_triggerTouched_
 		return;
 	}
 }
-// Method Definition Index: 113076
+// Method Definition Index: 113086
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4TouchController_get_thumbstickClicked_mA09B5DB164BF54133DACF77F828FFC00A3FB5613 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3920,7 +3920,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113077
+// Method Definition Index: 113087
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_thumbstickClicked_m4403E56A4A2546CC046F990F79375918715F3BA6 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3931,7 +3931,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_thumbstickClick
 		return;
 	}
 }
-// Method Definition Index: 113078
+// Method Definition Index: 113088
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4TouchController_get_thumbstickTouched_m6577AA54A927CFD31CB13B43ACE99DCF86B37F1E (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3940,7 +3940,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113079
+// Method Definition Index: 113089
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_thumbstickTouched_mB7DED6A31B10CD5E6568CD53919451328AC31D60 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3951,7 +3951,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_thumbstickTouch
 		return;
 	}
 }
-// Method Definition Index: 113080
+// Method Definition Index: 113090
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* PICO4TouchController_get_devicePose_m984A417561B1C3D0478510A80AB148F5CE45BDB5 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3960,7 +3960,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA29
 		return L_0;
 	}
 }
-// Method Definition Index: 113081
+// Method Definition Index: 113091
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_devicePose_mEA8E69FDDC53827EDEFD7C0C0ABA385C6BDBE5ED (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3971,7 +3971,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_devicePose_mEA8
 		return;
 	}
 }
-// Method Definition Index: 113082
+// Method Definition Index: 113092
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* PICO4TouchController_get_pointer_m028B3254C091FDBB513E72B766F731C74B62360C (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -3980,7 +3980,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA29
 		return L_0;
 	}
 }
-// Method Definition Index: 113083
+// Method Definition Index: 113093
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_pointer_m7CE1FA5C2957EA1CC61B385933490C0A3DD37B19 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -3991,7 +3991,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_pointer_m7CE1FA
 		return;
 	}
 }
-// Method Definition Index: 113084
+// Method Definition Index: 113094
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4TouchController_get_isTracked_m05DB70500961B78F09777D7D3D91F2F692533B9A (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -4000,7 +4000,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113085
+// Method Definition Index: 113095
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_isTracked_m6D54160EECA6C6DE80685618EBCB6D822D1B689D (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -4011,7 +4011,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_isTracked_m6D54
 		return;
 	}
 }
-// Method Definition Index: 113086
+// Method Definition Index: 113096
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR IntegerControl_tA24544EFF42204852F638FF5147F754962C997AB* PICO4TouchController_get_trackingState_mB36F42FA846FD8B8CEC2C376DC3B0C05F2A690EB (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -4020,7 +4020,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR IntegerControl_tA24544EFF42204852F638FF5147F7
 		return L_0;
 	}
 }
-// Method Definition Index: 113087
+// Method Definition Index: 113097
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_trackingState_m701D14F9439534DC0DF362EF5CE2AF961319939A (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, IntegerControl_tA24544EFF42204852F638FF5147F754962C997AB* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -4031,7 +4031,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_trackingState_m
 		return;
 	}
 }
-// Method Definition Index: 113088
+// Method Definition Index: 113098
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* PICO4TouchController_get_devicePosition_mAB98662A61837DF66F7F8C52FEA7EE05B721E611 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -4040,7 +4040,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED45
 		return L_0;
 	}
 }
-// Method Definition Index: 113089
+// Method Definition Index: 113099
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_devicePosition_m208C769E7B516CFE6C7396CBDCDEFF70DE4CFD8C (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -4051,7 +4051,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_devicePosition_
 		return;
 	}
 }
-// Method Definition Index: 113090
+// Method Definition Index: 113100
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* PICO4TouchController_get_deviceRotation_m2197540BEEA02C03C742053A8D60104E605A3B0E (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -4060,7 +4060,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A3
 		return L_0;
 	}
 }
-// Method Definition Index: 113091
+// Method Definition Index: 113101
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_deviceRotation_mDD447DDBB467AA1653CAB2297096CDC877165784 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -4071,7 +4071,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_deviceRotation_
 		return;
 	}
 }
-// Method Definition Index: 113092
+// Method Definition Index: 113102
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* PICO4TouchController_get_pointerPosition_m1B071729DED2EC5DE79D24C04E7DCE6576C38A21 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -4080,7 +4080,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED45
 		return L_0;
 	}
 }
-// Method Definition Index: 113093
+// Method Definition Index: 113103
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_pointerPosition_mE1A49A6EAEBB4816A514A8E9AFA5CE126C7F78A1 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -4091,7 +4091,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_pointerPosition
 		return;
 	}
 }
-// Method Definition Index: 113094
+// Method Definition Index: 113104
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* PICO4TouchController_get_pointerRotation_m2E2F0AF5ED53A5408E25076BD043A41834BA5A32 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -4100,7 +4100,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A3
 		return L_0;
 	}
 }
-// Method Definition Index: 113095
+// Method Definition Index: 113105
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_pointerRotation_mE1C3B95FC7DBB451E94BEAEC30C81B342AB709D6 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -4111,7 +4111,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_pointerRotation
 		return;
 	}
 }
-// Method Definition Index: 113096
+// Method Definition Index: 113106
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR HapticControl_t55C6C8AF176B500F8A11E14786537FA0923A5D49* PICO4TouchController_get_haptic_mDA28BD225122981DCA0FE38C1AC3B07EC94A2795 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -4120,7 +4120,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR HapticControl_t55C6C8AF176B500F8A11E14786537F
 		return L_0;
 	}
 }
-// Method Definition Index: 113097
+// Method Definition Index: 113107
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_haptic_m49205EB93ED8E99B3081AC80E3D1263924E779DE (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, HapticControl_t55C6C8AF176B500F8A11E14786537FA0923A5D49* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -4131,7 +4131,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_haptic_m49205EB
 		return;
 	}
 }
-// Method Definition Index: 113098
+// Method Definition Index: 113108
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* PICO4TouchController_get_batteryLevel_mA4470DDEC16D6D8714DF90024A20B213BF4A2D05 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -4140,7 +4140,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201A
 		return L_0;
 	}
 }
-// Method Definition Index: 113099
+// Method Definition Index: 113109
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_batteryLevel_mE53C47B4CC29223816A088351F1740B855FA3F3E (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -4151,7 +4151,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_set_batteryLevel_mE
 		return;
 	}
 }
-// Method Definition Index: 113100
+// Method Definition Index: 113110
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_FinishSetup_m9C91CA8F717A64B2EFCAE812A2BA200C2A85F4B0 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -4289,7 +4289,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController_FinishSetup_m9C91CA
 		return;
 	}
 }
-// Method Definition Index: 113101
+// Method Definition Index: 113111
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController__ctor_m6FCEA8AD50A5D189BC5A39C8F409486F9EEDFAE6 (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, const RuntimeMethod* method) 
 {
 	{
@@ -4305,7 +4305,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4TouchController__ctor_m6FCEA8AD50A5
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113102
+// Method Definition Index: 113112
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraControllerProfile_RegisterDeviceLayout_m61DDE23802E59ED714A912C7E5658D4B62D17CD7 (PICO4UltraControllerProfile_t6C6FA76140DD7B40800819DE4A95496745C0FD6D* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -4347,7 +4347,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraControllerProfile_RegisterDevi
 		return;
 	}
 }
-// Method Definition Index: 113103
+// Method Definition Index: 113113
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraControllerProfile_UnregisterDeviceLayout_m065A283EC9F6F7195D1DAEBD8E350622267953D6 (PICO4UltraControllerProfile_t6C6FA76140DD7B40800819DE4A95496745C0FD6D* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -4365,7 +4365,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraControllerProfile_UnregisterDe
 		return;
 	}
 }
-// Method Definition Index: 113104
+// Method Definition Index: 113114
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraControllerProfile_RegisterActionMapsWithRuntime_m5E4B2E039C6CA03580619C7984F2C95496052A46 (PICO4UltraControllerProfile_t6C6FA76140DD7B40800819DE4A95496745C0FD6D* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5852,7 +5852,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraControllerProfile_RegisterActi
 		return;
 	}
 }
-// Method Definition Index: 113105
+// Method Definition Index: 113115
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraControllerProfile__ctor_mD21AA437022D67D7B151826DDBFCE3B027028B86 (PICO4UltraControllerProfile_t6C6FA76140DD7B40800819DE4A95496745C0FD6D* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -5875,7 +5875,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraControllerProfile__ctor_mD21AA
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113106
+// Method Definition Index: 113116
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* PICO4UltraController_get_thumbstick_m1512B6D9AAEDA320B3F3D747A864FE53E974B8C1 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5884,7 +5884,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2Control_t8D1B4021A1D82671AF916D3C0A476
 		return L_0;
 	}
 }
-// Method Definition Index: 113107
+// Method Definition Index: 113117
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_thumbstick_mF4182F32FA8D8B0B03657DABFCBBB1F2524F1E68 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -5895,7 +5895,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_thumbstick_mF41
 		return;
 	}
 }
-// Method Definition Index: 113108
+// Method Definition Index: 113118
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* PICO4UltraController_get_grip_m884875CFFF4C544E4EB459765BAED196D6615E41 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5904,7 +5904,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201A
 		return L_0;
 	}
 }
-// Method Definition Index: 113109
+// Method Definition Index: 113119
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_grip_m40E4C97590CD114F0B1289BC55F5A5DB07D5FE2D (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -5915,7 +5915,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_grip_m40E4C9759
 		return;
 	}
 }
-// Method Definition Index: 113110
+// Method Definition Index: 113120
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4UltraController_get_gripPressed_m25539146061923503D5AD9CBAE459965323574C0 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5924,7 +5924,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113111
+// Method Definition Index: 113121
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_gripPressed_m810BEB8E316DF6585AE7C71D65160CF583C037E5 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -5935,7 +5935,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_gripPressed_m81
 		return;
 	}
 }
-// Method Definition Index: 113112
+// Method Definition Index: 113122
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4UltraController_get_menu_m06E3A21761D1FF802563056A3F732C9F8CC80DFD (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5944,7 +5944,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113113
+// Method Definition Index: 113123
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_menu_m8AC444ADF8D561F5AA48BC16467977552FB20EA3 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -5955,7 +5955,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_menu_m8AC444ADF
 		return;
 	}
 }
-// Method Definition Index: 113114
+// Method Definition Index: 113124
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4UltraController_get_system_mD84DA289DFB320FE564AE5BD6EF148CC5B60A2DC (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5964,7 +5964,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113115
+// Method Definition Index: 113125
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_system_mD57077DD6935E782CCE776A135C6AF2BF294E9AC (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -5975,7 +5975,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_system_mD57077D
 		return;
 	}
 }
-// Method Definition Index: 113116
+// Method Definition Index: 113126
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4UltraController_get_primaryButton_m6A7BD1FD87BDDB9FE4093EB51808026A28A0D8D8 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -5984,7 +5984,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113117
+// Method Definition Index: 113127
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_primaryButton_mE62EB2EA5D90B54CA1D988042BA4FD5EC6306BF8 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -5995,7 +5995,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_primaryButton_m
 		return;
 	}
 }
-// Method Definition Index: 113118
+// Method Definition Index: 113128
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4UltraController_get_primaryTouched_m94BD1BC309DB994087EB4E8F6B8B1DB18D399984 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6004,7 +6004,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113119
+// Method Definition Index: 113129
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_primaryTouched_mE5C63004CC5B2D1DAAFF9FCF8CFB4325FF22DD0B (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6015,7 +6015,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_primaryTouched_
 		return;
 	}
 }
-// Method Definition Index: 113120
+// Method Definition Index: 113130
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4UltraController_get_secondaryButton_mECBC341086D6DACA5FCA45BC48BEC43F99E95EF9 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6024,7 +6024,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113121
+// Method Definition Index: 113131
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_secondaryButton_mE66867FF52C7F6D4D29944457A4E037AC7152B04 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6035,7 +6035,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_secondaryButton
 		return;
 	}
 }
-// Method Definition Index: 113122
+// Method Definition Index: 113132
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4UltraController_get_secondaryTouched_m2E5D121FD65949C6D79062C850F75717B6F373F3 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6044,7 +6044,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113123
+// Method Definition Index: 113133
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_secondaryTouched_m9A80EF853B1C442C328139516F09CF113A01EB01 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6055,7 +6055,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_secondaryTouche
 		return;
 	}
 }
-// Method Definition Index: 113124
+// Method Definition Index: 113134
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* PICO4UltraController_get_trigger_m3E88D320B6BEBC8E41766E2E52FE6A13D835D2EE (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6064,7 +6064,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201A
 		return L_0;
 	}
 }
-// Method Definition Index: 113125
+// Method Definition Index: 113135
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_trigger_mD830784C89AFEB688CD3EFB50309D3AA6AD4C14A (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6075,7 +6075,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_trigger_mD83078
 		return;
 	}
 }
-// Method Definition Index: 113126
+// Method Definition Index: 113136
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* PICO4UltraController_get_batteryLevel_m91E6EC6C73D54B6E1A0BD80D4EC5182BEF9141C5 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6084,7 +6084,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201A
 		return L_0;
 	}
 }
-// Method Definition Index: 113127
+// Method Definition Index: 113137
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_batteryLevel_m5E62225A932F42BCE008DC5664C927BEF56500CE (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6095,7 +6095,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_batteryLevel_m5
 		return;
 	}
 }
-// Method Definition Index: 113128
+// Method Definition Index: 113138
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4UltraController_get_triggerPressed_m437722C4C1A429B9A28412B623E95F969429E7CB (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6104,7 +6104,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113129
+// Method Definition Index: 113139
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_triggerPressed_m3497E5E93BD83F4696F2A815907A614A6783A653 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6115,7 +6115,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_triggerPressed_
 		return;
 	}
 }
-// Method Definition Index: 113130
+// Method Definition Index: 113140
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4UltraController_get_triggerTouched_m9EB1E8790D99A49184CA10C9CE3727105CB69F45 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6124,7 +6124,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113131
+// Method Definition Index: 113141
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_triggerTouched_mBA9A610719B9EC666D963A728F539B89BB0D36A2 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6135,7 +6135,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_triggerTouched_
 		return;
 	}
 }
-// Method Definition Index: 113132
+// Method Definition Index: 113142
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4UltraController_get_thumbstickClicked_mD0567D29BF5CEABFC35E6B1B873A8E2A30C2E958 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6144,7 +6144,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113133
+// Method Definition Index: 113143
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_thumbstickClicked_m10BC61E75B920B6F3DCE4C376A2CEE9EAD79E1B5 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6155,7 +6155,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_thumbstickClick
 		return;
 	}
 }
-// Method Definition Index: 113134
+// Method Definition Index: 113144
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4UltraController_get_thumbstickTouched_m0401720F1BE7AC77163BE7CFFD09591336B693FC (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6164,7 +6164,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113135
+// Method Definition Index: 113145
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_thumbstickTouched_m17D56344D19A38A32C4274DF0C6D94F904AFA313 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6175,7 +6175,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_thumbstickTouch
 		return;
 	}
 }
-// Method Definition Index: 113136
+// Method Definition Index: 113146
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* PICO4UltraController_get_devicePose_m9566924FCCDD7096859A411C9B14D02585A3213F (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6184,7 +6184,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA29
 		return L_0;
 	}
 }
-// Method Definition Index: 113137
+// Method Definition Index: 113147
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_devicePose_m8D5FAAFE44C9B3652EDB063F64983A1F01A9007D (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6195,7 +6195,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_devicePose_m8D5
 		return;
 	}
 }
-// Method Definition Index: 113138
+// Method Definition Index: 113148
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* PICO4UltraController_get_pointer_m420F54CEA63B85F6ACDFB8B29E88FC4386894A90 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6204,7 +6204,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA29
 		return L_0;
 	}
 }
-// Method Definition Index: 113139
+// Method Definition Index: 113149
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_pointer_m1A2122D4FBC4295133FC7F5E200F4C98533BDE9F (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6215,7 +6215,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_pointer_m1A2122
 		return;
 	}
 }
-// Method Definition Index: 113140
+// Method Definition Index: 113150
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICO4UltraController_get_isTracked_m888C35908C8F4AF9E572FFA2D9B98E5637935443 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6224,7 +6224,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113141
+// Method Definition Index: 113151
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_isTracked_mDD1D6E18BF7FA1352E75EEAA5EDB9C2E64B884C3 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6235,7 +6235,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_isTracked_mDD1D
 		return;
 	}
 }
-// Method Definition Index: 113142
+// Method Definition Index: 113152
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR IntegerControl_tA24544EFF42204852F638FF5147F754962C997AB* PICO4UltraController_get_trackingState_m0F914F96339DFF48B90A20EBDFE2729474882D09 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6244,7 +6244,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR IntegerControl_tA24544EFF42204852F638FF5147F7
 		return L_0;
 	}
 }
-// Method Definition Index: 113143
+// Method Definition Index: 113153
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_trackingState_mA01FE52F53F16268C5F0076739E1DBD492C19D6B (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, IntegerControl_tA24544EFF42204852F638FF5147F754962C997AB* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6255,7 +6255,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_trackingState_m
 		return;
 	}
 }
-// Method Definition Index: 113144
+// Method Definition Index: 113154
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* PICO4UltraController_get_devicePosition_m1C446949D493B29FD7E974EF487CC413028E6826 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6264,7 +6264,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED45
 		return L_0;
 	}
 }
-// Method Definition Index: 113145
+// Method Definition Index: 113155
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_devicePosition_mCBA00C88FC37FF0ADE913E1461F73C21C6F06FFE (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6275,7 +6275,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_devicePosition_
 		return;
 	}
 }
-// Method Definition Index: 113146
+// Method Definition Index: 113156
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* PICO4UltraController_get_deviceRotation_mEB180287A84A2776CF9D559932452E0407EC1ECB (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6284,7 +6284,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A3
 		return L_0;
 	}
 }
-// Method Definition Index: 113147
+// Method Definition Index: 113157
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_deviceRotation_m57EF33D94E57AA93E242173A765ECCE964891586 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6295,7 +6295,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_deviceRotation_
 		return;
 	}
 }
-// Method Definition Index: 113148
+// Method Definition Index: 113158
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* PICO4UltraController_get_pointerPosition_mE863E5DA9D9BF02D2F2C89A80775791CEE5721D9 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6304,7 +6304,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED45
 		return L_0;
 	}
 }
-// Method Definition Index: 113149
+// Method Definition Index: 113159
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_pointerPosition_m97F60724C3D8DB6917B7BA41C027199CE46B8C17 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6315,7 +6315,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_pointerPosition
 		return;
 	}
 }
-// Method Definition Index: 113150
+// Method Definition Index: 113160
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* PICO4UltraController_get_pointerRotation_m7AB5370AF72F2E18D8C3DC111814CC969B79EAED (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6324,7 +6324,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A3
 		return L_0;
 	}
 }
-// Method Definition Index: 113151
+// Method Definition Index: 113161
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_pointerRotation_mCE9D001B16819B40D5703BFE409C94DED5C630C3 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6335,7 +6335,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_pointerRotation
 		return;
 	}
 }
-// Method Definition Index: 113152
+// Method Definition Index: 113162
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR HapticControl_t55C6C8AF176B500F8A11E14786537FA0923A5D49* PICO4UltraController_get_haptic_m3B421561DD6DEAE13BD36C147A679CD874B04A79 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6344,7 +6344,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR HapticControl_t55C6C8AF176B500F8A11E14786537F
 		return L_0;
 	}
 }
-// Method Definition Index: 113153
+// Method Definition Index: 113163
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_haptic_m841A1804A16BE1B2BF3FEA75838A015BEDA4F992 (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, HapticControl_t55C6C8AF176B500F8A11E14786537FA0923A5D49* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -6355,7 +6355,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_set_haptic_m841A180
 		return;
 	}
 }
-// Method Definition Index: 113154
+// Method Definition Index: 113164
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_FinishSetup_mD652D3FC16BB4DCB1562C01B51A6691A9354345F (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -6493,7 +6493,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController_FinishSetup_mD652D3
 		return;
 	}
 }
-// Method Definition Index: 113155
+// Method Definition Index: 113165
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController__ctor_m9DA12CBC1B5F88C57190C2F1E30DED220DFA786F (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, const RuntimeMethod* method) 
 {
 	{
@@ -6509,7 +6509,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICO4UltraController__ctor_m9DA12CBC1B5F
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113156
+// Method Definition Index: 113166
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3ControllerProfile_RegisterDeviceLayout_m8C8A56CC9C37EF0B2B614965F93433CC8C604062 (PICOG3ControllerProfile_t8A0C4BA621AA915A916032EA94D5DC9DD2904B0F* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -6551,7 +6551,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3ControllerProfile_RegisterDeviceLa
 		return;
 	}
 }
-// Method Definition Index: 113157
+// Method Definition Index: 113167
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3ControllerProfile_UnregisterDeviceLayout_m8E64F53259025531D87A171E7A46D01C77B8F021 (PICOG3ControllerProfile_t8A0C4BA621AA915A916032EA94D5DC9DD2904B0F* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -6569,7 +6569,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3ControllerProfile_UnregisterDevice
 		return;
 	}
 }
-// Method Definition Index: 113158
+// Method Definition Index: 113168
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3ControllerProfile_RegisterActionMapsWithRuntime_mC9FFC92A05E4C54A33F230F37BD08A04F98F6D75 (PICOG3ControllerProfile_t8A0C4BA621AA915A916032EA94D5DC9DD2904B0F* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7419,7 +7419,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3ControllerProfile_RegisterActionMa
 		return;
 	}
 }
-// Method Definition Index: 113159
+// Method Definition Index: 113169
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3ControllerProfile__ctor_mD87A2A091C8EC041BDFFCDD6A11C33952ED402DF (PICOG3ControllerProfile_t8A0C4BA621AA915A916032EA94D5DC9DD2904B0F* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7442,7 +7442,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3ControllerProfile__ctor_mD87A2A091
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113160
+// Method Definition Index: 113170
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* PICOG3TouchController_get_thumbstick_mA1EED7C4ACDF77971BDA9066BE38A32771855BE7 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7451,7 +7451,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2Control_t8D1B4021A1D82671AF916D3C0A476
 		return L_0;
 	}
 }
-// Method Definition Index: 113161
+// Method Definition Index: 113171
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_thumbstick_m9E7F52AEDA7134F9EAC05976421DCC3AD032AF90 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7462,7 +7462,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_thumbstick_m9E
 		return;
 	}
 }
-// Method Definition Index: 113162
+// Method Definition Index: 113172
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICOG3TouchController_get_menu_m682C65C99AA08D9D78A15A109B8B97031EFCF147 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7471,7 +7471,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113163
+// Method Definition Index: 113173
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_menu_m207AA7C14527AF8F5673604084731BC6838FABB9 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7482,7 +7482,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_menu_m207AA7C1
 		return;
 	}
 }
-// Method Definition Index: 113164
+// Method Definition Index: 113174
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICOG3TouchController_get_system_m6D62E5DAF2D67B412EB473BD7FABB65C952C6B33 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7491,7 +7491,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113165
+// Method Definition Index: 113175
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_system_m53425A504A9A224DF37A65487F76509A09DF4373 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7502,7 +7502,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_system_m53425A
 		return;
 	}
 }
-// Method Definition Index: 113166
+// Method Definition Index: 113176
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* PICOG3TouchController_get_trigger_mD898DA0C77F8360838A905B6D0BC0A6317D1EE51 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7511,7 +7511,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201A
 		return L_0;
 	}
 }
-// Method Definition Index: 113167
+// Method Definition Index: 113177
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_trigger_mE1D616F0D519664EC8E0F2BE2A88D37FEA6F2BA9 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7522,7 +7522,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_trigger_mE1D61
 		return;
 	}
 }
-// Method Definition Index: 113168
+// Method Definition Index: 113178
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICOG3TouchController_get_triggerPressed_m57DAAB5213002CA8F6ADEDE7E7B1FCFAC0F95EEB (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7531,7 +7531,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113169
+// Method Definition Index: 113179
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_triggerPressed_mDEE8B90566DF74C5220B000D42A78DF2ECAF220A (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7542,7 +7542,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_triggerPressed
 		return;
 	}
 }
-// Method Definition Index: 113170
+// Method Definition Index: 113180
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICOG3TouchController_get_thumbstickClicked_mEE1632CDB0F41319C7B54CF195F60F2060B45E8E (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7551,7 +7551,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113171
+// Method Definition Index: 113181
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_thumbstickClicked_mBAD6993745C2BF8D0D307719989174457A8478D4 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7562,7 +7562,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_thumbstickClic
 		return;
 	}
 }
-// Method Definition Index: 113172
+// Method Definition Index: 113182
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* PICOG3TouchController_get_trackpad_mAD089257113ADE89423BD100F81634439A94B118 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7571,7 +7571,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2Control_t8D1B4021A1D82671AF916D3C0A476
 		return L_0;
 	}
 }
-// Method Definition Index: 113173
+// Method Definition Index: 113183
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_trackpad_m0157F15F9F8F276602F22CCE7567B2345FCD6D71 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7582,7 +7582,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_trackpad_m0157
 		return;
 	}
 }
-// Method Definition Index: 113174
+// Method Definition Index: 113184
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICOG3TouchController_get_trackpadClicked_m2357917346B39D665C49FF1111C02D6B1CCA732A (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7591,7 +7591,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113175
+// Method Definition Index: 113185
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_trackpadClicked_m949066F42153F8AE86BB558B8A67AF810EECF3F2 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7602,7 +7602,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_trackpadClicke
 		return;
 	}
 }
-// Method Definition Index: 113176
+// Method Definition Index: 113186
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* PICOG3TouchController_get_devicePose_m80BCE1C8AC2C79C3E8A775F37AEE8A654A30DDA7 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7611,7 +7611,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA29
 		return L_0;
 	}
 }
-// Method Definition Index: 113177
+// Method Definition Index: 113187
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_devicePose_m541135FB78CD5465152D43C364784E7A395DB26E (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7622,7 +7622,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_devicePose_m54
 		return;
 	}
 }
-// Method Definition Index: 113178
+// Method Definition Index: 113188
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* PICOG3TouchController_get_pointer_m02B0954C6F0DD3C064587036AA90564356271E0C (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7631,7 +7631,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA29
 		return L_0;
 	}
 }
-// Method Definition Index: 113179
+// Method Definition Index: 113189
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_pointer_mA0B072A22F60FB89B6EE51BFBCB76FBFBED527DF (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7642,7 +7642,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_pointer_mA0B07
 		return;
 	}
 }
-// Method Definition Index: 113180
+// Method Definition Index: 113190
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICOG3TouchController_get_isTracked_mD03B9560B15FF1C73E4F5DD07C506402B674C34B (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7651,7 +7651,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113181
+// Method Definition Index: 113191
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_isTracked_m8F654909BFFAEFEF9D7E2D10DBC7AAD2A6962EF0 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7662,7 +7662,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_isTracked_m8F6
 		return;
 	}
 }
-// Method Definition Index: 113182
+// Method Definition Index: 113192
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR IntegerControl_tA24544EFF42204852F638FF5147F754962C997AB* PICOG3TouchController_get_trackingState_mC3742F24F1A293F68E1DA271D916732516722D1F (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7671,7 +7671,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR IntegerControl_tA24544EFF42204852F638FF5147F7
 		return L_0;
 	}
 }
-// Method Definition Index: 113183
+// Method Definition Index: 113193
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_trackingState_m6F608572E0A741E282CC9480E5C56980A8F41EED (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, IntegerControl_tA24544EFF42204852F638FF5147F754962C997AB* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7682,7 +7682,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_trackingState_
 		return;
 	}
 }
-// Method Definition Index: 113184
+// Method Definition Index: 113194
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* PICOG3TouchController_get_devicePosition_m5064CE8711346057A74A5CA144488DF70C13628A (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7691,7 +7691,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED45
 		return L_0;
 	}
 }
-// Method Definition Index: 113185
+// Method Definition Index: 113195
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_devicePosition_m6BC5420119A9917DD3230BCCDACF6AD5C42A633F (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7702,7 +7702,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_devicePosition
 		return;
 	}
 }
-// Method Definition Index: 113186
+// Method Definition Index: 113196
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* PICOG3TouchController_get_deviceRotation_mD97F11A85C4C1CB3E3E91A495C13B99903C6C12C (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7711,7 +7711,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A3
 		return L_0;
 	}
 }
-// Method Definition Index: 113187
+// Method Definition Index: 113197
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_deviceRotation_m460D1B651086C9F172F632C4F5AC0BA7BB01FB0B (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7722,7 +7722,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_deviceRotation
 		return;
 	}
 }
-// Method Definition Index: 113188
+// Method Definition Index: 113198
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* PICOG3TouchController_get_pointerPosition_m5ED09177B405FD9CAAC3DAF24D898154D32313E2 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7731,7 +7731,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED45
 		return L_0;
 	}
 }
-// Method Definition Index: 113189
+// Method Definition Index: 113199
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_pointerPosition_m470F1A1FB8B2EA4550732829CDE91C9FE3AE68CA (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7742,7 +7742,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_pointerPositio
 		return;
 	}
 }
-// Method Definition Index: 113190
+// Method Definition Index: 113200
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* PICOG3TouchController_get_pointerRotation_m125B46004AC42B0FA515B5E7BBE72CF5275EA039 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7751,7 +7751,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A3
 		return L_0;
 	}
 }
-// Method Definition Index: 113191
+// Method Definition Index: 113201
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_pointerRotation_m443BE9B4182EFCB4941063DC1FA2CF758A810327 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7762,7 +7762,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_pointerRotatio
 		return;
 	}
 }
-// Method Definition Index: 113192
+// Method Definition Index: 113202
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* PICOG3TouchController_get_batteryLevel_m3A598348BEC3BF179F1506A92451D349D2BD1D4B (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7771,7 +7771,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201A
 		return L_0;
 	}
 }
-// Method Definition Index: 113193
+// Method Definition Index: 113203
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_batteryLevel_mF5E53B8BD099DFFF3648749B19734557007F6215 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -7782,7 +7782,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_set_batteryLevel_m
 		return;
 	}
 }
-// Method Definition Index: 113194
+// Method Definition Index: 113204
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_FinishSetup_mC72DE42080870CFC64A206A1C7678FD057406C96 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7884,7 +7884,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController_FinishSetup_mC72DE
 		return;
 	}
 }
-// Method Definition Index: 113195
+// Method Definition Index: 113205
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController__ctor_m78E2B7308551510056A59BC7A802A4CC7CB55875 (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7900,7 +7900,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICOG3TouchController__ctor_m78E2B730855
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113196
+// Method Definition Index: 113206
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3ControllerProfile_RegisterDeviceLayout_mD4EC0C8687ED99C079FFFBC79017B8C984F34632 (PICONeo3ControllerProfile_t2E1B203D3C21885A5C462E717DEC045C1BB7D1DB* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7942,7 +7942,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3ControllerProfile_RegisterDevice
 		return;
 	}
 }
-// Method Definition Index: 113197
+// Method Definition Index: 113207
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3ControllerProfile_UnregisterDeviceLayout_mB209C35D312D4C8FE9442E7E4DB04415341C9FD6 (PICONeo3ControllerProfile_t2E1B203D3C21885A5C462E717DEC045C1BB7D1DB* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7960,7 +7960,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3ControllerProfile_UnregisterDevi
 		return;
 	}
 }
-// Method Definition Index: 113198
+// Method Definition Index: 113208
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3ControllerProfile_RegisterActionMapsWithRuntime_m35132FBB58796CD0727D4B01516EBE8AD6D73C71 (PICONeo3ControllerProfile_t2E1B203D3C21885A5C462E717DEC045C1BB7D1DB* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9436,7 +9436,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3ControllerProfile_RegisterAction
 		return;
 	}
 }
-// Method Definition Index: 113199
+// Method Definition Index: 113209
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3ControllerProfile__ctor_mC569F2117866D830E21297B8E875836D8C6D2EC1 (PICONeo3ControllerProfile_t2E1B203D3C21885A5C462E717DEC045C1BB7D1DB* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9459,7 +9459,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3ControllerProfile__ctor_mC569F21
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 113200
+// Method Definition Index: 113210
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* PICONeo3Controller_get_thumbstick_mB146F9E135268488565EF7F05B065A397852B0DD (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9468,7 +9468,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2Control_t8D1B4021A1D82671AF916D3C0A476
 		return L_0;
 	}
 }
-// Method Definition Index: 113201
+// Method Definition Index: 113211
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_thumbstick_m1D14A2991E4F1DB2CA5D0A4C4F4CCADAE7AEE539 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9479,7 +9479,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_thumbstick_m1D14A
 		return;
 	}
 }
-// Method Definition Index: 113202
+// Method Definition Index: 113212
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* PICONeo3Controller_get_grip_m67BAC19B12529A803068001DA9C25D40985D5741 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9488,7 +9488,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201A
 		return L_0;
 	}
 }
-// Method Definition Index: 113203
+// Method Definition Index: 113213
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_grip_mE5881328EE4224BD2776446EB7AC6A3BE2CB9244 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9499,7 +9499,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_grip_mE5881328EE4
 		return;
 	}
 }
-// Method Definition Index: 113204
+// Method Definition Index: 113214
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICONeo3Controller_get_gripPressed_m1A76AD6EE830B192EAD5141108C597F717163373 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9508,7 +9508,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113205
+// Method Definition Index: 113215
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_gripPressed_m21E1B5D5F8BCE703C6FBEFD4BD1C93DDEB40CDEB (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9519,7 +9519,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_gripPressed_m21E1
 		return;
 	}
 }
-// Method Definition Index: 113206
+// Method Definition Index: 113216
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICONeo3Controller_get_menu_mA43B32629D98D4E89FCF605E97892F20043D2DA4 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9528,7 +9528,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113207
+// Method Definition Index: 113217
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_menu_m7A756AE4481DA2239DC42CCB05FF300B6EC3404A (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9539,7 +9539,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_menu_m7A756AE4481
 		return;
 	}
 }
-// Method Definition Index: 113208
+// Method Definition Index: 113218
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICONeo3Controller_get_system_mE09955F783857B920986AC81A7A4E16797F91270 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9548,7 +9548,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113209
+// Method Definition Index: 113219
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_system_m87D138CA9709EDB1F943713DEF9AC51651A54B33 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9559,7 +9559,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_system_m87D138CA9
 		return;
 	}
 }
-// Method Definition Index: 113210
+// Method Definition Index: 113220
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICONeo3Controller_get_primaryButton_mB7D02FA57D25251C1FBE65E1923EDB2E044F9768 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9568,7 +9568,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113211
+// Method Definition Index: 113221
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_primaryButton_mBBE4BF6E22E08A4FAB53BC184ABCBFF18037C4BB (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9579,7 +9579,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_primaryButton_mBB
 		return;
 	}
 }
-// Method Definition Index: 113212
+// Method Definition Index: 113222
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICONeo3Controller_get_primaryTouched_m41B199676436F99F3EF55C15DAC7E39A54E32E66 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9588,7 +9588,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113213
+// Method Definition Index: 113223
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_primaryTouched_mAE88A62A1579D53E4AD4CE9749C00333E0C68E76 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9599,7 +9599,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_primaryTouched_mA
 		return;
 	}
 }
-// Method Definition Index: 113214
+// Method Definition Index: 113224
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICONeo3Controller_get_secondaryButton_mCBE2C1CD2B0C88C143FE5AC93488917C84BA52A1 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9608,7 +9608,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113215
+// Method Definition Index: 113225
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_secondaryButton_mB41714932A2F957F18634A892222123B6854A3B2 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9619,7 +9619,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_secondaryButton_m
 		return;
 	}
 }
-// Method Definition Index: 113216
+// Method Definition Index: 113226
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICONeo3Controller_get_secondaryTouched_m299F55E6776FAA1CD16067854BFACD18EE96EF8D (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9628,7 +9628,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113217
+// Method Definition Index: 113227
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_secondaryTouched_mC80B5C0D9EDFD29855A5D9F56800678D16179395 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9639,7 +9639,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_secondaryTouched_
 		return;
 	}
 }
-// Method Definition Index: 113218
+// Method Definition Index: 113228
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* PICONeo3Controller_get_trigger_m064DDBBCAAFE563C5AD26936B74C962F62005FFD (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9648,7 +9648,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201A
 		return L_0;
 	}
 }
-// Method Definition Index: 113219
+// Method Definition Index: 113229
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_trigger_m95AEFE44B7D3F4849C613051B033DEE391AF3F09 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9659,7 +9659,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_trigger_m95AEFE44
 		return;
 	}
 }
-// Method Definition Index: 113220
+// Method Definition Index: 113230
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICONeo3Controller_get_triggerPressed_m029E9C168A1BF08BCCCBDBF6B11CD50410007E69 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9668,7 +9668,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113221
+// Method Definition Index: 113231
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_triggerPressed_m147C9BCC6816D3CB05898084208990A73B1810DF (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9679,7 +9679,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_triggerPressed_m1
 		return;
 	}
 }
-// Method Definition Index: 113222
+// Method Definition Index: 113232
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICONeo3Controller_get_triggerTouched_m0490A7F5456841D98DD6777779C720CE356BFDF0 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9688,7 +9688,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113223
+// Method Definition Index: 113233
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_triggerTouched_m15EF3A536F775D078EC2E24308E76F7177C70A8A (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9699,7 +9699,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_triggerTouched_m1
 		return;
 	}
 }
-// Method Definition Index: 113224
+// Method Definition Index: 113234
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICONeo3Controller_get_thumbstickClicked_mC10F8D4D14C98659511567EB18997175452DFD74 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9708,7 +9708,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113225
+// Method Definition Index: 113235
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_thumbstickClicked_m1A101C197124B84369B0421D17DBF98C23C35CC6 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9719,7 +9719,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_thumbstickClicked
 		return;
 	}
 }
-// Method Definition Index: 113226
+// Method Definition Index: 113236
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICONeo3Controller_get_thumbstickTouched_m7CE38CD4ED269078574FCC994AC3190AF8B72A3A (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9728,7 +9728,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113227
+// Method Definition Index: 113237
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_thumbstickTouched_mCC0E63D25BF419F89BDE00DFC3B2B8DCA1C8DE9A (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9739,7 +9739,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_thumbstickTouched
 		return;
 	}
 }
-// Method Definition Index: 113228
+// Method Definition Index: 113238
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* PICONeo3Controller_get_devicePose_m4190C45C010073EB462733FE00D260E2A9D3FE5D (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9748,7 +9748,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA29
 		return L_0;
 	}
 }
-// Method Definition Index: 113229
+// Method Definition Index: 113239
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_devicePose_m4301F8DDD2902F15847C724ACCBA2953EC43658E (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9759,7 +9759,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_devicePose_m4301F
 		return;
 	}
 }
-// Method Definition Index: 113230
+// Method Definition Index: 113240
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* PICONeo3Controller_get_pointer_m745D935945B11326F6327CE9511BF74FAA71AB0A (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9768,7 +9768,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR PoseControl_t28571DE0327FBB52F360251074D1DA29
 		return L_0;
 	}
 }
-// Method Definition Index: 113231
+// Method Definition Index: 113241
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_pointer_m93F8C20AA85C980AD699CF610443D0068DC9477B (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9779,7 +9779,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_pointer_m93F8C20A
 		return;
 	}
 }
-// Method Definition Index: 113232
+// Method Definition Index: 113242
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* PICONeo3Controller_get_isTracked_m569937A63D2A538E0BA43DF5B20E2B946A9C0466 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9788,7 +9788,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ButtonControl_t85949109B98AAF5B7ADC0285F0EC98
 		return L_0;
 	}
 }
-// Method Definition Index: 113233
+// Method Definition Index: 113243
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_isTracked_mF84F0BE4DAF8D36DF87DB172212DB3AEEC4ED5C0 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9799,7 +9799,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_isTracked_mF84F0B
 		return;
 	}
 }
-// Method Definition Index: 113234
+// Method Definition Index: 113244
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR IntegerControl_tA24544EFF42204852F638FF5147F754962C997AB* PICONeo3Controller_get_trackingState_m5049E3981D3A141E5A425C54198BF78A8B37D7C6 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9808,7 +9808,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR IntegerControl_tA24544EFF42204852F638FF5147F7
 		return L_0;
 	}
 }
-// Method Definition Index: 113235
+// Method Definition Index: 113245
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_trackingState_m35FBDB5A26F769861060E5CBB823737023A200A2 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, IntegerControl_tA24544EFF42204852F638FF5147F754962C997AB* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9819,7 +9819,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_trackingState_m35
 		return;
 	}
 }
-// Method Definition Index: 113236
+// Method Definition Index: 113246
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* PICONeo3Controller_get_devicePosition_m65A468900106F1B5DB7D0869981E0E5E08CD8B3C (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9828,7 +9828,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED45
 		return L_0;
 	}
 }
-// Method Definition Index: 113237
+// Method Definition Index: 113247
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_devicePosition_mE1CA7693B90812B491C7CF08C3BD2D9E70994D9E (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9839,7 +9839,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_devicePosition_mE
 		return;
 	}
 }
-// Method Definition Index: 113238
+// Method Definition Index: 113248
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* PICONeo3Controller_get_deviceRotation_m392441F95A902C606CAAE5A8C07BA7A05C1AF2D2 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9848,7 +9848,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A3
 		return L_0;
 	}
 }
-// Method Definition Index: 113239
+// Method Definition Index: 113249
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_deviceRotation_mC74D575AD8FB033E5128995D8D9E9347ABFA5B09 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9859,7 +9859,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_deviceRotation_mC
 		return;
 	}
 }
-// Method Definition Index: 113240
+// Method Definition Index: 113250
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* PICONeo3Controller_get_pointerPosition_m59417E9FCBC4DC5CBDC133C77125283D255DD877 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9868,7 +9868,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3Control_t32D7E4836F56C2FDC61BF0D96ED45
 		return L_0;
 	}
 }
-// Method Definition Index: 113241
+// Method Definition Index: 113251
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_pointerPosition_m78E737676E773BFBEF2DC576F350D2F40D1DF1BC (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9879,7 +9879,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_pointerPosition_m
 		return;
 	}
 }
-// Method Definition Index: 113242
+// Method Definition Index: 113252
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* PICONeo3Controller_get_pointerRotation_m5E2D02956F21AA48A54E4AEF1A650C4A60488303 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9888,7 +9888,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR QuaternionControl_t18A2F742850FC2FD82A1F980A3
 		return L_0;
 	}
 }
-// Method Definition Index: 113243
+// Method Definition Index: 113253
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_pointerRotation_m0B4510F05DE1875F33780C2346729C03F8552774 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9899,7 +9899,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_pointerRotation_m
 		return;
 	}
 }
-// Method Definition Index: 113244
+// Method Definition Index: 113254
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR HapticControl_t55C6C8AF176B500F8A11E14786537FA0923A5D49* PICONeo3Controller_get_haptic_m06433D4C1A63A9F5C14D2BB432B7CF82B0D59CE2 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9908,7 +9908,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR HapticControl_t55C6C8AF176B500F8A11E14786537F
 		return L_0;
 	}
 }
-// Method Definition Index: 113245
+// Method Definition Index: 113255
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_haptic_mFA59C70D0B8A306A15C65E1B945F543A5A0914E3 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, HapticControl_t55C6C8AF176B500F8A11E14786537FA0923A5D49* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9919,7 +9919,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_haptic_mFA59C70D0
 		return;
 	}
 }
-// Method Definition Index: 113246
+// Method Definition Index: 113256
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* PICONeo3Controller_get_batteryLevel_mB3636DCC64A0BFA536B0302C7C04EDE657507294 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9928,7 +9928,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AxisControl_tD6613A2445A3C2BFA22C77E16CA3201A
 		return L_0;
 	}
 }
-// Method Definition Index: 113247
+// Method Definition Index: 113257
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_batteryLevel_m0594180DF8C8B5FA04A42713115D826C86BD9205 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -9939,7 +9939,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_set_batteryLevel_m059
 		return;
 	}
 }
-// Method Definition Index: 113248
+// Method Definition Index: 113258
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_FinishSetup_m84E7F7FF13934DE12D6FA4616E9244A5149F5147 (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -10077,7 +10077,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller_FinishSetup_m84E7F7FF
 		return;
 	}
 }
-// Method Definition Index: 113249
+// Method Definition Index: 113259
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller__ctor_m1EC8D1920C983DBE8AF5FF62B96791D7E63821FB (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -10112,7 +10112,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PICONeo3Controller__ctor_m1EC8D1920C983D
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
-// Method Definition Index: 113053
+// Method Definition Index: 113063
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_thumbstick_mA652E0B64997971EE64A5152AE334B9939E4EB86_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10123,7 +10123,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_thu
 		return;
 	}
 }
-// Method Definition Index: 113071
+// Method Definition Index: 113081
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_trigger_mFEF96B465E5CD243EFC31DBE98220403678B3DBE_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10134,7 +10134,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_tri
 		return;
 	}
 }
-// Method Definition Index: 113073
+// Method Definition Index: 113083
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_triggerPressed_m3DE061E7B545A2C37F9EAD0BD8EFFDE87D8E4485_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10145,7 +10145,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_tri
 		return;
 	}
 }
-// Method Definition Index: 113075
+// Method Definition Index: 113085
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_triggerTouched_mEC92C55E23C4B76766AA376EAF49DCFE26BF0B3F_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10156,7 +10156,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_tri
 		return;
 	}
 }
-// Method Definition Index: 113055
+// Method Definition Index: 113065
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_grip_mC5E3961482EE45FE8C890A62B24970EF7CEAAE09_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10167,7 +10167,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_gri
 		return;
 	}
 }
-// Method Definition Index: 113057
+// Method Definition Index: 113067
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_gripPressed_mCBE6CBE219E20422C99F98512BBE2CAD1BABB847_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10178,7 +10178,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_gri
 		return;
 	}
 }
-// Method Definition Index: 113059
+// Method Definition Index: 113069
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_menu_mEC9ABC3546BA791F0B67EA3E1C227FA08605D834_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10189,7 +10189,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_men
 		return;
 	}
 }
-// Method Definition Index: 113063
+// Method Definition Index: 113073
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_primaryButton_mA2E7AC78EA3190CB651099D627EA1C29AA3D77CB_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10200,7 +10200,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_pri
 		return;
 	}
 }
-// Method Definition Index: 113065
+// Method Definition Index: 113075
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_primaryTouched_m99DDA4A65D43042E805AB17E55751187A55C81CA_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10211,7 +10211,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_pri
 		return;
 	}
 }
-// Method Definition Index: 113067
+// Method Definition Index: 113077
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_secondaryButton_m00749EA0DBE3E42E6E69D1B1AC6EB884C8164158_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10222,7 +10222,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_sec
 		return;
 	}
 }
-// Method Definition Index: 113069
+// Method Definition Index: 113079
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_secondaryTouched_m28B704B13BB409F17A4195EACC0C94D28B7C7DB4_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10233,7 +10233,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_sec
 		return;
 	}
 }
-// Method Definition Index: 113077
+// Method Definition Index: 113087
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_thumbstickClicked_m4403E56A4A2546CC046F990F79375918715F3BA6_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10244,7 +10244,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_thu
 		return;
 	}
 }
-// Method Definition Index: 113079
+// Method Definition Index: 113089
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_thumbstickTouched_mB7DED6A31B10CD5E6568CD53919451328AC31D60_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10255,7 +10255,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_thu
 		return;
 	}
 }
-// Method Definition Index: 113081
+// Method Definition Index: 113091
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_devicePose_mEA8E69FDDC53827EDEFD7C0C0ABA385C6BDBE5ED_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10266,7 +10266,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_dev
 		return;
 	}
 }
-// Method Definition Index: 113083
+// Method Definition Index: 113093
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_pointer_m7CE1FA5C2957EA1CC61B385933490C0A3DD37B19_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10277,7 +10277,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_poi
 		return;
 	}
 }
-// Method Definition Index: 113085
+// Method Definition Index: 113095
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_isTracked_m6D54160EECA6C6DE80685618EBCB6D822D1B689D_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10288,7 +10288,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_isT
 		return;
 	}
 }
-// Method Definition Index: 113087
+// Method Definition Index: 113097
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_trackingState_m701D14F9439534DC0DF362EF5CE2AF961319939A_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, IntegerControl_tA24544EFF42204852F638FF5147F754962C997AB* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10299,7 +10299,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_tra
 		return;
 	}
 }
-// Method Definition Index: 113089
+// Method Definition Index: 113099
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_devicePosition_m208C769E7B516CFE6C7396CBDCDEFF70DE4CFD8C_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10310,7 +10310,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_dev
 		return;
 	}
 }
-// Method Definition Index: 113091
+// Method Definition Index: 113101
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_deviceRotation_mDD447DDBB467AA1653CAB2297096CDC877165784_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10321,7 +10321,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_dev
 		return;
 	}
 }
-// Method Definition Index: 113093
+// Method Definition Index: 113103
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_pointerPosition_mE1A49A6EAEBB4816A514A8E9AFA5CE126C7F78A1_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10332,7 +10332,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_poi
 		return;
 	}
 }
-// Method Definition Index: 113095
+// Method Definition Index: 113105
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_pointerRotation_mE1C3B95FC7DBB451E94BEAEC30C81B342AB709D6_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10343,7 +10343,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_poi
 		return;
 	}
 }
-// Method Definition Index: 113097
+// Method Definition Index: 113107
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_haptic_m49205EB93ED8E99B3081AC80E3D1263924E779DE_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, HapticControl_t55C6C8AF176B500F8A11E14786537FA0923A5D49* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10354,7 +10354,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_hap
 		return;
 	}
 }
-// Method Definition Index: 113099
+// Method Definition Index: 113109
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_batteryLevel_mE53C47B4CC29223816A088351F1740B855FA3F3E_inline (PICO4TouchController_t963B1A1520F4BCE8034AD177EB83116666420311* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10365,7 +10365,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4TouchController_set_bat
 		return;
 	}
 }
-// Method Definition Index: 113107
+// Method Definition Index: 113117
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_thumbstick_mF4182F32FA8D8B0B03657DABFCBBB1F2524F1E68_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10376,7 +10376,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_thu
 		return;
 	}
 }
-// Method Definition Index: 113125
+// Method Definition Index: 113135
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_trigger_mD830784C89AFEB688CD3EFB50309D3AA6AD4C14A_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10387,7 +10387,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_tri
 		return;
 	}
 }
-// Method Definition Index: 113129
+// Method Definition Index: 113139
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_triggerPressed_m3497E5E93BD83F4696F2A815907A614A6783A653_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10398,7 +10398,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_tri
 		return;
 	}
 }
-// Method Definition Index: 113131
+// Method Definition Index: 113141
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_triggerTouched_mBA9A610719B9EC666D963A728F539B89BB0D36A2_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10409,7 +10409,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_tri
 		return;
 	}
 }
-// Method Definition Index: 113127
+// Method Definition Index: 113137
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_batteryLevel_m5E62225A932F42BCE008DC5664C927BEF56500CE_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10420,7 +10420,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_bat
 		return;
 	}
 }
-// Method Definition Index: 113109
+// Method Definition Index: 113119
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_grip_m40E4C97590CD114F0B1289BC55F5A5DB07D5FE2D_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10431,7 +10431,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_gri
 		return;
 	}
 }
-// Method Definition Index: 113111
+// Method Definition Index: 113121
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_gripPressed_m810BEB8E316DF6585AE7C71D65160CF583C037E5_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10442,7 +10442,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_gri
 		return;
 	}
 }
-// Method Definition Index: 113113
+// Method Definition Index: 113123
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_menu_m8AC444ADF8D561F5AA48BC16467977552FB20EA3_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10453,7 +10453,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_men
 		return;
 	}
 }
-// Method Definition Index: 113117
+// Method Definition Index: 113127
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_primaryButton_mE62EB2EA5D90B54CA1D988042BA4FD5EC6306BF8_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10464,7 +10464,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_pri
 		return;
 	}
 }
-// Method Definition Index: 113119
+// Method Definition Index: 113129
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_primaryTouched_mE5C63004CC5B2D1DAAFF9FCF8CFB4325FF22DD0B_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10475,7 +10475,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_pri
 		return;
 	}
 }
-// Method Definition Index: 113121
+// Method Definition Index: 113131
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_secondaryButton_mE66867FF52C7F6D4D29944457A4E037AC7152B04_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10486,7 +10486,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_sec
 		return;
 	}
 }
-// Method Definition Index: 113123
+// Method Definition Index: 113133
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_secondaryTouched_m9A80EF853B1C442C328139516F09CF113A01EB01_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10497,7 +10497,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_sec
 		return;
 	}
 }
-// Method Definition Index: 113133
+// Method Definition Index: 113143
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_thumbstickClicked_m10BC61E75B920B6F3DCE4C376A2CEE9EAD79E1B5_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10508,7 +10508,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_thu
 		return;
 	}
 }
-// Method Definition Index: 113135
+// Method Definition Index: 113145
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_thumbstickTouched_m17D56344D19A38A32C4274DF0C6D94F904AFA313_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10519,7 +10519,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_thu
 		return;
 	}
 }
-// Method Definition Index: 113137
+// Method Definition Index: 113147
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_devicePose_m8D5FAAFE44C9B3652EDB063F64983A1F01A9007D_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10530,7 +10530,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_dev
 		return;
 	}
 }
-// Method Definition Index: 113139
+// Method Definition Index: 113149
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_pointer_m1A2122D4FBC4295133FC7F5E200F4C98533BDE9F_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10541,7 +10541,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_poi
 		return;
 	}
 }
-// Method Definition Index: 113141
+// Method Definition Index: 113151
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_isTracked_mDD1D6E18BF7FA1352E75EEAA5EDB9C2E64B884C3_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10552,7 +10552,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_isT
 		return;
 	}
 }
-// Method Definition Index: 113143
+// Method Definition Index: 113153
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_trackingState_mA01FE52F53F16268C5F0076739E1DBD492C19D6B_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, IntegerControl_tA24544EFF42204852F638FF5147F754962C997AB* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10563,7 +10563,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_tra
 		return;
 	}
 }
-// Method Definition Index: 113145
+// Method Definition Index: 113155
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_devicePosition_mCBA00C88FC37FF0ADE913E1461F73C21C6F06FFE_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10574,7 +10574,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_dev
 		return;
 	}
 }
-// Method Definition Index: 113147
+// Method Definition Index: 113157
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_deviceRotation_m57EF33D94E57AA93E242173A765ECCE964891586_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10585,7 +10585,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_dev
 		return;
 	}
 }
-// Method Definition Index: 113149
+// Method Definition Index: 113159
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_pointerPosition_m97F60724C3D8DB6917B7BA41C027199CE46B8C17_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10596,7 +10596,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_poi
 		return;
 	}
 }
-// Method Definition Index: 113151
+// Method Definition Index: 113161
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_pointerRotation_mCE9D001B16819B40D5703BFE409C94DED5C630C3_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10607,7 +10607,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_poi
 		return;
 	}
 }
-// Method Definition Index: 113153
+// Method Definition Index: 113163
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_haptic_m841A1804A16BE1B2BF3FEA75838A015BEDA4F992_inline (PICO4UltraController_t090A6A9878D4A48F82629C1185BF00DABF67BF64* __this, HapticControl_t55C6C8AF176B500F8A11E14786537FA0923A5D49* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10618,7 +10618,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICO4UltraController_set_hap
 		return;
 	}
 }
-// Method Definition Index: 113161
+// Method Definition Index: 113171
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_thumbstick_m9E7F52AEDA7134F9EAC05976421DCC3AD032AF90_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10629,7 +10629,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_th
 		return;
 	}
 }
-// Method Definition Index: 113167
+// Method Definition Index: 113177
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_trigger_mE1D616F0D519664EC8E0F2BE2A88D37FEA6F2BA9_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10640,7 +10640,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_tr
 		return;
 	}
 }
-// Method Definition Index: 113169
+// Method Definition Index: 113179
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_triggerPressed_mDEE8B90566DF74C5220B000D42A78DF2ECAF220A_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10651,7 +10651,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_tr
 		return;
 	}
 }
-// Method Definition Index: 113173
+// Method Definition Index: 113183
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_trackpad_m0157F15F9F8F276602F22CCE7567B2345FCD6D71_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10662,7 +10662,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_tr
 		return;
 	}
 }
-// Method Definition Index: 113175
+// Method Definition Index: 113185
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_trackpadClicked_m949066F42153F8AE86BB558B8A67AF810EECF3F2_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10673,7 +10673,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_tr
 		return;
 	}
 }
-// Method Definition Index: 113163
+// Method Definition Index: 113173
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_menu_m207AA7C14527AF8F5673604084731BC6838FABB9_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10684,7 +10684,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_me
 		return;
 	}
 }
-// Method Definition Index: 113171
+// Method Definition Index: 113181
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_thumbstickClicked_mBAD6993745C2BF8D0D307719989174457A8478D4_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10695,7 +10695,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_th
 		return;
 	}
 }
-// Method Definition Index: 113177
+// Method Definition Index: 113187
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_devicePose_m541135FB78CD5465152D43C364784E7A395DB26E_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10706,7 +10706,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_de
 		return;
 	}
 }
-// Method Definition Index: 113179
+// Method Definition Index: 113189
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_pointer_mA0B072A22F60FB89B6EE51BFBCB76FBFBED527DF_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10717,7 +10717,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_po
 		return;
 	}
 }
-// Method Definition Index: 113181
+// Method Definition Index: 113191
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_isTracked_m8F654909BFFAEFEF9D7E2D10DBC7AAD2A6962EF0_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10728,7 +10728,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_is
 		return;
 	}
 }
-// Method Definition Index: 113183
+// Method Definition Index: 113193
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_trackingState_m6F608572E0A741E282CC9480E5C56980A8F41EED_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, IntegerControl_tA24544EFF42204852F638FF5147F754962C997AB* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10739,7 +10739,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_tr
 		return;
 	}
 }
-// Method Definition Index: 113185
+// Method Definition Index: 113195
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_devicePosition_m6BC5420119A9917DD3230BCCDACF6AD5C42A633F_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10750,7 +10750,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_de
 		return;
 	}
 }
-// Method Definition Index: 113187
+// Method Definition Index: 113197
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_deviceRotation_m460D1B651086C9F172F632C4F5AC0BA7BB01FB0B_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10761,7 +10761,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_de
 		return;
 	}
 }
-// Method Definition Index: 113189
+// Method Definition Index: 113199
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_pointerPosition_m470F1A1FB8B2EA4550732829CDE91C9FE3AE68CA_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10772,7 +10772,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_po
 		return;
 	}
 }
-// Method Definition Index: 113191
+// Method Definition Index: 113201
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_pointerRotation_m443BE9B4182EFCB4941063DC1FA2CF758A810327_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10783,7 +10783,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_po
 		return;
 	}
 }
-// Method Definition Index: 113193
+// Method Definition Index: 113203
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_batteryLevel_mF5E53B8BD099DFFF3648749B19734557007F6215_inline (PICOG3TouchController_tB7663DA46E34AF7AE914179A1EB0A8D439E46564* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10794,7 +10794,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICOG3TouchController_set_ba
 		return;
 	}
 }
-// Method Definition Index: 113201
+// Method Definition Index: 113211
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_thumbstick_m1D14A2991E4F1DB2CA5D0A4C4F4CCADAE7AEE539_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, Vector2Control_t8D1B4021A1D82671AF916D3C0A476AA94E46A432* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10805,7 +10805,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_thumb
 		return;
 	}
 }
-// Method Definition Index: 113219
+// Method Definition Index: 113229
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_trigger_m95AEFE44B7D3F4849C613051B033DEE391AF3F09_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10816,7 +10816,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_trigg
 		return;
 	}
 }
-// Method Definition Index: 113221
+// Method Definition Index: 113231
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_triggerPressed_m147C9BCC6816D3CB05898084208990A73B1810DF_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10827,7 +10827,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_trigg
 		return;
 	}
 }
-// Method Definition Index: 113223
+// Method Definition Index: 113233
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_triggerTouched_m15EF3A536F775D078EC2E24308E76F7177C70A8A_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10838,7 +10838,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_trigg
 		return;
 	}
 }
-// Method Definition Index: 113203
+// Method Definition Index: 113213
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_grip_mE5881328EE4224BD2776446EB7AC6A3BE2CB9244_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10849,7 +10849,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_grip_
 		return;
 	}
 }
-// Method Definition Index: 113205
+// Method Definition Index: 113215
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_gripPressed_m21E1B5D5F8BCE703C6FBEFD4BD1C93DDEB40CDEB_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10860,7 +10860,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_gripP
 		return;
 	}
 }
-// Method Definition Index: 113207
+// Method Definition Index: 113217
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_menu_m7A756AE4481DA2239DC42CCB05FF300B6EC3404A_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10871,7 +10871,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_menu_
 		return;
 	}
 }
-// Method Definition Index: 113211
+// Method Definition Index: 113221
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_primaryButton_mBBE4BF6E22E08A4FAB53BC184ABCBFF18037C4BB_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10882,7 +10882,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_prima
 		return;
 	}
 }
-// Method Definition Index: 113213
+// Method Definition Index: 113223
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_primaryTouched_mAE88A62A1579D53E4AD4CE9749C00333E0C68E76_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10893,7 +10893,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_prima
 		return;
 	}
 }
-// Method Definition Index: 113215
+// Method Definition Index: 113225
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_secondaryButton_mB41714932A2F957F18634A892222123B6854A3B2_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10904,7 +10904,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_secon
 		return;
 	}
 }
-// Method Definition Index: 113217
+// Method Definition Index: 113227
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_secondaryTouched_mC80B5C0D9EDFD29855A5D9F56800678D16179395_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10915,7 +10915,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_secon
 		return;
 	}
 }
-// Method Definition Index: 113225
+// Method Definition Index: 113235
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_thumbstickClicked_m1A101C197124B84369B0421D17DBF98C23C35CC6_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10926,7 +10926,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_thumb
 		return;
 	}
 }
-// Method Definition Index: 113227
+// Method Definition Index: 113237
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_thumbstickTouched_mCC0E63D25BF419F89BDE00DFC3B2B8DCA1C8DE9A_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10937,7 +10937,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_thumb
 		return;
 	}
 }
-// Method Definition Index: 113229
+// Method Definition Index: 113239
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_devicePose_m4301F8DDD2902F15847C724ACCBA2953EC43658E_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10948,7 +10948,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_devic
 		return;
 	}
 }
-// Method Definition Index: 113231
+// Method Definition Index: 113241
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_pointer_m93F8C20AA85C980AD699CF610443D0068DC9477B_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, PoseControl_t28571DE0327FBB52F360251074D1DA294A197862* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10959,7 +10959,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_point
 		return;
 	}
 }
-// Method Definition Index: 113233
+// Method Definition Index: 113243
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_isTracked_mF84F0BE4DAF8D36DF87DB172212DB3AEEC4ED5C0_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, ButtonControl_t85949109B98AAF5B7ADC0285F0EC98A61EC88ECF* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10970,7 +10970,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_isTra
 		return;
 	}
 }
-// Method Definition Index: 113235
+// Method Definition Index: 113245
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_trackingState_m35FBDB5A26F769861060E5CBB823737023A200A2_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, IntegerControl_tA24544EFF42204852F638FF5147F754962C997AB* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10981,7 +10981,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_track
 		return;
 	}
 }
-// Method Definition Index: 113237
+// Method Definition Index: 113247
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_devicePosition_mE1CA7693B90812B491C7CF08C3BD2D9E70994D9E_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -10992,7 +10992,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_devic
 		return;
 	}
 }
-// Method Definition Index: 113239
+// Method Definition Index: 113249
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_deviceRotation_mC74D575AD8FB033E5128995D8D9E9347ABFA5B09_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -11003,7 +11003,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_devic
 		return;
 	}
 }
-// Method Definition Index: 113241
+// Method Definition Index: 113251
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_pointerPosition_m78E737676E773BFBEF2DC576F350D2F40D1DF1BC_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, Vector3Control_t32D7E4836F56C2FDC61BF0D96ED455DEFA6C949A* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -11014,7 +11014,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_point
 		return;
 	}
 }
-// Method Definition Index: 113243
+// Method Definition Index: 113253
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_pointerRotation_m0B4510F05DE1875F33780C2346729C03F8552774_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, QuaternionControl_t18A2F742850FC2FD82A1F980A35C188A29F1A0B1* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -11025,7 +11025,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_point
 		return;
 	}
 }
-// Method Definition Index: 113247
+// Method Definition Index: 113257
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_batteryLevel_m0594180DF8C8B5FA04A42713115D826C86BD9205_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, AxisControl_tD6613A2445A3C2BFA22C77E16CA3201AF72354A7* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -11036,7 +11036,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_batte
 		return;
 	}
 }
-// Method Definition Index: 113245
+// Method Definition Index: 113255
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PICONeo3Controller_set_haptic_mFA59C70D0B8A306A15C65E1B945F543A5A0914E3_inline (PICONeo3Controller_t77E0CECE092C1CC45B8212311E2D4510FBBE49A6* __this, HapticControl_t55C6C8AF176B500F8A11E14786537FA0923A5D49* ___0_value, const RuntimeMethod* method) 
 {
 	{

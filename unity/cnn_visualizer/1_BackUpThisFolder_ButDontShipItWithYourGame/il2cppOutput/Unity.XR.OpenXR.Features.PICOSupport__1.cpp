@@ -29224,7 +29224,7 @@ IL_00e5:
 		return L_65;
 	}
 }
-// Method Definition Index: 110877
+// Method Definition Index: 110887
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float XROrigin_get_CameraYOffset_m223B472CA64A210F0F315A503FF621A6C74EC2A3_inline (XROrigin_t5E534A6D886991AF3C1C64127E19A3A510009CFE* __this, const RuntimeMethod* method) 
 {
 	{

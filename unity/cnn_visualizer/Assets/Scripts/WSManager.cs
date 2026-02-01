@@ -9,7 +9,9 @@ using Newtonsoft.Json;
 public class WSManager : MonoBehaviour
 {
     private ClientWebSocket socket = new ClientWebSocket();
-    private Uri uri = new Uri("ws://localhost:8765"); // your Python WebSocket server URL
+    [Header("WebSocket Server")]
+    [SerializeField] private string serverUrl = "ws://172.20.10.6:8765"; // your Python WebSocket server URL
+    private Uri uri;
 
     [Header("Image Spawner Reference")]
     public ImageCubeSpawner cubeSpawner;  // ✅ drag ImageCubeSpawner in Inspector
@@ -51,7 +53,8 @@ public class WSManager : MonoBehaviour
 
         try
         {
-            Debug.Log("🔌 [WSManager] Attempting to connect to ws://localhost:8765...");
+            uri = new Uri(serverUrl);
+            Debug.Log($"🔌 [WSManager] Attempting to connect to {serverUrl}...");
             await socket.ConnectAsync(uri, CancellationToken.None);
             Debug.Log("✅ [WSManager] Connected to PyTorch WebSocket server.");
             _ = ListenLoop(); // start receiving asynchronously
