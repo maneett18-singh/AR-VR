@@ -1,20 +1,44 @@
 using UnityEngine;
 using System.IO;
+using UnityEngine.InputSystem;
 
 public class WhiteboardExporter : MonoBehaviour
 {
     public Camera captureCamera; // Assign your CaptureCamera here
     public int resWidth = 256;    // MNIST width
     public int resHeight = 256;   // MNIST height
+    [Header("XR Input (Optional)")]
+    [SerializeField] private InputActionReference captureAction; // e.g., X or A button
+
+    private static Texture2D Rotate90Clockwise(Texture2D src)
+    {
+        int w = src.width;
+        int h = src.height;
+
+        // New texture has swapped dimensions.
+        Texture2D dst = new Texture2D(h, w, src.format, false);
+
+        // (x, y) -> (h - 1 - y, x)
+        for (int y = 0; y < h; y++)
+        {
+            for (int x = 0; x < w; x++)
+            {
+                dst.SetPixel(h - 1 - y, x, src.GetPixel(x, y));
+            }
+        }
+
+        dst.Apply();
+        return dst;
+    }
 
     void Update()
-{
-    // Input.GetKeyDown checks for the exact frame the key is pressed
-    if (Input.GetKeyDown(KeyCode.P)) 
     {
-        SaveDrawing(); // This calls your existing save logic
+        bool doCapture = captureAction != null ? captureAction.action.WasPressedThisFrame() : Input.GetKeyDown(KeyCode.P);
+        if (doCapture)
+        {
+            SaveDrawing(); // This calls your existing save logic
+        }
     }
-}
     public void SaveDrawing()
     {
         // 1. Create a "bucket" for the pixels
@@ -35,10 +59,21 @@ public class WhiteboardExporter : MonoBehaviour
         RenderTexture.active = null;
         Destroy(rt);
 
-        // 5. Convert to PNG bytes and save to your computer
-        byte[] bytes = screenShot.EncodeToPNG();
-        string filename = Application.dataPath + "/MNIST_Drawing_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
+    // 5. Rotate 90 degrees to the right (clockwise), then convert to PNG.
+    Texture2D rotated = Rotate90Clockwise(screenShot);
+    byte[] bytes = rotated.EncodeToPNG();
+        string picsDir = Path.Combine(Application.dataPath, "Pics");
+        Directory.CreateDirectory(picsDir);
+
+        string filename = Path.Combine(
+            picsDir,
+            "MNIST_Drawing_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png"
+        );
         File.WriteAllBytes(filename, bytes);
+
+        // Cleanup CPU-side textures
+        Destroy(screenShot);
+        Destroy(rotated);
 
         Debug.Log("Saved image to: " + filename);
     }

@@ -1,5 +1,6 @@
 ARVR_env
-venv/
+ar_vr_env/
+.venv/
 # Unity
 Library/
 Temp/
@@ -23,3 +24,9 @@ UserSettings/
 # IDE
 .vscode/
 .idea/
+
+
+/[Uu]nity/cnn_visualizer/*.apk
+/[Uu]nity/cnn_visualizer/*.zip
+*.apk
+*.symbols.zip

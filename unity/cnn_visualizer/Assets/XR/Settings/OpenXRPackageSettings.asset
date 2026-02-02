@@ -421,6 +421,34 @@ MonoBehaviour:
   company: Unity Technologies
   priority: 0
   required: 0
+--- !u!114 &-3664667408685023281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a1f07dc5afe854f9f12a4194aca3fb, type: 3}
+  m_Name: WebGL
+  m_EditorClassIdentifier: Unity.XR.OpenXR::UnityEngine.XR.OpenXR.OpenXRSettings
+  features:
+  - {fileID: -1324262588763945609}
+  m_renderMode: 1
+  m_latencyOptimization: 0
+  m_autoColorSubmissionMode: 1
+  m_colorSubmissionModes:
+    m_List: 00000000
+  m_depthSubmissionMode: 0
+  m_spacewarpMotionVectorTextureFormat: 0
+  m_optimizeBufferDiscards: 0
+  m_symmetricProjection: 0
+  m_optimizeMultiviewRenderRegions: 0
+  m_multiviewRenderRegionsOptimizationMode: 0
+  m_hasMigratedMultiviewRenderRegionSetting: 1
+  m_foveatedRenderingApi: 0
+  m_useOpenXRPredictedTime: 0
 --- !u!114 &-3278761436915834721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -869,12 +897,20 @@ MonoBehaviour:
   Keys: 01000000070000000400000019000000240000000e0000000d000000
   Values:
   - {fileID: 2899954629817392994}
+<<<<<<< HEAD
+  - {fileID: 960696893416977848}
+=======
+>>>>>>> kashif_new
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+<<<<<<< HEAD
+  - {fileID: -3664667408685023281}
+=======
   - {fileID: 0}
   - {fileID: 0}
+>>>>>>> kashif_new
 --- !u!114 &147228438309725162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,6 +983,68 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+<<<<<<< HEAD
+  m_renderMode: 1
+  m_latencyOptimization: 0
+  m_autoColorSubmissionMode: 1
+  m_colorSubmissionModes:
+    m_List: 00000000
+  m_depthSubmissionMode: 0
+  m_spacewarpMotionVectorTextureFormat: 0
+  m_optimizeBufferDiscards: 0
+  m_symmetricProjection: 0
+  m_optimizeMultiviewRenderRegions: 0
+  m_multiviewRenderRegionsOptimizationMode: 0
+  m_hasMigratedMultiviewRenderRegionSetting: 1
+  m_foveatedRenderingApi: 0
+  m_useOpenXRPredictedTime: 0
+--- !u!114 &960696893416977848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a1f07dc5afe854f9f12a4194aca3fb, type: 3}
+  m_Name: Android
+  m_EditorClassIdentifier: Unity.XR.OpenXR::UnityEngine.XR.OpenXR.OpenXRSettings
+  features:
+  - {fileID: -7349926892915294884}
+  - {fileID: -2402630214408262169}
+  - {fileID: -6121271877732613880}
+  - {fileID: -8000997598222710656}
+  - {fileID: -3251992797483153628}
+  - {fileID: -2330341190342355875}
+  - {fileID: 1123765454017892284}
+  - {fileID: 7973107738168335752}
+  - {fileID: 415233017926750350}
+  - {fileID: 2084572350563878152}
+  - {fileID: 3451029652778698079}
+  - {fileID: -3873002391498935951}
+  - {fileID: -159634248914208009}
+  - {fileID: 6886245988355559344}
+  - {fileID: 6746228182035495572}
+  - {fileID: 8877639857907081683}
+  - {fileID: 3204951100740040184}
+  - {fileID: -1991502090188358110}
+  - {fileID: -8358487083932745228}
+  - {fileID: 8759366741247560425}
+  - {fileID: 5185910735314338884}
+  - {fileID: 5002981905155096068}
+  - {fileID: 1545823429219164807}
+  - {fileID: 6413359822837567670}
+  - {fileID: 3626661149932184404}
+  - {fileID: -824515338572727054}
+  - {fileID: 7547060763672968591}
+  - {fileID: 7866660927220348437}
+  - {fileID: 9071705630028066666}
+  - {fileID: 8539227670001640548}
+  - {fileID: -5901582635306253}
+  - {fileID: -4603662951859827220}
+=======
+>>>>>>> kashif_new
   m_renderMode: 1
   m_latencyOptimization: 0
   m_autoColorSubmissionMode: 1

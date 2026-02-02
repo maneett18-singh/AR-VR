@@ -1,17 +1,19 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Newtonsoft.Json;
+using UnityEngine;
 
 public class ImageCubeSpawner : MonoBehaviour
 {
-    [System.Serializable]
+    [Serializable]
     public class WebSocketData
     {
         public string input_image_base64;
         public Dictionary<string, Dictionary<string, FeatureMap>> feature_maps;
+        public int predicted_class;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class FeatureMap
     {
         public int[] shape; // [H, W]
@@ -19,144 +21,178 @@ public class ImageCubeSpawner : MonoBehaviour
     }
 
     public GameObject cubePrefab;
+    // Legacy fields (kept for backward compatibility with older scenes):
+    public float channelSpacing = 0.1f;    // space between channels within one layer
+    public bool stackChannelsAlongZ = true; // toggle direction in Inspector
+
     public Material lineMaterial; // assign a simple unlit color material in Inspector
+
+    [Header("Layout")]
+    [Tooltip("All generated layer parents/lines will be created under this root. If null, one is created automatically.")]
+    public Transform visualizationRoot;
+
+    [Tooltip("Local offset applied to the whole visualization under visualizationRoot.")]
+    public Vector3 baseOffset = Vector3.zero;
+
+    [Min(0.1f)]
+    public float layerSpacing = 5.0f;
+
+    [Min(0.01f)]
+    public float gridSpacing = 1.5f;
+
+    [Tooltip("If true, automatically picks a compact grid (ceil(sqrt(N)) columns) for each layer.")]
+    public bool autoGridColumns = true;
+
+    [Min(1)]
+    public int gridColumns = 10;
+
+    [Tooltip("Centers each layer grid around its local origin.")]
+    public bool centerLayerGrid = true;
+
+    [Tooltip("If true, destroys the previous visualization on every new message.")]
+    public bool clearOnMessage = true;
+
+    [Header("Layer Order (Model Architecture)")]
+    [Tooltip("Layers are rendered in this order if present in feature_maps. Unspecified layers (if any) are appended after.")]
+    public string[] layerOrder = new[] { "conv1", "conv2", "pool" };
+
+    [Tooltip("If true, layers not listed in layerOrder are still shown after the ordered ones.")]
+    public bool includeUnspecifiedLayers = false;
 
     private readonly List<GameObject> activeCubes = new();
     private readonly List<GameObject> receptiveLines = new();
+
+    private void Awake()
+    {
+        EnsureRoot();
+    }
+
+    private void EnsureRoot()
+    {
+        if (visualizationRoot != null) return;
+        var go = new GameObject("ImageCubeVisualizationRoot");
+        visualizationRoot = go.transform;
+        visualizationRoot.SetParent(transform, false);
+        visualizationRoot.localPosition = Vector3.zero;
+        visualizationRoot.localRotation = Quaternion.identity;
+        visualizationRoot.localScale = Vector3.one;
+    }
 
     public void OnWebSocketMessage(string json)
     {
         try
         {
-            Debug.Log($"📨 [ImageCubeSpawner] Received WebSocket message (length: {json.Length} chars)");
-            Debug.Log($"📄 Message preview: {json.Substring(0, Mathf.Min(200, json.Length))}...");
-            
             var data = JsonConvert.DeserializeObject<WebSocketData>(json);
-            if (data == null)
-            {
-                Debug.LogWarning("⚠ [ImageCubeSpawner] WebSocketData was null, skipping frame.");
+            if (data?.feature_maps == null || data.feature_maps.Count == 0)
                 return;
-            }
-            Debug.Log("✅ [ImageCubeSpawner] JSON deserialized successfully");
-            
-            // 🔍 Validate data structure
-            if (data.feature_maps == null)
-            {
-                Debug.LogError("❌ [ImageCubeSpawner] feature_maps is NULL! Check your Python server JSON format.");
-                Debug.LogError($"📄 Data structure: input_image_base64 = {(data.input_image_base64 != null ? "SET" : "NULL")}");
-                return;
-            }
-            
-            if (data.feature_maps.Count == 0)
-            {
-                Debug.LogWarning("⚠ [ImageCubeSpawner] feature_maps is empty (no layers to visualize)");
-                return;
-            }
 
-            // 🧹 Clean previous visualization
-            Debug.Log("🧹 [ImageCubeSpawner] Clearing previous visualization...");
-            ClearAll();
+            EnsureRoot();
+            if (clearOnMessage)
+                ClearAll();
 
-            // ✅ Spawn input image cube as the first layer
-            Debug.Log("🖼️ [ImageCubeSpawner] Creating input image cube...");
+            // Input cube
             GameObject inputCube = null;
-            if (data.input_image_base64 != null)
+            if (!string.IsNullOrEmpty(data.input_image_base64))
             {
-                inputCube = CreateCubeFromBase64(data.input_image_base64, Vector3.zero, new Vector2(28, 28));
-                if (inputCube == null)
-                    Debug.LogError("❌ [ImageCubeSpawner] Failed to create input image cube!");
-                else
-                    Debug.Log("✅ [ImageCubeSpawner] Input image cube created successfully");
+                inputCube = CreateCubeFromBase64(data.input_image_base64, visualizationRoot, baseOffset, new Vector2(28, 28));
             }
-            else
+            Vector3? previousCenter = inputCube != null ? inputCube.transform.position : (Vector3?)null;
+
+            // Start conv layers after the input cube so they don't overlap.
+            int layerIndex = inputCube != null ? 1 : 0;
+
+            void SpawnLayer(string layerName, Dictionary<string, FeatureMap> featureMaps)
             {
-                Debug.LogWarning("⚠ [ImageCubeSpawner] No input_image_base64 provided, skipping input cube");
-            }
-            GameObject previousLayerCenter = inputCube;
+                if (featureMaps == null || featureMaps.Count == 0) return;
 
-            // ✅ Spawn feature maps as layers along Z-axis
-            float layerSpacing = 3.0f;
-            int layerIndex = 0;
-            Debug.Log($"🔄 [ImageCubeSpawner] Processing {data.feature_maps.Count} layers...");
+                var layerParent = new GameObject($"Layer_{layerName}");
+                layerParent.transform.SetParent(visualizationRoot, false);
+                layerParent.transform.localPosition = baseOffset + new Vector3(0f, 0f, layerIndex * layerSpacing);
+                layerParent.transform.localRotation = Quaternion.identity;
 
-            foreach (var layer in data.feature_maps)
-            {
-                // Create a parent for this layer
-                Debug.Log($"📦 [ImageCubeSpawner] Creating layer parent: Layer_{layer.Key} (Filter count: {layer.Value.Count})");
-                GameObject layerParent = new GameObject($"Layer_{layer.Key}");
-                layerParent.transform.SetParent(transform);
-                Debug.Log($"✅ [ImageCubeSpawner] Layer parent created and set as child");
+                var layerCubes = new List<GameObject>();
 
-                // Collect all cubes in this layer to compute center
-                List<GameObject> layerCubes = new();
+                int countInLayer = featureMaps.Count;
+                int cols = autoGridColumns
+                    ? Mathf.Max(1, Mathf.CeilToInt(Mathf.Sqrt(countInLayer)))
+                    : Mathf.Max(1, gridColumns);
 
-                float offset = 1.5f;
+                int rows = Mathf.CeilToInt(countInLayer / (float)cols);
+                float width = Mathf.Min(cols, countInLayer) * gridSpacing;
+                float height = rows * gridSpacing;
+                Vector3 centerOffset = centerLayerGrid
+                    ? new Vector3(-(width - gridSpacing) * 0.5f, -(height - gridSpacing) * 0.5f, 0f)
+                    : Vector3.zero;
+
                 int index = 0;
-                Debug.Log($"🔄 [ImageCubeSpawner] Processing {layer.Value.Count} feature maps in layer {layer.Key}...");
-
-                foreach (var feature in layer.Value)
+                foreach (var kv in featureMaps)
                 {
-                    FeatureMap fmap = feature.Value;
-                    if (fmap?.base64 == null) 
+                    var fmap = kv.Value;
+                    if (string.IsNullOrEmpty(fmap?.base64))
                     {
-                        Debug.LogWarning($"⚠ [ImageCubeSpawner] Feature map {feature.Key} has null base64 data, skipping...");
+                        index++;
                         continue;
                     }
 
-                    Vector2 shape = (fmap.shape != null && fmap.shape.Length >= 2)
-                        ? new Vector2(fmap.shape[1], fmap.shape[0])
-                        : new Vector2(28, 28);
+		    Vector2 shape = (fmap.shape != null && fmap.shape.Length >= 2)
+			? new Vector2(fmap.shape[1], fmap.shape[0])
+			: new Vector2(28, 28);
 
-                    Debug.Log($"🎨 [ImageCubeSpawner] Creating feature map {feature.Key} (shape: {shape.x}x{shape.y})");
-
-                    // Arrange cubes in a grid per layer
-                    Vector3 pos = new Vector3(
-                        (index % 10) * offset,
-                        (index / 10) * offset,
-                        layerIndex * layerSpacing
+                    Vector3 localPos = centerOffset + new Vector3(
+                        (index % cols) * gridSpacing,
+                        (index / cols) * gridSpacing,
+                        0f
                     );
-                    Debug.Log($"📍 [ImageCubeSpawner] Cube position: {pos}");
 
-                    GameObject cube = CreateCubeFromBase64(fmap.base64, pos, shape);
-                    if (cube != null)
-                    {
-                        cube.transform.SetParent(layerParent.transform);
-                        layerCubes.Add(cube);
-                        Debug.Log($"✅ [ImageCubeSpawner] Feature map cube created: {cube.name}");
-                    }
-                    else
-                    {
-                        Debug.LogError($"❌ [ImageCubeSpawner] Failed to create cube for {feature.Key}");
-                    }
+                    var cube = CreateCubeFromBase64(fmap.base64, layerParent.transform, localPos, shape);
+                    if (cube != null) layerCubes.Add(cube);
                     index++;
                 }
 
-                // Compute layer center to draw connection lines
-                Debug.Log($"🔢 [ImageCubeSpawner] Layer {layer.Key} has {layerCubes.Count} cubes");
-                Vector3 layerCenter = ComputeLayerCenter(layerCubes);
-                Debug.Log($"📍 [ImageCubeSpawner] Layer center computed: {layerCenter}");
-                
-                if (previousLayerCenter != null)
+                if (layerCubes.Count > 0)
                 {
-                    Debug.Log($"🔗 [ImageCubeSpawner] Drawing connection line between layers...");
-                    DrawReceptiveFieldLine(previousLayerCenter.transform.position, layerCenter);
+                    Vector3 center = ComputeLayerCenter(layerCubes);
+                    if (previousCenter.HasValue)
+                        DrawReceptiveFieldLine(previousCenter.Value, center);
+                    previousCenter = center;
                 }
 
-                previousLayerCenter = layerParent;
                 layerIndex++;
             }
 
-            Debug.Log($"✅ [ImageCubeSpawner] Successfully spawned {layerIndex} layers of feature maps!");
-            Debug.Log($"📊 [ImageCubeSpawner] Total active cubes: {activeCubes.Count}, Lines: {receptiveLines.Count}");
+            var used = new HashSet<string>();
+
+            // Render known layers in model order first
+            if (layerOrder != null)
+            {
+                foreach (var name in layerOrder)
+                {
+                    if (string.IsNullOrEmpty(name)) continue;
+                    if (data.feature_maps.TryGetValue(name, out var maps))
+                    {
+                        SpawnLayer(name, maps);
+                        used.Add(name);
+                    }
+                }
+            }
+
+            // Then render any remaining layers (if server sends extra)
+            if (includeUnspecifiedLayers)
+            {
+                foreach (var kv in data.feature_maps)
+                {
+                    if (used.Contains(kv.Key)) continue;
+                    SpawnLayer(kv.Key, kv.Value);
+                }
+            }
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             Debug.LogError($"❌ [ImageCubeSpawner] Failed to process WebSocket JSON: {ex.Message}\n{ex.StackTrace}");
         }
     }
 
-    // 🧩 Create a cube with texture and scaled size
-    GameObject CreateCubeFromBase64(string base64, Vector3 position, Vector2 shape)
+    private GameObject CreateCubeFromBase64(string base64, Transform parent, Vector3 localPosition, Vector2 shape)
     {
         try
         {
@@ -166,113 +202,86 @@ public class ImageCubeSpawner : MonoBehaviour
                 return null;
             }
 
-            Debug.Log($"🖼️ [ImageCubeSpawner] Converting base64 to texture (length: {base64.Length})...");
             Texture2D tex = ImageUtils.Base64ToTexture(base64);
             if (tex == null)
-            {
-                Debug.LogError("❌ [ImageCubeSpawner] Failed to convert base64 to texture!");
                 return null;
-            }
-            Debug.Log($"✅ [ImageCubeSpawner] Texture created: {tex.width}x{tex.height}");
 
-            Debug.Log($"🎮 [ImageCubeSpawner] Instantiating cube prefab at position {position}...");
-            GameObject cube = Instantiate(cubePrefab, position, Quaternion.identity, transform);
-            Debug.Log($"✅ [ImageCubeSpawner] Cube instantiated: {cube.name}");
+            GameObject cube = Instantiate(cubePrefab, parent);
+            cube.transform.localPosition = localPosition;
+            cube.transform.localRotation = Quaternion.identity;
 
             Renderer renderer = cube.GetComponent<Renderer>();
-            if (renderer == null)
-            {
-                Debug.LogError("❌ [ImageCubeSpawner] Renderer component not found on cube prefab!");
-            }
-            else
-            {
+            if (renderer != null)
                 renderer.material.mainTexture = tex;
-                Debug.Log($"✅ [ImageCubeSpawner] Texture applied to renderer");
-            }
 
             float scaleFactor = 0.05f;
-            Vector3 newScale = new Vector3(shape.x * scaleFactor, shape.y * scaleFactor, 0.1f);
-            cube.transform.localScale = newScale;
-            Debug.Log($"📏 [ImageCubeSpawner] Cube scaled to: {newScale}");
+            cube.transform.localScale = new Vector3(shape.x * scaleFactor, shape.y * scaleFactor, 0.1f);
 
             activeCubes.Add(cube);
-            Debug.Log($"📦 [ImageCubeSpawner] Cube added to activeCubes list (total: {activeCubes.Count})");
             return cube;
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             Debug.LogError($"❌ [ImageCubeSpawner] Error in CreateCubeFromBase64: {ex.Message}\n{ex.StackTrace}");
             return null;
         }
     }
 
-    // 🧮 Compute the center of all cubes in one layer
-    Vector3 ComputeLayerCenter(List<GameObject> cubes)
+    private Vector3 ComputeLayerCenter(List<GameObject> cubes)
     {
         if (cubes.Count == 0)
-        {
-            Debug.LogWarning("⚠ [ImageCubeSpawner] ComputeLayerCenter called with empty cube list!");
             return Vector3.zero;
-        }
 
         Vector3 sum = Vector3.zero;
         foreach (var c in cubes)
             sum += c.transform.position;
-        
-        Vector3 center = sum / cubes.Count;
-        Debug.Log($"📊 [ImageCubeSpawner] Layer center computed from {cubes.Count} cubes: {center}");
-        return center;
+        return sum / cubes.Count;
     }
 
-    // 🔗 Draw line between layers (receptive field)
-    void DrawReceptiveFieldLine(Vector3 start, Vector3 end)
+    private void DrawReceptiveFieldLine(Vector3 start, Vector3 end)
     {
         try
         {
-            Debug.Log($"🔗 [ImageCubeSpawner] Creating line from {start} to {end}...");
+            EnsureRoot();
             GameObject lineObj = new GameObject("ReceptiveFieldLine");
+            if (visualizationRoot != null)
+                lineObj.transform.SetParent(visualizationRoot, false);
+
             var lr = lineObj.AddComponent<LineRenderer>();
             lr.positionCount = 2;
-            lr.SetPositions(new Vector3[] { start, end });
-            
-            if (lineMaterial == null)
-            {
-                Debug.LogWarning("⚠ [ImageCubeSpawner] lineMaterial not assigned, using default material!");
-            }
-            else
-            {
+            lr.SetPositions(new[] { start, end });
+            if (lineMaterial != null)
                 lr.material = lineMaterial;
-            }
-            
             lr.startWidth = 0.05f;
             lr.endWidth = 0.05f;
             lr.startColor = Color.cyan;
             lr.endColor = Color.magenta;
             receptiveLines.Add(lineObj);
-            Debug.Log($"✅ [ImageCubeSpawner] Line created (total lines: {receptiveLines.Count})");
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             Debug.LogError($"❌ [ImageCubeSpawner] Error drawing receptive field line: {ex.Message}");
         }
     }
 
-    // 🧹 Clean up old visualization
-    void ClearAll()
+    private void ClearAll()
     {
-        Debug.Log($"🧹 [ImageCubeSpawner] Clearing visualization: {activeCubes.Count} cubes, {receptiveLines.Count} lines...");
-        
-        foreach (var c in activeCubes) 
+        EnsureRoot();
+
+        if (visualizationRoot != null)
         {
+            for (int i = visualizationRoot.childCount - 1; i >= 0; i--)
+            {
+                var child = visualizationRoot.GetChild(i);
+                if (child != null) Destroy(child.gameObject);
+            }
+        }
+
+        foreach (var c in activeCubes)
             if (c != null) Destroy(c);
-        }
-        foreach (var l in receptiveLines) 
-        {
+        foreach (var l in receptiveLines)
             if (l != null) Destroy(l);
-        }
         activeCubes.Clear();
         receptiveLines.Clear();
-        
-        Debug.Log("✅ [ImageCubeSpawner] Visualization cleared successfully");
     }
 }
