@@ -11,7 +11,7 @@ using UnityEngine.Networking;
 public class WSManager : MonoBehaviour
 {
     [Header("WebSocket Server")]
-    [SerializeField] private string serverUrl = "ws://172.20.10.6:8765"; // your Python WebSocket server URL
+    [SerializeField] private string serverUrl = "ws://172.22.65.42:8765"; // your Python WebSocket server URL
 
     [Header("Image Spawner Reference")]
     public ImageCubeSpawner cubeSpawner;  // ✅ drag ImageCubeSpawner in Inspector

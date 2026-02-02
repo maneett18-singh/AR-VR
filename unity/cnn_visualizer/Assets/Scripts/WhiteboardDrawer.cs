@@ -65,6 +65,12 @@ public class WhiteboardDrawer : MonoBehaviour
     private bool warnedMissingRaySource;
     private bool warnedMissingLayerMask;
     private bool wasHittingDrawable;
+    [Header("Debug Visuals")]
+    [Tooltip("Show a small reticle at the current ray hit point for debugging and alignment.")]
+    public bool showReticle = true;
+    [Tooltip("Reticle scale in world units.")]
+    public float reticleScale = 0.02f;
+    private GameObject reticle;
 
     private static readonly int ShaderColorId = Shader.PropertyToID("_BaseColor");
 
@@ -270,6 +276,25 @@ public class WhiteboardDrawer : MonoBehaviour
                     return;
                 }
             }
+
+            // Last-resort: search the scene for any component that exposes TryGetCurrent3DRaycastHit
+            // (covers custom interactors like Near-Far Interactor that don't implement IXRRayProvider).
+            foreach (var mono in allMono)
+            {
+                if (mono == null) continue;
+                var mi = mono.GetType().GetMethod("TryGetCurrent3DRaycastHit", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (mi != null)
+                {
+                    var pars = mi.GetParameters();
+                    if (mi.ReturnType == typeof(bool) && pars.Length == 1 && pars[0].ParameterType == typeof(RaycastHit).MakeByRefType())
+                    {
+                        fallbackInteractorComponent = mono as Component;
+                        fallbackTryGetHitMethod = mi;
+                        Debug.Log($"WhiteboardDrawer: Auto-selected fallback interactor '{fallbackInteractorComponent.gameObject.name}' ({fallbackInteractorComponent.GetType().Name}) for hit queries.");
+                        return;
+                    }
+                }
+            }
         }
     }
 
@@ -380,7 +405,10 @@ public class WhiteboardDrawer : MonoBehaviour
                 {
                     Ray rayLocal = camLocal.ViewportPointToRay(new Vector3(gamepadCursor.x, gamepadCursor.y, 0f));
                     if (Physics.Raycast(rayLocal, out hit, rayDistance, drawingLayer, QueryTriggerInteraction.Collide))
+                    {
+                        UpdateReticle(hit);
                         return true;
+                    }
                 }
             }
         }
@@ -389,7 +417,10 @@ public class WhiteboardDrawer : MonoBehaviour
         if (xrRayInteractor != null)
         {
             if (xrRayInteractor.TryGetCurrent3DRaycastHit(out hit))
+            {
+                UpdateReticle(hit);
                 return true;
+            }
         }
 
         // If a fallback interactor component was detected that exposes TryGetCurrent3DRaycastHit,
@@ -404,6 +435,7 @@ public class WhiteboardDrawer : MonoBehaviour
                 if (ok)
                 {
                     hit = (RaycastHit)args[0];
+                    UpdateReticle(hit);
                     return true;
                 }
             }
@@ -446,7 +478,10 @@ public class WhiteboardDrawer : MonoBehaviour
                 }
 
                 if (Physics.Raycast(origin.position, dir, out hit, dist + 0.01f, mask, QueryTriggerInteraction.Collide))
+                {
+                    UpdateReticle(hit);
                     return true;
+                }
             }
         }
         else if (drawRaySource != null && xrRayInteractor == null && !warnedMissingRaySource)
@@ -463,7 +498,52 @@ public class WhiteboardDrawer : MonoBehaviour
         }
 
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        return Physics.Raycast(ray, out hit, rayDistance, drawingLayer, QueryTriggerInteraction.Collide);
+        if (Physics.Raycast(ray, out hit, rayDistance, drawingLayer, QueryTriggerInteraction.Collide))
+        {
+            UpdateReticle(hit);
+            return true;
+        }
+
+        // No hit anywhere - ensure reticle is hidden
+        if (reticle != null)
+            reticle.SetActive(false);
+
+        return false;
+    }
+
+    private void EnsureReticle()
+    {
+        if (!showReticle) return;
+        if (reticle != null) return;
+        reticle = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        // remove collider
+        var col = reticle.GetComponent<Collider>();
+        if (col != null) Destroy(col);
+        reticle.name = "WhiteboardReticle";
+        reticle.transform.localScale = Vector3.one * reticleScale;
+        var mr = reticle.GetComponent<MeshRenderer>();
+        if (mr != null)
+        {
+            Shader shader = Shader.Find("Universal Render Pipeline/Unlit") ?? Shader.Find("Standard");
+            mr.sharedMaterial = new Material(shader);
+            mr.sharedMaterial.color = Color.red;
+        }
+        reticle.SetActive(false);
+        // don't save to scene
+        reticle.hideFlags = HideFlags.DontSave;
+    }
+
+    private void UpdateReticle(RaycastHit hit)
+    {
+        if (!showReticle) return;
+        EnsureReticle();
+        if (reticle == null) return;
+        reticle.SetActive(true);
+        reticle.transform.position = hit.point + (hit.normal * offsetFromSurface);
+        reticle.transform.rotation = Quaternion.LookRotation(hit.normal);
+        reticle.transform.localScale = Vector3.one * reticleScale;
+        if (logHitTarget)
+            Debug.Log($"WhiteboardDrawer: Reticle at {hit.point} on {hit.collider.gameObject.name}");
     }
 
     private void SetupLineRenderer(LineRenderer line)
