@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using System.IO;
+using System.Reflection;
 
 
 public class WhiteboardDrawer : MonoBehaviour
@@ -38,10 +40,27 @@ public class WhiteboardDrawer : MonoBehaviour
     [SerializeField] private InputActionReference drawAction; // e.g., right trigger
     [SerializeField] private InputActionReference eraseAction; // e.g., B button
 
+    [Header("Gamepad / Cursor")]
+    [Tooltip("When enabled, left stick will move a virtual cursor over the screen which can be used to draw.")]
+    public bool useGamepadCursor = true;
+    [Tooltip("Speed at which the virtual cursor moves across the viewport (units/sec).")]
+    public float gamepadCursorSpeed = 1.0f;
+    // virtual cursor in viewport coords (0..1)
+    private Vector2 gamepadCursor = new Vector2(0.5f, 0.5f);
+    [Tooltip("Saved image size (pixels)")]
+    public int saveImageWidth = 1920;
+    public int saveImageHeight = 1080;
+
     private LineRenderer currentLine;
     private List<Vector3> points = new List<Vector3>();
+    // Keep track of instantiated line GameObjects so we can reliably clear them later
+    private List<GameObject> spawnedLines = new List<GameObject>();
     private IXRRayProvider rayProvider;
     private XRRayInteractor xrRayInteractor;
+    // Fallback for custom interactor types (e.g. Near-Far Interactor) that expose a
+    // TryGetCurrent3DRaycastHit(out RaycastHit) method but do not derive from XRRayInteractor.
+    private Component fallbackInteractorComponent;
+    private MethodInfo fallbackTryGetHitMethod;
 
     private bool warnedMissingRaySource;
     private bool warnedMissingLayerMask;
@@ -52,6 +71,19 @@ public class WhiteboardDrawer : MonoBehaviour
     private void Awake()
     {
         RefreshRaySource();
+    }
+
+    private void Start()
+    {
+        // Print which source we'll use at runtime for easier debugging.
+        if (xrRayInteractor != null)
+            Debug.Log($"WhiteboardDrawer: resolving XR Ray Interactor -> '{xrRayInteractor.gameObject.name}'");
+        else if (rayProvider != null)
+            Debug.Log($"WhiteboardDrawer: resolving Ray Provider -> '{(rayProvider as Component)?.gameObject.name ?? rayProvider.GetType().Name}'");
+        else if (Camera.main != null)
+            Debug.Log($"WhiteboardDrawer: no XR ray source assigned, using Camera.main -> '{Camera.main.gameObject.name}'");
+        else
+            Debug.LogWarning("WhiteboardDrawer: No XR ray source resolved and no Camera.main present.");
     }
 
     private void OnEnable()
@@ -82,9 +114,32 @@ public class WhiteboardDrawer : MonoBehaviour
 
         bool doErase = eraseAction != null ? eraseAction.action.WasPressedThisFrame() : Input.GetMouseButtonDown(1);
 
+        // Keyboard shortcuts
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            ClearBoard();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SaveBoardImage();
+        }
+
         // If user changed the Draw Ray Source at runtime / after domain reload.
         if (drawRaySource != null && rayProvider == null && xrRayInteractor == null)
             RefreshRaySource();
+
+        // Support gamepad virtual cursor (left stick) and gamepad button for drawing
+        var gp = Gamepad.current;
+
+        if (useGamepadCursor && gp != null)
+        {
+            // Move virtual cursor
+            Vector2 stick = gp.leftStick.ReadValue();
+            // invert Y for natural viewport movement
+            gamepadCursor += new Vector2(stick.x, stick.y) * (gamepadCursorSpeed * Time.deltaTime);
+            gamepadCursor.x = Mathf.Clamp01(gamepadCursor.x);
+            gamepadCursor.y = Mathf.Clamp01(gamepadCursor.y);
+        }
 
         if (drawMode == DrawMode.HoverToDraw)
         {
@@ -92,9 +147,23 @@ public class WhiteboardDrawer : MonoBehaviour
         }
         else
         {
-            bool startDraw = drawAction != null ? drawAction.action.WasPressedThisFrame() : Input.GetMouseButtonDown(0);
-            bool holdDraw = drawAction != null ? drawAction.action.IsPressed() : Input.GetMouseButton(0);
-            bool endDraw = drawAction != null ? drawAction.action.WasReleasedThisFrame() : Input.GetMouseButtonUp(0);
+            bool startDraw;
+            bool holdDraw;
+            bool endDraw;
+
+            if (gp != null)
+            {
+                startDraw = gp.buttonSouth.wasPressedThisFrame; // A / Cross
+                holdDraw = gp.buttonSouth.isPressed;
+                endDraw = gp.buttonSouth.wasReleasedThisFrame;
+            }
+            else
+            {
+                startDraw = drawAction != null ? drawAction.action.WasPressedThisFrame() : Input.GetMouseButtonDown(0);
+                holdDraw = drawAction != null ? drawAction.action.IsPressed() : Input.GetMouseButton(0);
+                endDraw = drawAction != null ? drawAction.action.WasReleasedThisFrame() : Input.GetMouseButtonUp(0);
+            }
+
             UpdatePressDraw(startDraw, holdDraw, endDraw);
         }
 
@@ -148,6 +217,60 @@ public class WhiteboardDrawer : MonoBehaviour
             xrRayInteractor = rayInteractorInParent;
             return;
         }
+
+        // If user assigned a GameObject that isn't an XRRayInteractor but has an interactor
+        // implementing TryGetCurrent3DRaycastHit, detect and cache it via reflection.
+        if (drawRaySource != null)
+        {
+            var comps = drawRaySource.GetComponents<Component>();
+            foreach (var c in comps)
+            {
+                if (c == null) continue;
+                var mi = c.GetType().GetMethod("TryGetCurrent3DRaycastHit", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (mi != null)
+                {
+                    // Verify signature: returns bool and has one out parameter of type RaycastHit
+                    var pars = mi.GetParameters();
+                    if (mi.ReturnType == typeof(bool) && pars.Length == 1 && pars[0].ParameterType == typeof(RaycastHit).MakeByRefType())
+                    {
+                        fallbackInteractorComponent = c;
+                        fallbackTryGetHitMethod = mi;
+                        Debug.Log($"WhiteboardDrawer: Using fallback interactor '{c.gameObject.name}' ({c.GetType().Name}) for hit queries.");
+                        return;
+                    }
+                }
+            }
+        }
+
+        // If the assigned Draw Ray Source didn't resolve to a provider/interactor,
+        // try to find a suitable interactor/provider anywhere in the scene as a helpful fallback.
+        if (rayProvider == null && xrRayInteractor == null)
+        {
+            // Prefer explicit XRRayInteractor components (common when using XR Interaction Toolkit).
+            var allXRRay = Object.FindObjectsOfType<XRRayInteractor>();
+            foreach (var xr in allXRRay)
+            {
+                if (xr != null && xr.enabled && xr.gameObject.activeInHierarchy)
+                {
+                    xrRayInteractor = xr;
+                    Debug.Log($"WhiteboardDrawer: Auto-selected XR Ray Interactor '{xr.gameObject.name}' as Draw Ray Source.");
+                    return;
+                }
+            }
+
+            // Next, look for any component that implements IXRRayProvider.
+            var allMono = Object.FindObjectsOfType<MonoBehaviour>();
+            foreach (var m in allMono)
+            {
+                var provider = m as IXRRayProvider;
+                if (provider != null)
+                {
+                    rayProvider = provider;
+                    Debug.Log($"WhiteboardDrawer: Auto-selected Ray Provider on '{(m as Component).gameObject.name}' as Draw Ray Source.");
+                    return;
+                }
+            }
+        }
     }
 
     private void UpdatePressDraw(bool startDraw, bool holdDraw, bool endDraw)
@@ -166,6 +289,8 @@ public class WhiteboardDrawer : MonoBehaviour
                 }
                 SetupLineRenderer(currentLine);
                 points.Clear();
+                // track spawned line for easy clearing later
+                spawnedLines.Add(newLine);
             }
         }
 
@@ -219,6 +344,8 @@ public class WhiteboardDrawer : MonoBehaviour
                 points.Add(hitPoint);
                 currentLine.positionCount = points.Count;
                 currentLine.SetPosition(0, hitPoint);
+                // track spawned line for easy clearing later
+                spawnedLines.Add(newLine);
             }
             else if (currentLine != null)
             {
@@ -241,11 +368,52 @@ public class WhiteboardDrawer : MonoBehaviour
 
     private bool TryGetHit(out RaycastHit hit)
     {
+        // If using the gamepad virtual cursor, project a ray from the main camera using the cursor viewport position.
+        if (useGamepadCursor)
+        {
+            var gp = Gamepad.current;
+            bool hasStickInput = gp != null || Mathf.Abs(Input.GetAxis("Horizontal")) > 0f || Mathf.Abs(Input.GetAxis("Vertical")) > 0f;
+            if (gp != null || hasStickInput)
+            {
+                Camera camLocal = Camera.main;
+                if (camLocal != null)
+                {
+                    Ray rayLocal = camLocal.ViewportPointToRay(new Vector3(gamepadCursor.x, gamepadCursor.y, 0f));
+                    if (Physics.Raycast(rayLocal, out hit, rayDistance, drawingLayer, QueryTriggerInteraction.Collide))
+                        return true;
+                }
+            }
+        }
+
         // Prefer using XR Ray Interactor's own raycast hit (this matches the laser visual)
         if (xrRayInteractor != null)
         {
             if (xrRayInteractor.TryGetCurrent3DRaycastHit(out hit))
                 return true;
+        }
+
+        // If a fallback interactor component was detected that exposes TryGetCurrent3DRaycastHit,
+        // invoke it via reflection to get the hit. This allows support for custom interactors
+        // (e.g. Near-Far Interactor) that aren't of type XRRayInteractor.
+        if (fallbackInteractorComponent != null && fallbackTryGetHitMethod != null)
+        {
+            object[] args = new object[] { default(RaycastHit) };
+            try
+            {
+                bool ok = (bool)fallbackTryGetHitMethod.Invoke(fallbackInteractorComponent, args);
+                if (ok)
+                {
+                    hit = (RaycastHit)args[0];
+                    return true;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                // If reflection fails for some reason, clear the fallback to avoid repeated exceptions.
+                Debug.LogWarning($"WhiteboardDrawer: fallback interactor invocation failed: {ex.Message}");
+                fallbackInteractorComponent = null;
+                fallbackTryGetHitMethod = null;
+            }
         }
 
         if (rayProvider != null)
@@ -345,16 +513,70 @@ public class WhiteboardDrawer : MonoBehaviour
 
     public void ClearBoard()
     {
-    // Destroy only the ink objects we created.
-    // FindObjectsByType is the modern API; FindObjectsOfType keeps older Unity versions compatible.
-#if UNITY_2023_1_OR_NEWER
-    var strokes = Object.FindObjectsByType<InkStroke>(FindObjectsSortMode.None);
-#else
-    var strokes = Object.FindObjectsOfType<InkStroke>();
-#endif
-    foreach (var stroke in strokes)
-        Destroy(stroke.gameObject);
+        // Destroy only the line objects we created.
+        // We track spawned line GameObjects in `spawnedLines` so we can reliably remove them.
+        for (int i = spawnedLines.Count - 1; i >= 0; --i)
+        {
+            var go = spawnedLines[i];
+            if (go != null)
+                Destroy(go);
+        }
+        spawnedLines.Clear();
+
+        // Fallback: if the user didn't use the tracked flow (or older scenes exist),
+        // remove LineRenderer clones that match the prefab name (common Unity naming: "PrefabName(Clone)").
+        if (linePrefab != null)
+        {
+            var allLineRenderers = Object.FindObjectsOfType<LineRenderer>();
+            foreach (var lr in allLineRenderers)
+            {
+                if (lr == null || lr.gameObject == null) continue;
+                if (lr.gameObject.name.StartsWith(linePrefab.name))
+                    Destroy(lr.gameObject);
+            }
+        }
 
         Debug.Log("Board Cleared!");
+    }
+
+    private void SaveBoardImage()
+    {
+        var cam = Camera.main;
+        if (cam == null)
+        {
+            Debug.LogError("SaveBoardImage: No main camera found.");
+            return;
+        }
+
+        int w = Mathf.Max(16, saveImageWidth);
+        int h = Mathf.Max(16, saveImageHeight);
+        var rt = new RenderTexture(w, h, 24);
+        var prev = cam.targetTexture;
+        cam.targetTexture = rt;
+        RenderTexture.active = rt;
+        cam.Render();
+
+        Texture2D tex = new Texture2D(w, h, TextureFormat.RGB24, false);
+        tex.ReadPixels(new Rect(0, 0, w, h), 0, 0);
+        tex.Apply();
+
+        cam.targetTexture = prev;
+        RenderTexture.active = null;
+        Destroy(rt);
+
+        byte[] png = tex.EncodeToPNG();
+        Destroy(tex);
+
+        string folder = Application.persistentDataPath;
+        string filename = Path.Combine(folder, $"whiteboard_{System.DateTime.Now:yyyyMMdd_HHmmss}.png");
+        try
+        {
+            File.WriteAllBytes(filename, png);
+            Debug.Log($"Saved whiteboard image to: {filename}");
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Failed to save image: {ex.Message}");
+        }
     }
 }

@@ -10,10 +10,8 @@ using UnityEngine.Networking;
 
 public class WSManager : MonoBehaviour
 {
-    private ClientWebSocket socket = new ClientWebSocket();
     [Header("WebSocket Server")]
     [SerializeField] private string serverUrl = "ws://172.20.10.6:8765"; // your Python WebSocket server URL
-    private Uri uri;
 
     [Header("Image Spawner Reference")]
     public ImageCubeSpawner cubeSpawner;  // ✅ drag ImageCubeSpawner in Inspector
@@ -58,9 +56,17 @@ public class WSManager : MonoBehaviour
         // Ensure dispatcher exists on the Unity main thread.
         dispatcher = UnityMainThreadDispatcher.Instance();
 
-        // Initialize websocket
-        if (string.IsNullOrWhiteSpace(serverBaseUrl))
+        try
         {
+            // Validate server URL
+            if (string.IsNullOrWhiteSpace(serverUrl))
+            {
+                Debug.LogError("❌ [WSManager] serverUrl is empty. Please set it in the Inspector.");
+                return;
+            }
+
+            // Initialize websocket
+            socket = new ClientWebSocket();
             uri = new Uri(serverUrl);
             Debug.Log($"🔌 [WSManager] Attempting to connect to {serverUrl}...");
             await socket.ConnectAsync(uri, CancellationToken.None);
