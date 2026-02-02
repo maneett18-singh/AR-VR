@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
+using Unity.XR.CoreUtils;
 
 [RequireComponent(typeof(LineRenderer))]
 public class ZiplineController : MonoBehaviour
@@ -9,6 +12,12 @@ public class ZiplineController : MonoBehaviour
     public Transform player;                   // assign your player in Inspector
     public Animator playerAnimator;            // optional: zipline ride animation
 
+    [Header("XR Interaction (Optional)")]
+    [Tooltip("Assign an XR Base Interactable attached to the zipline trigger/collider.")]
+    public UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable interactable;
+    [Tooltip("Optional: assign your XR rig root. If null, the interactor root is used.")]
+    public Transform playerRootOverride;
+
     [Header("Settings")]
     public float speed = 5f;                   // zipline speed
     public bool drawDebugLine = false;         // disable this if you have a real rope mesh
@@ -18,6 +27,20 @@ public class ZiplineController : MonoBehaviour
     private bool isUsingZipline = false;
     private float t = 0f;
     private LineRenderer line;
+
+    private void OnEnable()
+    {
+        if (interactable == null)
+            interactable = GetComponentInChildren<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>();
+        if (interactable != null)
+            interactable.selectEntered.AddListener(OnSelectEntered);
+    }
+
+    private void OnDisable()
+    {
+        if (interactable != null)
+            interactable.selectEntered.RemoveListener(OnSelectEntered);
+    }
 
     void Awake()
     {
@@ -73,6 +96,41 @@ public class ZiplineController : MonoBehaviour
         // Optional: animator handling
         if (playerAnimator != null)
             playerAnimator.SetBool("isRidingZipline", true);
+    }
+
+    private void OnSelectEntered(SelectEnterEventArgs args)
+    {
+        if (args == null) return;
+        if (!IsRightHandInteractor(args.interactorObject)) return;
+
+        Transform target = ResolvePlayerRoot(args.interactorObject);
+        Attach(target);
+    }
+
+    private static bool IsRightHandInteractor(UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor interactor)
+    {
+        if (interactor == null) return false;
+
+        var xrController = interactor.transform.GetComponentInParent<XRController>();
+        if (xrController != null)
+            return xrController.controllerNode == XRNode.RightHand;
+
+        return true;
+    }
+
+    private Transform ResolvePlayerRoot(UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor interactor)
+    {
+        if (playerRootOverride != null)
+            return playerRootOverride;
+
+        var xrOrigin = FindObjectOfType<XROrigin>();
+        if (xrOrigin != null)
+            return xrOrigin.transform;
+
+        if (Camera.main != null)
+            return Camera.main.transform.root;
+
+        return interactor != null ? interactor.transform.root : null;
     }
 
     private void Detach()

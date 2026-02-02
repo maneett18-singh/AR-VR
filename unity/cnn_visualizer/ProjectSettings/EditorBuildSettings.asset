@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Lunar Landscape 3D/Scenes/LunarLandscape3D.unity
     guid: f4021bc829b444148a3959ec85eeeceb
+  - enabled: 0
+    path: Assets/_Recovery/0 (55).unity
+    guid: 5a4abb55f680a5dc895f13f8290cdb49
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.PXR.Settings: {fileID: 11400000, guid: e4a0f686e87c6e6c3ac1ed01243eec29, type: 2}

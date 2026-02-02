@@ -36,6 +36,7 @@ public class ExternalWhiteboardDrawer : MonoBehaviour
 
     private GameObject reticle;
     private bool wasPressedLastFrame = false;
+    private bool leftWasPressedLastFrame = false;
 
     void Start()
     {
@@ -62,6 +63,21 @@ public class ExternalWhiteboardDrawer : MonoBehaviour
         bool hold = pressed;
         bool end = !pressed && wasPressedLastFrame;
 
+        // Left-hand primary button to clear/erase (edge triggered)
+        var leftDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+        bool leftPressed = false;
+        if (leftDevice.isValid)
+        {
+            // Use the controller's primary button (typically X on left-hand controllers)
+            leftDevice.TryGetFeatureValue(CommonUsages.primaryButton, out leftPressed);
+        }
+        bool leftPressedThisFrame = leftPressed && !leftWasPressedLastFrame;
+        if (leftPressedThisFrame)
+        {
+            ClearBoard();
+            Debug.Log("ExternalWhiteboardDrawer: Left primary button pressed — cleared board.");
+        }
+
         if (start)
             TryStartStroke();
         if (hold)
@@ -70,6 +86,7 @@ public class ExternalWhiteboardDrawer : MonoBehaviour
             EndStroke();
 
         wasPressedLastFrame = pressed;
+        leftWasPressedLastFrame = leftPressed;
     }
 
     private void DetectFallbackInteractor(Component comp)
@@ -110,6 +127,9 @@ public class ExternalWhiteboardDrawer : MonoBehaviour
                 fallbackTryGetHitMethod = null;
             }
         }
+
+        
+
 
         // Otherwise, do a simple raycast from the provided Transform forward
         if (drawRaySource != null && (drawRaySource is Transform || (drawRaySource as Component)?.transform != null))

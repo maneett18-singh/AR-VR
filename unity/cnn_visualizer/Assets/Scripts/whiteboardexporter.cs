@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.IO;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,11 @@ public class WhiteboardExporter : MonoBehaviour
     public int resHeight = 256;   // MNIST height
     [Header("XR Input (Optional)")]
     [SerializeField] private InputActionReference captureAction; // e.g., X or A button
+
+    [Header("WebSocket (Optional)")]
+    [SerializeField] private WSManager wsManager;
+    [SerializeField] private bool sendToServer = true;
+    [SerializeField] private bool saveToDisk = true;
 
     private static Texture2D Rotate90Clockwise(Texture2D src)
     {
@@ -39,8 +45,33 @@ public class WhiteboardExporter : MonoBehaviour
             SaveDrawing(); // This calls your existing save logic
         }
     }
+
+    private void Awake()
+    {
+        if (wsManager == null)
+            wsManager = FindObjectOfType<WSManager>();
+    }
+
+    private void OnEnable()
+    {
+        if (captureAction != null)
+            captureAction.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        if (captureAction != null)
+            captureAction.action.Disable();
+    }
+
     public void SaveDrawing()
     {
+        if (captureCamera == null)
+        {
+            Debug.LogWarning("WhiteboardExporter: captureCamera is not assigned.");
+            return;
+        }
+
         // 1. Create a "bucket" for the pixels
         RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
         captureCamera.targetTexture = rt;
@@ -62,19 +93,35 @@ public class WhiteboardExporter : MonoBehaviour
     // 5. Rotate 90 degrees to the right (clockwise), then convert to PNG.
     Texture2D rotated = Rotate90Clockwise(screenShot);
     byte[] bytes = rotated.EncodeToPNG();
-        string picsDir = Path.Combine(Application.dataPath, "Pics");
-        Directory.CreateDirectory(picsDir);
+        if (saveToDisk)
+        {
+            string picsDir = Path.Combine(Application.persistentDataPath, "Pics");
+            Directory.CreateDirectory(picsDir);
 
-        string filename = Path.Combine(
-            picsDir,
-            "MNIST_Drawing_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png"
-        );
-        File.WriteAllBytes(filename, bytes);
+            string filename = Path.Combine(
+                picsDir,
+                "MNIST_Drawing_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png"
+            );
+            File.WriteAllBytes(filename, bytes);
+            Debug.Log("Saved image to: " + filename);
+        }
+
+        if (sendToServer)
+        {
+            if (wsManager != null)
+            {
+                string base64 = Convert.ToBase64String(bytes);
+                _ = wsManager.SendImageBase64Async(base64, resWidth, resHeight);
+                Debug.Log("Sent drawing to server via WebSocket.");
+            }
+            else
+            {
+                Debug.LogWarning("WhiteboardExporter: WSManager not assigned; can't send image.");
+            }
+        }
 
         // Cleanup CPU-side textures
         Destroy(screenShot);
         Destroy(rotated);
-
-        Debug.Log("Saved image to: " + filename);
     }
 }

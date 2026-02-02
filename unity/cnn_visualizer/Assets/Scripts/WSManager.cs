@@ -11,7 +11,7 @@ using UnityEngine.Networking;
 public class WSManager : MonoBehaviour
 {
     [Header("WebSocket Server")]
-    [SerializeField] private string serverUrl = "ws://172.22.65.42:8765"; // your Python WebSocket server URL
+    [SerializeField] private string serverUrl = "ws://172.20.10.8:8765"; // your Python WebSocket server URL
 
     [Header("Image Spawner Reference")]
     public ImageCubeSpawner cubeSpawner;  // ✅ drag ImageCubeSpawner in Inspector
@@ -264,5 +264,50 @@ public class WSManager : MonoBehaviour
             Debug.Log("🔌 [WSManager] Closing WebSocket...");
             _ = socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Bye", CancellationToken.None);
         }
+    }
+
+    public async Task<bool> SendTextAsync(string payload)
+    {
+        if (string.IsNullOrWhiteSpace(payload))
+            return false;
+
+        if (socket == null || socket.State != WebSocketState.Open)
+        {
+            Debug.LogWarning("⚠️ [WSManager] Can't send message; WebSocket isn't connected.");
+            return false;
+        }
+
+        try
+        {
+            var bytes = Encoding.UTF8.GetBytes(payload);
+            await socket.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, CancellationToken.None);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"❌ [WSManager] Failed to send message: {ex.Message}");
+            return false;
+        }
+    }
+
+    public Task<bool> SendImageBase64Async(string base64Png, int width, int height)
+    {
+        if (string.IsNullOrWhiteSpace(base64Png))
+        {
+            Debug.LogWarning("⚠️ [WSManager] Can't send image; base64 is empty.");
+            return Task.FromResult(false);
+        }
+
+        var payload = new
+        {
+            type = "unity_image",
+            image_base64 = base64Png,
+            width = width,
+            height = height,
+            format = "png"
+        };
+
+        string json = JsonConvert.SerializeObject(payload);
+        return SendTextAsync(json);
     }
 }

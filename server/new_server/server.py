@@ -10,9 +10,9 @@ from PIL import Image
 from model import (
     model,
     make_prediction,
-    get_input_tensor,
     get_cnn_summary,
     tensor_to_base64,
+    transform,
 )
 
 
@@ -48,6 +48,48 @@ def _vector_to_2d(arr1d: np.ndarray, prefer_rows: Optional[int] = None, prefer_c
     return out
 
 
+def _input_tensor_from_png_bytes(png_bytes: bytes) -> torch.Tensor:
+    image = Image.open(BytesIO(png_bytes)).convert("RGB")
+    tensor = transform(image)
+    return torch.unsqueeze(tensor, 0)
+
+
+def _extract_png_bytes(message: Any) -> Optional[bytes]:
+    if message is None:
+        return None
+
+    if isinstance(message, (bytes, bytearray)):
+        return bytes(message)
+
+    if not isinstance(message, str):
+        return None
+
+    text = message.strip()
+    if not text:
+        return None
+
+    # Try JSON payload first
+    try:
+        payload = json.loads(text)
+        if isinstance(payload, dict):
+            b64 = (
+                payload.get("image_base64")
+                or payload.get("image_png_base64")
+                or payload.get("png_base64")
+                or payload.get("base64")
+            )
+            if isinstance(b64, str) and b64.strip():
+                return base64.b64decode(b64)
+    except Exception:
+        pass
+
+    # Fallback: treat the message as raw base64
+    try:
+        return base64.b64decode(text)
+    except Exception:
+        return None
+
+
 async def handler(websocket):
     print("✅ Unity connected!")
 
@@ -58,9 +100,14 @@ async def handler(websocket):
 
     while True:
         try:
-            # Example image
-            image_url = "https://conx.readthedocs.io/en/latest/_images/MNIST_6_0.png"
-            input_tensor, _ = get_input_tensor(image_url)
+            # Receive image from Unity (base64 PNG) and convert to tensor
+            message = await websocket.recv()
+            png_bytes = _extract_png_bytes(message)
+            if not png_bytes:
+                print("⚠️ Received message without image data; skipping.")
+                continue
+
+            input_tensor = _input_tensor_from_png_bytes(png_bytes)
 
             # Capture activations for model architecture layers
             activations = {}
@@ -121,7 +168,7 @@ async def handler(websocket):
 
             total_maps = sum(len(v) for v in data["feature_maps"].values())
             print(f"📤 Sent {len(data['feature_maps'])} layers / {total_maps} maps to Unity")
-            await asyncio.sleep(1.0)
+            # (no fixed sleep) respond per incoming image
 
         except websockets.exceptions.ConnectionClosed:
             print("❌ Unity disconnected. Exiting handler.")
