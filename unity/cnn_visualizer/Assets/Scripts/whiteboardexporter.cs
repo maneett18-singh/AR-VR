@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.IO;
+using UnityEngine.InputSystem;
 
 public class WhiteboardExporter : MonoBehaviour
 {
     public Camera captureCamera; // Assign your CaptureCamera here
     public int resWidth = 256;    // MNIST width
     public int resHeight = 256;   // MNIST height
+    [Header("XR Input (Optional)")]
+    [SerializeField] private InputActionReference captureAction; // e.g., X or A button
 
     private static Texture2D Rotate90Clockwise(Texture2D src)
     {
@@ -29,13 +32,13 @@ public class WhiteboardExporter : MonoBehaviour
     }
 
     void Update()
-{
-    // Input.GetKeyDown checks for the exact frame the key is pressed
-    if (Input.GetKeyDown(KeyCode.P)) 
     {
-        SaveDrawing(); // This calls your existing save logic
+        bool doCapture = captureAction != null ? captureAction.action.WasPressedThisFrame() : Input.GetKeyDown(KeyCode.P);
+        if (doCapture)
+        {
+            SaveDrawing(); // This calls your existing save logic
+        }
     }
-}
     public void SaveDrawing()
     {
         // 1. Create a "bucket" for the pixels

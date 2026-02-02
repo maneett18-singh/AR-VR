@@ -10,21 +10,10 @@ using UnityEngine.Networking;
 
 public class WSManager : MonoBehaviour
 {
-    [Header("HTTP Server Settings")]
-    [Tooltip("FastAPI base URL (no trailing slash). Example: http://localhost:8765")]
-    public string serverBaseUrl = "http://localhost:8765";
-
-    [Tooltip("If true, fetch exactly one inference on Start().")]
-    public bool fetchOnStart = true;
-
-    [Tooltip("Optional: if set, server will fetch image from this URL.")]
-    public string imageUrl = "https://machinelearningmastery.com/wp-content/uploads/2019/02/sample_image-300x298.png";
-
-    [Tooltip("Optional: key to trigger a single fetch at runtime.")]
-    public KeyCode fetchKey = KeyCode.Space;
-
-    [Tooltip("Request timeout (seconds).")]
-    public int timeoutSeconds = 120;
+    private ClientWebSocket socket = new ClientWebSocket();
+    [Header("WebSocket Server")]
+    [SerializeField] private string serverUrl = "ws://172.20.10.6:8765"; // your Python WebSocket server URL
+    private Uri uri;
 
     [Header("Image Spawner Reference")]
     public ImageCubeSpawner cubeSpawner;  // ✅ drag ImageCubeSpawner in Inspector
@@ -72,24 +61,8 @@ public class WSManager : MonoBehaviour
         // Initialize websocket
         if (string.IsNullOrWhiteSpace(serverBaseUrl))
         {
-            Debug.LogError("❌ [WSManager] serverBaseUrl is empty.");
-            return;
-        }
-
-        // Convert http(s)://host:port -> ws(s)://host:port/ws
-        // Assumption: FastAPI websocket route is /ws
-        var wsBase = serverBaseUrl.TrimEnd('/');
-        if (wsBase.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-            wsBase = "wss://" + wsBase.Substring("https://".Length);
-        else if (wsBase.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
-            wsBase = "ws://" + wsBase.Substring("http://".Length);
-
-        uri = new Uri(wsBase + "/ws");
-        socket = new ClientWebSocket();
-
-        try
-        {
-            Debug.Log("🔌 [WSManager] Attempting to connect to ws://localhost:8765...");
+            uri = new Uri(serverUrl);
+            Debug.Log($"🔌 [WSManager] Attempting to connect to {serverUrl}...");
             await socket.ConnectAsync(uri, CancellationToken.None);
             Debug.Log("✅ [WSManager] Connected to PyTorch WebSocket server.");
             _ = ListenLoop(); // start receiving asynchronously

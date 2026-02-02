@@ -8,6 +8,10 @@ public class RaycastPlugAndSocket : MonoBehaviour
 
     void Update()
     {
+        // If the wire got auto-snapped into a socket, release it from the "hand".
+        if (heldWire != null && heldWire.currentSocket != null)
+            heldWire = null;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             RaycastHit hit;

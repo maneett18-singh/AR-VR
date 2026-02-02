@@ -24,3 +24,9 @@ UserSettings/
 # IDE
 .vscode/
 .idea/
+
+
+/[Uu]nity/cnn_visualizer/*.apk
+/[Uu]nity/cnn_visualizer/*.zip
+*.apk
+*.symbols.zip

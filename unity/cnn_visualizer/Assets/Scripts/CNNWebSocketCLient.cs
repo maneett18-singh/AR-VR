@@ -9,7 +9,9 @@ using UnityEngine;
 public class CNNWebSocketClient : MonoBehaviour
 {
     ClientWebSocket socket = new ClientWebSocket();
-    Uri uri = new Uri("ws://localhost:8765");
+    [Header("WebSocket Server")]
+    [SerializeField] private string serverUrl = "ws://localhost:8765";
+    private Uri uri;
     
     public ImageCubeSpawner cubeSpawner;  // ✅ Assign in Inspector
 
@@ -33,7 +35,8 @@ public class CNNWebSocketClient : MonoBehaviour
     {
         try
         {
-            Debug.Log("🔌 [CNNWebSocketClient] Attempting connection to ws://localhost:8765...");
+            uri = new Uri(serverUrl);
+            Debug.Log($"🔌 [CNNWebSocketClient] Attempting connection to {serverUrl}...");
             await socket.ConnectAsync(uri, CancellationToken.None);
             Debug.Log("✅ [CNNWebSocketClient] Connected to PyTorch WebSocket server.");
 
