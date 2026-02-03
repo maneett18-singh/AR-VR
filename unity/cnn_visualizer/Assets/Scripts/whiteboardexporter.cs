@@ -50,6 +50,18 @@ public class WhiteboardExporter : MonoBehaviour
     {
         if (wsManager == null)
             wsManager = FindObjectOfType<WSManager>();
+
+        if (captureCamera == null)
+            captureCamera = FindBestCaptureCamera();
+
+        if (captureCamera == null)
+            Debug.LogWarning("WhiteboardExporter: captureCamera not set and no suitable camera was found.");
+
+        if (captureAction == null)
+            Debug.LogWarning("WhiteboardExporter: captureAction not assigned. Trigger input will not fire (keyboard 'P' still works in Editor).");
+
+        if (sendToServer && wsManager == null)
+            Debug.LogWarning("WhiteboardExporter: WSManager not found. Images will not be sent to the server.");
     }
 
     private void OnEnable()
@@ -71,6 +83,8 @@ public class WhiteboardExporter : MonoBehaviour
             Debug.LogWarning("WhiteboardExporter: captureCamera is not assigned.");
             return;
         }
+
+        Debug.Log("WhiteboardExporter: Capture triggered.");
 
         // 1. Create a "bucket" for the pixels
         RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
@@ -95,7 +109,14 @@ public class WhiteboardExporter : MonoBehaviour
     byte[] bytes = rotated.EncodeToPNG();
         if (saveToDisk)
         {
-            string picsDir = Path.Combine(Application.persistentDataPath, "Pics");
+            string picsDir;
+#if UNITY_EDITOR
+            // In the Editor, write into Assets/Pics so the file is visible in the project.
+            picsDir = Path.Combine(Application.dataPath, "Pics");
+#else
+            // In builds (Android), Assets is read-only, so use persistent storage.
+            picsDir = Path.Combine(Application.persistentDataPath, "Pics");
+#endif
             Directory.CreateDirectory(picsDir);
 
             string filename = Path.Combine(
@@ -123,5 +144,27 @@ public class WhiteboardExporter : MonoBehaviour
         // Cleanup CPU-side textures
         Destroy(screenShot);
         Destroy(rotated);
+    }
+
+    private Camera FindBestCaptureCamera()
+    {
+        // Prefer a camera with "capture" in the name.
+        Camera[] cams = FindObjectsOfType<Camera>(true);
+        foreach (var cam in cams)
+        {
+            if (cam == null) continue;
+            if (cam.name.IndexOf("capture", StringComparison.OrdinalIgnoreCase) >= 0)
+                return cam;
+        }
+
+        // Fallback to Camera.main if available.
+        if (Camera.main != null)
+            return Camera.main;
+
+        // Otherwise just return the first available camera.
+        if (cams.Length > 0)
+            return cams[0];
+
+        return null;
     }
 }
