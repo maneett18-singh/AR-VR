@@ -18,6 +18,7 @@ public class WSManager : MonoBehaviour
 
     [Header("FC Graph Visualizer (Optional)")]
     public FCNetworkVisualizer fcVisualizer; // ✅ drag FCNetworkVisualizer in Inspector
+    public SimpleFCNetworkVisualizer simpleFcVisualizer; // ✅ drag SimpleFCNetworkVisualizer in Inspector
 
     private UnityMainThreadDispatcher dispatcher;
 
@@ -55,6 +56,11 @@ public class WSManager : MonoBehaviour
     {
         // Ensure dispatcher exists on the Unity main thread.
         dispatcher = UnityMainThreadDispatcher.Instance();
+
+        if (fcVisualizer == null)
+            fcVisualizer = FindObjectOfType<FCNetworkVisualizer>();
+        if (simpleFcVisualizer == null)
+            simpleFcVisualizer = FindObjectOfType<SimpleFCNetworkVisualizer>();
 
         try
         {
@@ -161,7 +167,7 @@ public class WSManager : MonoBehaviour
 
     private void TryHighlightPrediction(string json)
     {
-        if (fcVisualizer == null)
+        if (fcVisualizer == null && simpleFcVisualizer == null)
             return;
 
         try
@@ -172,7 +178,8 @@ public class WSManager : MonoBehaviour
             if (p < 0 || p > 9)
                 return;
 
-            fcVisualizer.SetPredictedOutput(p);
+            fcVisualizer?.SetPredictedOutput(p);
+            simpleFcVisualizer?.SetPredictedOutput(p);
         }
         catch
         {
@@ -216,6 +223,32 @@ public class WSManager : MonoBehaviour
             // Slice weights to match target sizes (top-left block)
             float[] w1Sliced = SliceMatrixRowMajor(w1, serverHidden, serverInput, targetHidden, targetInput);
             float[] w2Sliced = SliceMatrixRowMajor(w2, serverOutput, serverHidden, targetOutput, targetHidden);
+
+            if (cubeSpawner != null && fcVisualizer.alignToCnnMaps && fcVisualizer.cnnMapsAnchor == null)
+            {
+                // Anchor FC network to the CNN maps root when available.
+                if (cubeSpawner.visualizationRoot != null)
+                    fcVisualizer.cnnMapsAnchor = cubeSpawner.visualizationRoot;
+            }
+
+            if (simpleFcVisualizer != null)
+            {
+                if (simpleFcVisualizer.forceOutputCount > 0)
+                {
+                    targetOutput = Mathf.Clamp(simpleFcVisualizer.forceOutputCount, 1, serverOutput);
+                }
+
+                if (cubeSpawner != null && simpleFcVisualizer.alignToCnnMaps && simpleFcVisualizer.cnnMapsAnchor == null)
+                {
+                    if (cubeSpawner.visualizationRoot != null)
+                        simpleFcVisualizer.cnnMapsAnchor = cubeSpawner.visualizationRoot;
+                }
+
+                simpleFcVisualizer.BuildNetwork(targetInput, targetHidden, targetOutput);
+                simpleFcVisualizer.SetWeights(w1Sliced, targetHidden, targetInput, w2Sliced, targetOutput, targetHidden);
+                Debug.Log("✅ [WSManager] Simple FC graph visualized");
+                return;
+            }
 
             fcVisualizer.BuildNetwork(targetInput, targetHidden, targetOutput);
             fcVisualizer.SetWeights(w1Sliced, targetHidden, targetInput, w2Sliced, targetOutput, targetHidden);

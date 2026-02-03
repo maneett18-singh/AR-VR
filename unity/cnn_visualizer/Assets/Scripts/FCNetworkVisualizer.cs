@@ -19,6 +19,11 @@ public class FCNetworkVisualizer : MonoBehaviour
     public bool useThickConnections = true;
     public Camera referenceCamera;
 
+    [Header("Neuron Rendering")]
+    [Tooltip("Optional material used for neuron spheres. If null, a simple unlit color material is created.")]
+    public Material neuronMaterial;
+    public Color neuronColor = Color.white;
+
     [Header("Connection Width Randomization")]
     [Tooltip("If enabled, each source neuron gets a random connection width.")]
     public bool randomizeWidthPerSourceNeuron = true;
@@ -54,6 +59,35 @@ public class FCNetworkVisualizer : MonoBehaviour
     [Header("Bootstrap")]
     public bool buildOnStart = true;
     public bool drawPlaceholderConnectionsWhenNoWeights = true;
+
+    [Header("World Lock")]
+    [Tooltip("If enabled, detaches this visualizer from its parent so it doesn't move with the camera rig.")]
+    public bool detachFromParentOnStart = true;
+
+    [Tooltip("If enabled, places the FC network in front of the reference camera on start.")]
+    public bool placeInFrontOfCameraOnStart = true;
+
+    [Tooltip("Distance in meters to place the FC network in front of the camera.")]
+    [Range(0.2f, 10f)] public float cameraPlacementDistance = 2.0f;
+
+    [Header("Auto Placement (Optional)")]
+    [Tooltip("Anchor transform for the CNN feature-map visualization root.")]
+    public Transform cnnMapsAnchor;
+
+    [Tooltip("Offset from CNN maps anchor where the FC network should be placed.")]
+    public Vector3 cnnMapsOffset = new Vector3(0f, 0f, 2f);
+
+    [Tooltip("If enabled, positions the FC network relative to cnnMapsAnchor.")]
+    public bool alignToCnnMaps = true;
+
+    [Tooltip("Optional anchor for predicted-number visuals (e.g., a 0-9 label row).")]
+    public Transform outputNumbersAnchor;
+
+    [Tooltip("Offset applied to outputNumbersAnchor when aligning the output layer.")]
+    public Vector3 outputNumbersOffset = Vector3.zero;
+
+    [Tooltip("If enabled, aligns the output layer (last layer) to outputNumbersAnchor.")]
+    public bool alignOutputLayerToNumbers = false;
 
     [Header("Output Neuron Labels")]
     [Tooltip("If enabled, each neuron in the last (output) layer is labeled 0-9 (or 0..N-1 for other output sizes).")]
@@ -153,11 +187,22 @@ public class FCNetworkVisualizer : MonoBehaviour
 
     private void Start()
     {
+        if (detachFromParentOnStart && transform.parent != null)
+            transform.SetParent(null, true);
+
         if (buildOnStart && !_built)
             BuildNetwork(inputCount, hiddenCount, outputCount);
 
         if (referenceCamera == null)
             referenceCamera = Camera.main;
+
+    ApplyAutoPlacement();
+
+        if (placeInFrontOfCameraOnStart && referenceCamera != null)
+        {
+            transform.position = referenceCamera.transform.position + referenceCamera.transform.forward * cameraPlacementDistance;
+            transform.rotation = Quaternion.LookRotation(referenceCamera.transform.forward, Vector3.up);
+        }
     }
 
     private void Update()
@@ -302,6 +347,24 @@ public class FCNetworkVisualizer : MonoBehaviour
             for (int i = 0; i < _w01Flat.Length; i++) _w01Flat[i] = 1f;
             for (int i = 0; i < _w12Flat.Length; i++) _w12Flat[i] = 1f;
             RebuildConnections();
+        }
+
+        ApplyAutoPlacement();
+    }
+
+    public void ApplyAutoPlacement()
+    {
+        if (alignToCnnMaps && cnnMapsAnchor != null)
+        {
+            transform.position = cnnMapsAnchor.TransformPoint(cnnMapsOffset);
+        }
+
+        if (alignOutputLayerToNumbers && outputNumbersAnchor != null)
+        {
+            Vector3 outputLocal = origin + Vector3.right * (2f * layerXSpacing);
+            Vector3 outputWorld = transform.TransformPoint(outputLocal);
+            Vector3 targetWorld = outputNumbersAnchor.TransformPoint(outputNumbersOffset);
+            transform.position += (targetWorld - outputWorld);
         }
     }
 
@@ -557,6 +620,21 @@ public class FCNetworkVisualizer : MonoBehaviour
                 sphere.transform.SetParent(parent, false);
                 sphere.transform.localPosition = new Vector3(x, y, 0f);
                 sphere.transform.localScale = neuronScale;
+
+                var renderer = sphere.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    if (neuronMaterial != null)
+                    {
+                        renderer.material = neuronMaterial;
+                    }
+                    else
+                    {
+                        var mat = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
+                        mat.color = neuronColor;
+                        renderer.material = mat;
+                    }
+                }
 
                 var col = sphere.GetComponent<Collider>();
                 if (col != null) col.enabled = false;
