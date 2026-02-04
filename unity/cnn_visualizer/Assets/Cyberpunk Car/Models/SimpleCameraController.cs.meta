@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8b50c964318011749be78cc78e9b1b73
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 175064
+  packageName: CyberPunk Car
+  packageVersion: 1.0
+  assetPath: Assets/Cyberpunk Car/Models/SimpleCameraController.cs
+  uploadId: 380013

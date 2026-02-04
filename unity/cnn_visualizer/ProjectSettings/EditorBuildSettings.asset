@@ -5,16 +5,46 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 55daccc09a3b69647bbab145b54a3ab3
+  - enabled: 0
+    path: Assets/_Recovery/0 (25).unity
+    guid: 5862d65d8db50447cb2b0437291eaf0b
+  - enabled: 0
+    path: Assets/_Recovery/0 (26).unity
+    guid: b6cb8e68d5ec927eb8174b1e46e7ab9e
+  - enabled: 0
+    path: Assets/_Recovery/0 (34).unity
+    guid: 35790484592bdb8d4bde80f5dca3308e
+  - enabled: 0
+    path: Assets/_Recovery/0 (36).unity
+    guid: 516172760569d2d28930ca699bb11846
+  - enabled: 0
+    path: Assets/_Recovery/0 (39).unity
+    guid: fc1d9b73593cc654dbd915832379e5aa
+  - enabled: 0
+    path: Assets/_Recovery/0 (41).unity
+    guid: be8a0f1aacf09fb719e9afa7e18fd47a
+  - enabled: 1
+    path: Assets/_Recovery/0 (53).unity
+    guid: 8dd9c222dc6f1b79aac1b53903aa6a10
+  - enabled: 0
+    path: Assets/Lunar Landscape 3D/Scenes/LunarLandscape3D.unity
+    guid: f4021bc829b444148a3959ec85eeeceb
+  - enabled: 0
+    path: Assets/_Recovery/0 (55).unity
+    guid: 5a4abb55f680a5dc895f13f8290cdb49
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
+    Unity.XR.PXR.Settings: {fileID: 11400000, guid: e4a0f686e87c6e6c3ac1ed01243eec29, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 9bec1ce6a03ccba4b9a8215241b32e63, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: a49cadc1a815591479693b955ccf08c1, type: 2}
+    com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 985fdffee33a5944396199c6b7145dd4, type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 5dcc2603f77432c4b8f783205c89bc27, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1a4c68ca72a83449f938d669337cb305, type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: a9a6963505ddf7f4d886008c6dc86122, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 64b6c027a8f886191aedda0c53a3936d, type: 2}
+    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: b57da7d0960e345be9dc7da9709e8412, type: 2}
   m_UseUCBPForAssetBundles: 0

@@ -49,27 +49,34 @@ transform = transforms.Compose([
     transforms.Normalize((0.1307,), (0.3081,))
 ])
 
+import requests
+from PIL import Image
+from io import BytesIO
+
+
 def get_input_tensor(input_url="https://conx.readthedocs.io/en/latest/_images/MNIST_6_0.png"):
     response = requests.get(input_url)
-    if response.status_code != 200:
-        raise ValueError(f"Failed to download image. Status code: {response.status_code}")
-    image = Image.open(BytesIO(response.content))
-    tensor = torch.tensor(transform(image), dtype=torch.float32)
-    input_tensor = torch.unsqueeze(tensor, 0)
-    return input_tensor, image
+    if response.status_code == 200:
+        # Step 2: Open the image with PIL
+        image = Image.open(BytesIO(response.content))
+        img_bytes = response.content  # raw bytes directly from requests
+    else:
+        print(f"Failed to download image. Status code: {response.status_code}")
+    input_tensor = transform(image)           # shape: [1, 28, 28]
+    input_tensor = input_tensor.unsqueeze(0)  # add batch dimension -> shape [1, 1, 28, 28]
+    return input_tensor, img_bytes
+    
 
-# ---------------------------
-# Activations hooks
-# ---------------------------
-def get_all_activations(model):
-    """
-    Register forward hooks for all layers in the model.
-    Returns:
-        activations: dict mapping layer_name -> output tensor
-        hooks: list of hook handles (needed to remove hooks later)
-    """
-    activations = {}
-    hooks = []
+def make_prediction(model,input_url="https://conx.readthedocs.io/en/latest/_images/MNIST_6_0.png"):
+    input_tensor, _ = get_input_tensor(input_url)
+    if input_tensor is None:
+        return  # Failed to get input tensor
+    model.eval()
+    with torch.no_grad():
+        output = model(input_tensor)
+        predicted = torch.argmax(output, dim=1)
+        print("Predicted class:", predicted.item())
+        
 
     def hook_fn(name):
         def hook(module, input, output):
@@ -103,6 +110,8 @@ def get_activations(model):
         model.conv2.register_forward_hook(get_hook("conv2")),
         model.pool.register_forward_hook(get_hook("pool"))
     ]
+
+    
 
     return activations
 

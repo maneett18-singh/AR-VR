@@ -1,14 +1,10 @@
-1) Download pretrained model on mnist dataset.
-2) visualise the activations for the mnist model.
-3) detail the findings.
-
-
-
-
-
-
-
-1) Download model for the MNIST dataset. (done)
-2) plot the activation (done)
-4) check how to plot the linear  layer activations
+restructuring the layers(2->5).
+1) dynamic activation function on current model. (relu, sigmoid, tanh).
+2) restructuring the layers(2->5). 
+3) (optional) add masking for weights.
+4) connect weights and bias (loss v epoch, accuracy v epoch, confusion matrix)
+5)  (optional) XAI grad-cam
    
+   
+   
+ TOJEN: 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

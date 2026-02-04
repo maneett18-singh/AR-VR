@@ -3,35 +3,152 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CNNWebSocketClient : MonoBehaviour
 {
     ClientWebSocket socket = new ClientWebSocket();
-    Uri uri = new Uri("ws://localhost:8765");
+    [Header("WebSocket Server")]
+    [SerializeField] private string serverUrl = "ws://localhost:8765";
+    private Uri uri;
+    
+    public ImageCubeSpawner cubeSpawner;  // ✅ Assign in Inspector
+
+    [Header("CNN Pose Options (Configurable)")]
+    [Tooltip("List of poses/classes your CNN supports. Edit in Inspector; NOT hardcoded.")]
+    [SerializeField] private List<string> availablePoses = new List<string> { "pose_0" };
+
+    [Tooltip("Index into Available Poses to use when requesting/controlling the server.")]
+    [SerializeField] private int selectedPoseIndex = 0;
+
+    [Tooltip("If enabled, automatically send the selected pose once after connecting.")]
+    [SerializeField] private bool sendPoseOnConnect = true;
+
+    [Tooltip("Optional key to cycle to next pose at runtime.")]
+    [SerializeField] private KeyCode nextPoseKey = KeyCode.P;
+
+    [Tooltip("Optional key to send the currently selected pose.")]
+    [SerializeField] private KeyCode sendPoseKey = KeyCode.O;
 
     async void Start()
     {
         try
         {
+            uri = new Uri(serverUrl);
+            Debug.Log($"🔌 [CNNWebSocketClient] Attempting connection to {serverUrl}...");
             await socket.ConnectAsync(uri, CancellationToken.None);
-            Debug.Log("✅ Connected to PyTorch WebSocket server.");
+            Debug.Log("✅ [CNNWebSocketClient] Connected to PyTorch WebSocket server.");
+
+            if (sendPoseOnConnect)
+            {
+                _ = SendSelectedPoseAsync();
+            }
+
             _ = ListenLoop();
         }
         catch (Exception ex)
         {
-            Debug.LogError("❌ WebSocket connection failed: " + ex.Message);
+            Debug.LogError("❌ [CNNWebSocketClient] WebSocket connection failed: " + ex.Message);
         }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(nextPoseKey))
+        {
+            CyclePose();
+        }
+
+        if (Input.GetKeyDown(sendPoseKey))
+        {
+            _ = SendSelectedPoseAsync();
+        }
+    }
+
+    public IReadOnlyList<string> AvailablePoses => availablePoses;
+
+    public int SelectedPoseIndex
+    {
+        get => selectedPoseIndex;
+        set => selectedPoseIndex = Mathf.Clamp(value, 0, Mathf.Max(0, availablePoses.Count - 1));
+    }
+
+    public string SelectedPose
+    {
+        get
+        {
+            if (availablePoses == null || availablePoses.Count == 0)
+                return string.Empty;
+            var idx = Mathf.Clamp(selectedPoseIndex, 0, availablePoses.Count - 1);
+            return availablePoses[idx] ?? string.Empty;
+        }
+    }
+
+    public void CyclePose()
+    {
+        if (availablePoses == null || availablePoses.Count == 0)
+        {
+            Debug.LogWarning("⚠️ [CNNWebSocketClient] No poses configured (Available Poses is empty)." );
+            return;
+        }
+
+        selectedPoseIndex = (selectedPoseIndex + 1) % availablePoses.Count;
+        Debug.Log($"🧭 [CNNWebSocketClient] Selected pose: '{SelectedPose}' (index {selectedPoseIndex})");
+    }
+
+    async Task SendSelectedPoseAsync()
+    {
+        if (socket == null || socket.State != WebSocketState.Open)
+        {
+            Debug.LogWarning("⚠️ [CNNWebSocketClient] Can't send pose; WebSocket isn't connected.");
+            return;
+        }
+
+        var pose = SelectedPose;
+        if (string.IsNullOrWhiteSpace(pose))
+        {
+            Debug.LogWarning("⚠️ [CNNWebSocketClient] Can't send pose; SelectedPose is empty. Configure Available Poses in Inspector.");
+            return;
+        }
+
+        // Minimal JSON command. Server can ignore if it doesn't support commands.
+        // Example: {"type":"set_pose","pose":"open_palm"}
+        var payload = $"{{\"type\":\"set_pose\",\"pose\":\"{EscapeForJson(pose)}\"}}";
+        var bytes = Encoding.UTF8.GetBytes(payload);
+
+        try
+        {
+            await socket.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, CancellationToken.None);
+            Debug.Log($"📤 [CNNWebSocketClient] Sent pose command: {payload}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"❌ [CNNWebSocketClient] Failed to send pose command: {ex.Message}");
+        }
+    }
+
+    static string EscapeForJson(string s)
+    {
+        if (string.IsNullOrEmpty(s)) return string.Empty;
+        return s.Replace("\\", "\\\\").Replace("\"", "\\\"");
     }
 
     async Task ListenLoop()
     {
-        var buffer = new byte[8192];
+        var buffer = new byte[65536];
         while (socket.State == WebSocketState.Open)
         {
-            var result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-            string msg = Encoding.UTF8.GetString(buffer, 0, result.Count);
-            OnMessage(msg);
+            try
+            {
+                var result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+                string msg = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                OnMessage(msg);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"❌ [CNNWebSocketClient] Receive error: {ex.Message}");
+            }
         }
     }
     void CreateLayerPlane(ConvMessage msg)
@@ -75,13 +192,16 @@ public class CNNWebSocketClient : MonoBehaviour
 
     void OnMessage(string json)
     {
-        Debug.Log($"📩 Message from Python: {json.Substring(0, Mathf.Min(120, json.Length))}...");
-        var data = JsonUtility.FromJson<ConvMessage>(json);
-        // later: visualize it!
-        ConvMessage msg = JsonUtility.FromJson<ConvMessage>(json);
-        if (msg.type == "conv_layer")
+        Debug.Log($"📩 [CNNWebSocketClient] Message from Python: {json.Substring(0, Mathf.Min(120, json.Length))}...");
+        
+        // ✅ Now pass to ImageCubeSpawner
+        if (cubeSpawner != null)
         {
-            CreateLayerPlane(msg);
+            cubeSpawner.OnWebSocketMessage(json);
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ [CNNWebSocketClient] cubeSpawner not assigned!");
         }
     }
 
@@ -95,7 +215,7 @@ public class CNNWebSocketClient : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        if (socket != null)
+        if (socket != null && socket.State == WebSocketState.Open)
             socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Bye", CancellationToken.None);
     }
 }

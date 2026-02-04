@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3983fa9ce086e77f2875cbd093a94f9f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - holdPoint: {instanceID: 0}
+  - player: {instanceID: 0}
+  - playerCamera: {instanceID: 0}
+  - highlightedObject: {fileID: 7785151267686525225, guid: 048249d9a15aa3c459399751e860bde7, type: 3}
+  - lastHighlightedObject: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

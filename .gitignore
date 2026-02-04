@@ -1,5 +1,6 @@
 ARVR_env
-venv/
+ar_vr_env/
+.venv/
 # Unity
 Library/
 Temp/
@@ -12,3 +13,20 @@ MemoryCaptures/
 .vscode/
 
 __pycache__/
+
+# C# project files
+*.csproj
+*.sln
+
+# Unity user settings
+UserSettings/
+
+# IDE
+.vscode/
+.idea/
+
+
+/[Uu]nity/cnn_visualizer/*.apk
+/[Uu]nity/cnn_visualizer/*.zip
+*.apk
+*.symbols.zip
