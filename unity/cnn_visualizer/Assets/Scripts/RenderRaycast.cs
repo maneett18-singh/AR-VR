@@ -21,6 +21,8 @@ public class RaycastVisibleOnKey : MonoBehaviour
     public InputActionReference interactAction;
     [Tooltip("Optional XR input action to show the ray (if not using keyboard).")]
     public InputActionReference highlightAction;
+    [Tooltip("Enable ray highlight input (disable to prevent button-triggered ray).")]
+    public bool enableHighlightInput = true;
 
     private InputAction _interactRuntime;
     private InputAction _highlightRuntime;
@@ -59,7 +61,7 @@ public class RaycastVisibleOnKey : MonoBehaviour
             _interactRuntime.Enable();
         }
 
-        if (highlightAction == null)
+        if (enableHighlightInput && highlightAction == null)
         {
             _highlightRuntime = new InputAction("XR Highlight", InputActionType.Button);
             _highlightRuntime.AddBinding("<XRController>{RightHand}/secondaryButton");
@@ -73,17 +75,23 @@ public class RaycastVisibleOnKey : MonoBehaviour
     private void OnEnable()
     {
         interactAction?.action.Enable();
-        highlightAction?.action.Enable();
+        if (enableHighlightInput)
+        {
+            highlightAction?.action.Enable();
+            _highlightRuntime?.Enable();
+        }
         _interactRuntime?.Enable();
-        _highlightRuntime?.Enable();
     }
 
     private void OnDisable()
     {
         interactAction?.action.Disable();
-        highlightAction?.action.Disable();
+        if (enableHighlightInput)
+        {
+            highlightAction?.action.Disable();
+            _highlightRuntime?.Disable();
+        }
         _interactRuntime?.Disable();
-        _highlightRuntime?.Disable();
     }
 
     void Update()
@@ -94,10 +102,10 @@ public class RaycastVisibleOnKey : MonoBehaviour
         if (heldWire != null && heldWire.currentSocket != null)
             heldWire = null;
 
-    bool highlightPressed = allowKeyboardInput && Input.GetKey(highlightKey);
-        if (highlightAction != null && highlightAction.action.IsPressed())
+    bool highlightPressed = enableHighlightInput && allowKeyboardInput && Input.GetKey(highlightKey);
+        if (enableHighlightInput && highlightAction != null && highlightAction.action.IsPressed())
             highlightPressed = true;
-        if (_highlightRuntime != null && _highlightRuntime.IsPressed())
+        if (enableHighlightInput && _highlightRuntime != null && _highlightRuntime.IsPressed())
             highlightPressed = true;
 
         if (!highlightPressed)

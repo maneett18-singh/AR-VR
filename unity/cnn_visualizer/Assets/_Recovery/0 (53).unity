@@ -12233,6 +12233,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6414589626481913668, guid: 871cd0fc5cf066c4cb00e86482b1bf7b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1540709512}
+    - targetCorrespondingSourceObject: {fileID: 6414589626481913668, guid: 871cd0fc5cf066c4cb00e86482b1bf7b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1540709514}
+    - targetCorrespondingSourceObject: {fileID: 6414589626481913668, guid: 871cd0fc5cf066c4cb00e86482b1bf7b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1540709513}
   m_SourcePrefab: {fileID: 100100000, guid: 871cd0fc5cf066c4cb00e86482b1bf7b, type: 3}
 --- !u!1 &924144320
 GameObject:
@@ -12366,6 +12372,8 @@ MonoBehaviour:
   allowKeyboardInput: 0
   enableMouseLookInsideCar: 0
   forceCarCameraInVr: 0
+  disableOnEnter: []
+  lockPlayerToSeat: 1
   useRigidbodyMovement: 1
   freezePitchAndRoll: 1
   exitKey: 102
@@ -12374,6 +12382,7 @@ MonoBehaviour:
   exitOffsetLocal: {x: 2.5, y: 0, z: 0}
   forwardReference: {fileID: 2002629315}
   alignCameraToForwardReferenceOnEnter: 1
+  alignPlayerToForwardReferenceOnEnter: 1
 --- !u!65 &973006791
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17344,12 +17353,60 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.4380014, y: 0.45379046, z: 0.17917609}
   m_Center: {x: 0, y: 0.24408148, z: -0.024197068}
+--- !u!114 &1540709513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540709507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29059249337a535faaf072dc3352b7d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::XRJetpackSimplePickup
+  jetpackController: {fileID: 0}
+  playerRoot: {fileID: 830720460}
+  jetpackVisualRoot: {fileID: 0}
+  attachPointName: JetpackAttach
+  localPositionOffset: {x: 0, y: 0, z: 0}
+  localEulerOffset: {x: 0, y: 0, z: 0}
+  disableCollidersOnPickup: 1
+  disableRigidbodiesOnPickup: 1
+  destroyPickupAfterAttach: 0
+--- !u!54 &1540709514
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540709507}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1542866282
 GameObject:
   m_ObjectHideFlags: 0
@@ -19306,22 +19363,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2218496723442559054, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1694520453}
-    - targetCorrespondingSourceObject: {fileID: 2218496723442559054, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1694520456}
     - targetCorrespondingSourceObject: {fileID: 2218496723442559054, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1694520459}
-    - targetCorrespondingSourceObject: {fileID: 2218496723442559054, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1694520458}
-    - targetCorrespondingSourceObject: {fileID: 2218496723442559054, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1694520457}
-    - targetCorrespondingSourceObject: {fileID: 2218496723442559054, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1694520467}
+    - targetCorrespondingSourceObject: {fileID: 2218496723442559054, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1694520475}
+    - targetCorrespondingSourceObject: {fileID: 2218496723442559054, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1694520474}
     - targetCorrespondingSourceObject: {fileID: 657184242118504722, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1694520460}
@@ -19341,33 +19392,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2218496723442559054, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
   m_PrefabInstance: {fileID: 1694520449}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1694520453
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694520452}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
 --- !u!4 &1694520454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 657184242118504721, guid: d6878e1999eb4b44a9f5a263af86c185, type: 3}
@@ -19405,64 +19429,6 @@ MonoBehaviour:
   gravity: 9.81
   deadzone: 0.15
   keepGrounded: 1
---- !u!114 &1694520457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694520452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73d04eefbf9127a17bfb586a8566f774, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PicoJetpackInputBridge
-  jetpack: {fileID: 1694520459}
-  toggleAction: {fileID: -8666952849799569744, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  dropAction: {fileID: -60998027439631388, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  toggleKey: 102
-  dropKey: 105
---- !u!114 &1694520458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694520452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec5318832986175cabf89bbb81c54e51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PicoJetpackFlightInput
-  jetpack: {fileID: 1694520459}
-  moveAction: {fileID: 0}
-  ascendAction: {fileID: 0}
-  descendAction: {fileID: 0}
-  triggerDeadzone: 0.15
---- !u!114 &1694520459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694520452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e63d1bd36629e851898d8614288411ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::JetpackFlightController
-  hasJetpack: 0
-  jetpackActive: 0
-  allowKeyboardInput: 0
-  useExternalInput: 1
-  ascendKey: 32
-  descendKey: 306
-  toggleJetpackKey: 102
-  dropJetpackKey: 105
-  flySpeed: 8
-  strafeSpeed: 8
-  verticalSpeed: 6
-  referenceCamera: {fileID: 0}
 --- !u!114 &1694520460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19523,6 +19489,42 @@ MonoBehaviour:
   holdPoint: {fileID: 528696922}
   playerCamera: {fileID: 1694520451}
   holdPointName: Right Controller
+--- !u!114 &1694520474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694520452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e7c30fecb878b2a3a48f04421fb4e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::XRJetpackSimpleInputToggle
+  jetpack: {fileID: 0}
+--- !u!114 &1694520475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694520452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87a1f731bec0195c1b13ed719c1b4440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::XRJetpackSimpleController
+  hasJetpack: 0
+  jetpackActive: 0
+  verticalSpeed: 20
+  hoverSnapSpeed: 20
+  holdAltitudeWhileActive: 1
+  useButtonsForVertical: 1
+  disableOnActive:
+  - {fileID: 0}
+  autoDisableLocomotion: 1
+  disableChildGravityWhileActive: 1
+  setChildKinematicWhileActive: 1
 --- !u!1 &1778711832 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3100052853224040035, guid: e86845a18098bae4b83f38956cac4e7e, type: 3}
@@ -21707,7 +21709,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 10, z: 10}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!20 &2043811813 stripped
 Camera:
