@@ -1,10 +1,17 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LeverTrigger : MonoBehaviour
 {
     [Header("Machine Reference")]
     public Shredder_work shredder;
     public KeyCode interactKey = KeyCode.E;
+    [Tooltip("Allow keyboard input (useful in editor).")]
+    public bool allowKeyboardInput = false;
+    [Tooltip("Optional XR input action to toggle the lever.")]
+    public InputActionReference interactAction;
+
+    private InputAction _interactRuntime;
 
     [Header("Lever Visual Settings")]
     public float toggleAngle = -90f;   // X rotation when ON
@@ -36,14 +43,42 @@ public class LeverTrigger : MonoBehaviour
 
         shredder?.StartMachine();
         Debug.Log("Lever initialized: ON (-90)");
+
+        if (interactAction == null)
+        {
+            _interactRuntime = new InputAction("LeverInteract", InputActionType.Button);
+            _interactRuntime.AddBinding("<XRController>{RightHand}/primaryButton");
+            _interactRuntime.AddBinding("<PicoController>{RightHand}/primaryButton");
+            _interactRuntime.AddBinding("<XRController>{LeftHand}/primaryButton");
+            _interactRuntime.AddBinding("<PicoController>{LeftHand}/primaryButton");
+            _interactRuntime.Enable();
+        }
+    }
+
+    private void OnEnable()
+    {
+        interactAction?.action.Enable();
+        _interactRuntime?.Enable();
+    }
+
+    private void OnDisable()
+    {
+        interactAction?.action.Disable();
+        _interactRuntime?.Disable();
     }
 
     void Update()
     {
+    bool interactPressed = allowKeyboardInput && Input.GetKeyDown(interactKey);
+        if (interactAction != null && interactAction.action.WasPressedThisFrame())
+            interactPressed = true;
+        if (_interactRuntime != null && _interactRuntime.WasPressedThisFrame())
+            interactPressed = true;
+
         if (raycastHighlight != null &&
             raycastHighlight.highlightedObject == gameObject &&
             gameObject.CompareTag("Lever") &&
-            Input.GetKeyDown(interactKey))
+            interactPressed)
         {
             ToggleLever();
         }

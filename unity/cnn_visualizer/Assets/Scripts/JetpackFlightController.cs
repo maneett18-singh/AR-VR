@@ -12,6 +12,12 @@ public class JetpackFlightController : MonoBehaviour
     public bool jetpackActive = false;
 
     [Header("Controls")]
+        [Tooltip("Allow keyboard input for jetpack (useful in editor).")]
+        public bool allowKeyboardInput = false;
+
+        [Tooltip("Use externally supplied input (XR controller).")]
+        public bool useExternalInput = true;
+
     public KeyCode ascendKey = KeyCode.Space;
     [Tooltip("Optional descend key (not required, but useful).")]
     public KeyCode descendKey = KeyCode.LeftControl;
@@ -35,6 +41,8 @@ public class JetpackFlightController : MonoBehaviour
     private AstronautPlayer.AstronautPlayer _astronautPlayer;
 
     private JetpackPickup _equippedPickup;
+    private Vector2 _externalMoveInput;
+    private float _externalVerticalInput;
 
     private void Awake()
     {
@@ -74,10 +82,10 @@ public class JetpackFlightController : MonoBehaviour
     {
         if (hasJetpack)
         {
-            if (Input.GetKeyDown(toggleJetpackKey))
+            if (allowKeyboardInput && Input.GetKeyDown(toggleJetpackKey))
                 SetActive(!jetpackActive);
 
-            if (Input.GetKeyDown(dropJetpackKey))
+            if (allowKeyboardInput && Input.GetKeyDown(dropJetpackKey))
                 DropJetpack();
         }
 
@@ -85,8 +93,19 @@ public class JetpackFlightController : MonoBehaviour
             return;
 
         // Horizontal movement relative to where the player is facing (yaw).
-        float v = Input.GetAxisRaw("Vertical");   // W/S
-        float h = Input.GetAxisRaw("Horizontal"); // A/D
+        float v = 0f;
+        float h = 0f;
+
+        if (useExternalInput)
+        {
+            v = _externalMoveInput.y;
+            h = _externalMoveInput.x;
+        }
+        else if (allowKeyboardInput)
+        {
+            v = Input.GetAxisRaw("Vertical");   // W/S
+            h = Input.GetAxisRaw("Horizontal"); // A/D
+        }
 
         Vector3 forward = transform.forward;
         Vector3 right = transform.right;
@@ -96,8 +115,15 @@ public class JetpackFlightController : MonoBehaviour
             horizontal = Vector3.ClampMagnitude(horizontal, Mathf.Max(flySpeed, strafeSpeed));
 
         float y = 0f;
-        if (Input.GetKey(ascendKey)) y += 1f;
-        if (Input.GetKey(descendKey)) y -= 1f;
+        if (useExternalInput)
+        {
+            y = Mathf.Clamp(_externalVerticalInput, -1f, 1f);
+        }
+        else if (allowKeyboardInput)
+        {
+            if (Input.GetKey(ascendKey)) y += 1f;
+            if (Input.GetKey(descendKey)) y -= 1f;
+        }
 
         Vector3 vertical = Vector3.up * (y * verticalSpeed);
 
@@ -127,5 +153,11 @@ public class JetpackFlightController : MonoBehaviour
         _equippedPickup.MakePickableAgain();
         _equippedPickup = null;
         return true;
+    }
+
+    public void SetExternalInput(Vector2 moveInput, float verticalInput)
+    {
+        _externalMoveInput = Vector2.ClampMagnitude(moveInput, 1f);
+        _externalVerticalInput = Mathf.Clamp(verticalInput, -1f, 1f);
     }
 }

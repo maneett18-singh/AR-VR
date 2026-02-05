@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 // We don't need 'using AstronautPlayer;' if we use the full name below
 
 public class CarController : MonoBehaviour
@@ -23,6 +24,33 @@ private float rotY;
     public DriveAxis driveAxis = DriveAxis.Forward;
     public bool invertDriveAxis = false;
 
+    [Header("XR Input (Optional)")]
+    [Tooltip("Vector2 input for movement. Typically Left Stick (primary2DAxis).")]
+    public InputActionReference moveAction;
+
+    [Tooltip("Vector2 input for turning. Typically Right Stick (primary2DAxis).")]
+    public InputActionReference turnAction;
+
+    [Tooltip("Button input to exit the car.")]
+    public InputActionReference exitAction;
+
+    [Tooltip("If enabled, keyboard input still works when no XR action is assigned.")]
+    public bool allowKeyboardInput = true;
+
+    [Header("Desktop Look (Optional)")]
+    [Tooltip("Disable this for VR so mouse look doesn't override headset rotation.")]
+    public bool enableMouseLookInsideCar = true;
+
+    [Tooltip("If true, switches to the car camera even when a VR stereo camera is active.")]
+    public bool forceCarCameraInVr = false;
+
+    [Header("Player Control Suppression")]
+    [Tooltip("Optional: XR locomotion components to disable while driving (e.g., LocomotionSystem, MoveProvider, TeleportationProvider).")]
+    public Behaviour[] disableOnEnter;
+
+    [Tooltip("Keep the player locked to the seat while driving.")]
+    public bool lockPlayerToSeat = true;
+
     [Tooltip("Use Rigidbody movement for proper collision with terrain/rocks.")]
     public bool useRigidbodyMovement = true;
 
@@ -45,14 +73,21 @@ private float rotY;
     [Tooltip("If enabled, entering the car will align the car camera to face the forwardReference.")]
     public bool alignCameraToForwardReferenceOnEnter = true;
 
+    [Tooltip("If enabled, entering the car will rotate the player to face the car's forwardReference.")]
+    public bool alignPlayerToForwardReferenceOnEnter = true;
+
     private Quaternion carCameraBaseLocalRotation = Quaternion.identity;
 
     private Rigidbody rb;
     private float moveInput;
     private float turnInput;
 
+    private InputAction _moveRuntime;
+    private InputAction _turnRuntime;
+    private InputAction _exitRuntime;
+
     private GameObject playerObj;
-    // 🟢 FIXED: Using the full name to avoid Namespace vs Class error
+    // Optional: only used when the player actually has AstronautPlayer
     private AstronautPlayer.AstronautPlayer playerScript;
     private Camera playerCamera;
     private bool isDriving = false;
@@ -60,6 +95,13 @@ private float rotY;
     private Rigidbody playerRb;
     private bool playerRbWasKinematic;
     private bool playerRbHadGravity;
+
+    private bool[] disableOnEnterWasEnabled;
+
+    private void Awake()
+    {
+        SetupRuntimeInputActions();
+    }
 
     void Start()
     {
@@ -78,15 +120,38 @@ private float rotY;
             carCameraBaseLocalRotation = carCamera.transform.localRotation;
     }
 
+    private void OnEnable()
+    {
+        moveAction?.action.Enable();
+        turnAction?.action.Enable();
+        exitAction?.action.Enable();
+
+        _moveRuntime?.Enable();
+        _turnRuntime?.Enable();
+        _exitRuntime?.Enable();
+    }
+
+    private void OnDisable()
+    {
+        moveAction?.action.Disable();
+        turnAction?.action.Disable();
+        exitAction?.action.Disable();
+
+        _moveRuntime?.Disable();
+        _turnRuntime?.Disable();
+        _exitRuntime?.Disable();
+    }
+
     void Update()
     {
         if (isDriving)
         {
-            moveInput = Input.GetAxis("Vertical");
-            turnInput = Input.GetAxis("Horizontal");
+            ReadDrivingInput();
 
-            DriveLookLogic();
-            if (Input.GetKeyDown(exitKey) || Input.GetKeyDown(exitAltKey))
+            if (enableMouseLookInsideCar && allowKeyboardInput)
+                DriveLookLogic();
+
+            if (ReadExitPressed())
                 ExitCar();
         }
     }
@@ -99,25 +164,155 @@ private float rotY;
         DriveMovementPhysics();
     }
 
+    private void LateUpdate()
+    {
+        if (!isDriving || !lockPlayerToSeat || playerObj == null || seatPoint == null)
+            return;
+
+        if (playerObj.transform.parent != seatPoint)
+            playerObj.transform.SetParent(seatPoint);
+
+        playerObj.transform.localPosition = Vector3.zero;
+        playerObj.transform.localRotation = Quaternion.identity;
+    }
+
     public void RequestExitCar()
     {
         if (isDriving)
             ExitCar();
     }
 
-    public void EnterCar(GameObject player)
+    private void ReadDrivingInput()
     {
-        playerObj = player;
-        // 🟢 FIXED: Full name used here as well
-        playerScript = player.GetComponent<AstronautPlayer.AstronautPlayer>();
-        
-        if (playerScript == null)
+        bool hasMoveAction = moveAction != null || _moveRuntime != null;
+        bool hasTurnAction = turnAction != null || _turnRuntime != null;
+
+        if (hasMoveAction)
         {
-            Debug.LogError("AstronautPlayer script not found on the player object!");
-            return;
+            Vector2 move = ReadMove();
+            float driveValue = (driveAxis == DriveAxis.Right) ? move.x : move.y;
+            moveInput = invertDriveAxis ? -driveValue : driveValue;
+        }
+        else if (allowKeyboardInput)
+        {
+            moveInput = Input.GetAxis("Vertical");
+        }
+        else
+        {
+            moveInput = 0f;
         }
 
-        playerCamera = playerScript.playerCamera;
+        if (hasTurnAction)
+        {
+            Vector2 turn = ReadTurn();
+            turnInput = turn.x;
+        }
+        else if (allowKeyboardInput)
+        {
+            turnInput = Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            turnInput = 0f;
+        }
+    }
+
+    private Vector2 ReadMove()
+    {
+        if (moveAction != null)
+            return moveAction.action.ReadValue<Vector2>();
+
+        return _moveRuntime != null ? _moveRuntime.ReadValue<Vector2>() : Vector2.zero;
+    }
+
+    private Vector2 ReadTurn()
+    {
+        if (turnAction != null)
+            return turnAction.action.ReadValue<Vector2>();
+
+        return _turnRuntime != null ? _turnRuntime.ReadValue<Vector2>() : Vector2.zero;
+    }
+
+    private bool ReadExitPressed()
+    {
+        if (exitAction != null)
+            return exitAction.action.WasPressedThisFrame();
+
+        if (_exitRuntime != null && _exitRuntime.WasPressedThisFrame())
+            return true;
+
+        return allowKeyboardInput && (Input.GetKeyDown(exitKey) || Input.GetKeyDown(exitAltKey));
+    }
+
+    private void SetupRuntimeInputActions()
+    {
+        if (moveAction == null)
+        {
+            _moveRuntime = new InputAction("CarMove", InputActionType.Value);
+            _moveRuntime.AddCompositeBinding("2DVector")
+                .With("Up", "<XRController>{LeftHand}/primary2DAxis/up")
+                .With("Down", "<XRController>{LeftHand}/primary2DAxis/down")
+                .With("Left", "<XRController>{LeftHand}/primary2DAxis/left")
+                .With("Right", "<XRController>{LeftHand}/primary2DAxis/right");
+            _moveRuntime.AddCompositeBinding("2DVector")
+                .With("Up", "<PicoController>{LeftHand}/primary2DAxis/up")
+                .With("Down", "<PicoController>{LeftHand}/primary2DAxis/down")
+                .With("Left", "<PicoController>{LeftHand}/primary2DAxis/left")
+                .With("Right", "<PicoController>{LeftHand}/primary2DAxis/right");
+        }
+
+        if (turnAction == null)
+        {
+            _turnRuntime = new InputAction("CarTurn", InputActionType.Value);
+            _turnRuntime.AddCompositeBinding("2DVector")
+                .With("Up", "<XRController>{RightHand}/primary2DAxis/up")
+                .With("Down", "<XRController>{RightHand}/primary2DAxis/down")
+                .With("Left", "<XRController>{RightHand}/primary2DAxis/left")
+                .With("Right", "<XRController>{RightHand}/primary2DAxis/right");
+            _turnRuntime.AddCompositeBinding("2DVector")
+                .With("Up", "<PicoController>{RightHand}/primary2DAxis/up")
+                .With("Down", "<PicoController>{RightHand}/primary2DAxis/down")
+                .With("Left", "<PicoController>{RightHand}/primary2DAxis/left")
+                .With("Right", "<PicoController>{RightHand}/primary2DAxis/right");
+        }
+
+        if (exitAction == null)
+        {
+            _exitRuntime = new InputAction("CarExit", InputActionType.Button);
+            _exitRuntime.AddBinding("<XRController>{RightHand}/primaryButton");
+            _exitRuntime.AddBinding("<XRController>{LeftHand}/primaryButton");
+            _exitRuntime.AddBinding("<PicoController>{RightHand}/primaryButton");
+            _exitRuntime.AddBinding("<PicoController>{LeftHand}/primaryButton");
+        }
+    }
+
+    public bool IsDriving => isDriving;
+
+    public void EnterCar(GameObject player)
+    {
+        if (isDriving)
+            return;
+
+        if (player == null)
+            return;
+
+        playerObj = player;
+        // Optional: only used if present
+        playerScript = player.GetComponent<AstronautPlayer.AstronautPlayer>();
+
+    CacheDisableStates();
+    SetDisableOnEnter(false);
+
+        if (playerScript != null && playerScript.playerCamera != null)
+        {
+            playerCamera = playerScript.playerCamera;
+        }
+        else
+        {
+            playerCamera = player.GetComponentInChildren<Camera>();
+            if (playerCamera == null)
+                playerCamera = Camera.main;
+        }
 
         // Ensure reference transforms are part of the moving car hierarchy.
         // If they live elsewhere in the scene, the player/camera won't move with the car.
@@ -142,7 +337,8 @@ private float rotY;
             forwardReference.SetParent(transform, true);
 
         // 1. Disable Player Movement & Physics
-        playerScript.enabled = false;
+        if (playerScript != null)
+            playerScript.enabled = false;
         var cc = player.GetComponent<CharacterController>();
         if (cc != null) cc.enabled = false;
 
@@ -158,11 +354,24 @@ private float rotY;
         // 2. Parent Player to Seat
         player.transform.SetParent(seatPoint);
         player.transform.localPosition = Vector3.zero;
-        player.transform.localRotation = Quaternion.identity;
+        if (alignPlayerToForwardReferenceOnEnter && forwardReference != null)
+        {
+            Quaternion targetRotation = Quaternion.Euler(0f, forwardReference.rotation.eulerAngles.y, 0f);
+            player.transform.rotation = targetRotation;
+            player.transform.localPosition = Vector3.zero;
+        }
+        else
+        {
+            player.transform.localRotation = Quaternion.identity;
+        }
 
         // 3. Swap Cameras
-        if (playerCamera != null) playerCamera.gameObject.SetActive(false);
-        if (carCamera != null) carCamera.gameObject.SetActive(true);
+        bool isVrCamera = playerCamera != null && playerCamera.stereoEnabled;
+        if (!isVrCamera || forceCarCameraInVr)
+        {
+            if (playerCamera != null) playerCamera.gameObject.SetActive(false);
+            if (carCamera != null) carCamera.gameObject.SetActive(true);
+        }
 
         // Reset look state so we don't start with a random offset
         rotX = 0f;
@@ -184,12 +393,13 @@ private float rotY;
     {
         isDriving = false;
 
-        if (playerObj == null || playerScript == null)
+        if (playerObj == null)
             return;
 
         // 1. Unparent and Re-enable Player
         playerObj.transform.SetParent(null);
-        playerScript.enabled = true;
+        if (playerScript != null)
+            playerScript.enabled = true;
 
         var cc = playerObj.GetComponent<CharacterController>();
         if (cc != null) cc.enabled = false;
@@ -202,8 +412,8 @@ private float rotY;
         }
 
         // 2. Restore Player Camera
-        if (carCamera != null) carCamera.gameObject.SetActive(false);
-        if (playerCamera != null) playerCamera.gameObject.SetActive(true);
+    if (carCamera != null) carCamera.gameObject.SetActive(false);
+    if (playerCamera != null) playerCamera.gameObject.SetActive(true);
 
         // 3. Place player outside the car so they don't get stuck
         if (exitPoint != null)
@@ -217,6 +427,44 @@ private float rotY;
         }
 
         if (cc != null) cc.enabled = true;
+
+        SetDisableOnEnter(true);
+    }
+
+    private void CacheDisableStates()
+    {
+        if (disableOnEnter == null || disableOnEnter.Length == 0)
+            return;
+
+        disableOnEnterWasEnabled = new bool[disableOnEnter.Length];
+        for (int i = 0; i < disableOnEnter.Length; i++)
+        {
+            var behaviour = disableOnEnter[i];
+            disableOnEnterWasEnabled[i] = behaviour != null && behaviour.enabled;
+        }
+    }
+
+    private void SetDisableOnEnter(bool restore)
+    {
+        if (disableOnEnter == null || disableOnEnter.Length == 0)
+            return;
+
+        for (int i = 0; i < disableOnEnter.Length; i++)
+        {
+            var behaviour = disableOnEnter[i];
+            if (behaviour == null)
+                continue;
+
+            if (restore)
+            {
+                if (disableOnEnterWasEnabled != null && i < disableOnEnterWasEnabled.Length)
+                    behaviour.enabled = disableOnEnterWasEnabled[i];
+            }
+            else
+            {
+                behaviour.enabled = false;
+            }
+        }
     }
 
     private void DriveMovementPhysics()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(LineRenderer))]
 public class RaycastVisibleOnKey : MonoBehaviour
@@ -14,6 +15,15 @@ public class RaycastVisibleOnKey : MonoBehaviour
     public float rayDistance = 5f;
     public LayerMask raycastLayers = ~0;
     public KeyCode highlightKey = KeyCode.R;
+    [Tooltip("Allow keyboard input (useful in editor).")]
+    public bool allowKeyboardInput = false;
+    [Tooltip("Optional XR input action to trigger interaction/pickup.")]
+    public InputActionReference interactAction;
+    [Tooltip("Optional XR input action to show the ray (if not using keyboard).")]
+    public InputActionReference highlightAction;
+
+    private InputAction _interactRuntime;
+    private InputAction _highlightRuntime;
 
     [HideInInspector] public GameObject highlightedObject;
     [HideInInspector] public GameObject lastHighlightedObject;
@@ -38,6 +48,42 @@ public class RaycastVisibleOnKey : MonoBehaviour
 
         if (playerCamera == null)
             playerCamera = Camera.main;
+
+        if (interactAction == null)
+        {
+            _interactRuntime = new InputAction("XR Interact", InputActionType.Button);
+            _interactRuntime.AddBinding("<XRController>{RightHand}/primaryButton");
+            _interactRuntime.AddBinding("<PicoController>{RightHand}/primaryButton");
+            _interactRuntime.AddBinding("<XRController>{LeftHand}/primaryButton");
+            _interactRuntime.AddBinding("<PicoController>{LeftHand}/primaryButton");
+            _interactRuntime.Enable();
+        }
+
+        if (highlightAction == null)
+        {
+            _highlightRuntime = new InputAction("XR Highlight", InputActionType.Button);
+            _highlightRuntime.AddBinding("<XRController>{RightHand}/secondaryButton");
+            _highlightRuntime.AddBinding("<PicoController>{RightHand}/secondaryButton");
+            _highlightRuntime.AddBinding("<XRController>{LeftHand}/secondaryButton");
+            _highlightRuntime.AddBinding("<PicoController>{LeftHand}/secondaryButton");
+            _highlightRuntime.Enable();
+        }
+    }
+
+    private void OnEnable()
+    {
+        interactAction?.action.Enable();
+        highlightAction?.action.Enable();
+        _interactRuntime?.Enable();
+        _highlightRuntime?.Enable();
+    }
+
+    private void OnDisable()
+    {
+        interactAction?.action.Disable();
+        highlightAction?.action.Disable();
+        _interactRuntime?.Disable();
+        _highlightRuntime?.Disable();
     }
 
     void Update()
@@ -48,7 +94,13 @@ public class RaycastVisibleOnKey : MonoBehaviour
         if (heldWire != null && heldWire.currentSocket != null)
             heldWire = null;
 
-        if (!Input.GetKey(highlightKey))
+    bool highlightPressed = allowKeyboardInput && Input.GetKey(highlightKey);
+        if (highlightAction != null && highlightAction.action.IsPressed())
+            highlightPressed = true;
+        if (_highlightRuntime != null && _highlightRuntime.IsPressed())
+            highlightPressed = true;
+
+        if (!highlightPressed)
         {
             line.enabled = false;
             ResetHighlight();
@@ -81,7 +133,13 @@ public class RaycastVisibleOnKey : MonoBehaviour
     // =============================
     private void HandleInteractionInput()
     {
-        if (!Input.GetKeyDown(KeyCode.E)) return;
+    bool interactPressed = allowKeyboardInput && Input.GetKeyDown(KeyCode.E);
+        if (interactAction != null && interactAction.action.WasPressedThisFrame())
+            interactPressed = true;
+        if (_interactRuntime != null && _interactRuntime.WasPressedThisFrame())
+            interactPressed = true;
+
+        if (!interactPressed) return;
 
         // Prefer the highlighted object (when holding the highlight key),
         // but also allow interaction without highlighting by raycasting on E.

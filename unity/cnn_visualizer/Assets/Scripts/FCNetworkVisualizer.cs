@@ -593,6 +593,21 @@ public class FCNetworkVisualizer : MonoBehaviour
                 sphere.transform.localPosition = new Vector3(0f, y, 0f);
                 sphere.transform.localScale = neuronScale;
 
+                var renderer = sphere.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    if (neuronMaterial != null)
+                    {
+                        renderer.material = neuronMaterial;
+                    }
+                    else
+                    {
+                        var mat = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
+                        mat.color = neuronColor;
+                        renderer.material = mat;
+                    }
+                }
+
                 var col = sphere.GetComponent<Collider>();
                 if (col != null) col.enabled = false;
 

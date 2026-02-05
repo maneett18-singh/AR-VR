@@ -82,6 +82,8 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"button"
+	"thumbs"
 	"trigger"
 	""
 	"left han"
